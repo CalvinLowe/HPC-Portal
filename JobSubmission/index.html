@@ -1,5 +1,91 @@
 <!DOCTYPE html>
-<html>
-    <head></head>
-    <body></body>
+<html lang="en">
+<head>
+	<!--
+		Set the character encoding for this document, so that
+		all characters within the UTF-8 space (such as emoji)
+		are rendered correctly.
+	-->
+	<meta charset="utf-8">
+
+	<!-- Set the document's title -->
+	<title>High Performance Computing Portal</title>
+
+	<!-- Set the base URL for all relative URLs within the document -->
+	<base href="https://example.com/page.html">
+
+	<!-- Link to an external CSS file -->
+	<link rel="stylesheet" href="styles.css">
+
+	<!-- Used for adding in-document CSS -->
+	<style>
+	/* ... */
+	</style>
+
+	<!-- JavaScript & No-JavaScript tags -->
+	<script src="script.js"></script>
+	<script>
+	// function(s) go here
+	</script>
+	<noscript>
+	<!-- No JS alternative -->
+	</noscript>
+</head>
+<body>
+	<main>
+		<header>
+			<h1>Job Submission Form Title</h1>
+			<p>Job Submission instructions.</p>
+			<p>A single core job submission e.g. <code>-l select=1:ncpus=1:mem=20GB</code></p>
+			<p>A multi core job submission e.g. <code>-l select=1:ncpus=12:mem=60GB</code></p>
+			<p>A message parsing interface (MPI) job submission (recommended for advanced users only) <code>-l select=2:ncpus=24:mem=120GB:mpiprocs=1</code> or: <code>-l select=48:ncpus=1:mem=5GB:mpiprocs=1</code></p>
+		</header>
+
+		<form>
+			<h3>Multi page 'One thing per page' Form</h3>
+			<button>Load previous job submission</button>
+
+			<h4>Enter your job details</h4>
+			<label for="jobName">Job name (required):</label>
+			<input type="text" name="jobName" id="jobName" required>
+
+			<label for="accountGroup">Account group (required):</label>
+			<select name="accountGroup" id="accountGroup" multiple required>
+				<option>RCC-UQ</option>
+			</select>
+
+			<label for="select">Select (required):</label>
+			<input type="number" name="select" id="select" value="1" required>
+
+			<label for="cpus">Number of CPUS (required):</label>
+			<input type="number" name="cpus" id="cpus" required>
+
+			<fieldset>
+				<legend>Memory</legend>
+				<label for="mem">Memory (required): </label>
+				<input type="number" name="mem" id="mem" value="1" required><label for="mem">GB</label>
+
+				<label for="vmem">Virtual memory:</label>
+				<input type="number" name="vmem" id="vmem"><label for="vmem">GB</label>
+
+				<label for="pmem">Memory per processor:</label>
+				<input type="number" name="pmem" id="pmem"><label for="pmem">GB</label>
+			</fieldset>
+
+			<button>Save as job submission script</button>
+
+			<h4>Upload a PBSpro batch script</h4>
+			<label for="jobScript">Upload job submission script:</label>
+			<input name="jobScript" id="jobScript" type="file">
+			<button>Submit job</button>
+
+		</form>
+	</main>
+	<aside>
+		<header>
+			<h2>Parameter name</h2>
+			<p>Parameter explanation with a helpful explanation or diagram.</p>
+		</header>
+	</aside>
+</body>
 </html>
