@@ -11,25 +11,8 @@
 	<!-- Set the document's title -->
 	<title>High Performance Computing Portal</title>
 
-	<!-- Set the base URL for all relative URLs within the document -->
-	<base href="https://example.com/page.html">
-
 	<!-- Link to an external CSS file -->
 	<link rel="stylesheet" href="styles.css">
-
-	<!-- Used for adding in-document CSS -->
-	<style>
-	/* ... */
-	</style>
-
-	<!-- JavaScript & No-JavaScript tags -->
-	<script src="script.js"></script>
-	<script>
-	// function(s) go here
-	</script>
-	<noscript>
-	<!-- No JS alternative -->
-	</noscript>
 </head>
 <body>
 	<main>
@@ -41,44 +24,43 @@
 			<p>A message parsing interface (MPI) job submission (recommended for advanced users only) <code>-l select=2:ncpus=24:mem=120GB:mpiprocs=1</code> or: <code>-l select=48:ncpus=1:mem=5GB:mpiprocs=1</code></p>
 		</header>
 
-		<form>
+		<form method=POST and enctype=multipart/form-data id="jobSubmissionForm" class="job-submission-form">
 			<h3>Multi page 'One thing per page' Form</h3>
-			<button>Load previous job submission</button>
+			<button class="job-submission-form__button">Load previous job submission</button>
 
 			<h4>Enter your job details</h4>
-			<label for="jobName">Job name (required):</label>
-			<input type="text" name="jobName" id="jobName" required>
+			<label for="jobName" class="job-submission-form__label">Job name (required):</label>
+			<input type="text" name="jobName" id="jobName" required class="job-submission-form__input" value="Delete me">
 
-			<label for="accountGroup">Account group (required):</label>
-			<select name="accountGroup" id="accountGroup" multiple required>
-				<option>RCC-UQ</option>
+			<label for="accountGroup" class="job-submission-form__label">Account group (required):</label>
+			<select name="accountGroup" id="accountGroup" multiple required class="job-submission-form__input">
+				<option selected="selected">RCC-UQ</option>
 			</select>
 
-			<label for="select">Select (required):</label>
-			<input type="number" name="select" id="select" value="1" required>
+			<label for="select" class="job-submission-form__label">Select (required):</label>
+			<input type="number" name="select" id="select" value="1" required class="job-submission-form__input">
 
-			<label for="cpus">Number of CPUS (required):</label>
-			<input type="number" name="cpus" id="cpus" required>
+			<label for="cpus" class="job-submission-form__label">Number of CPUS (required):</label>
+			<input type="number" name="cpus" id="cpus" value="1" required class="job-submission-form__input">
 
-			<fieldset>
+			<fieldset class="job-submission-form__fieldset">
 				<legend>Memory</legend>
-				<label for="mem">Memory (required): </label>
-				<input type="number" name="mem" id="mem" value="1" required><label for="mem">GB</label>
+				<label for="mem" class="job-submission-form__label">Memory (GB) (required): </label>
+				<input type="number" name="mem" id="mem" value="1" required class="job-submission-form__input">
 
-				<label for="vmem">Virtual memory:</label>
-				<input type="number" name="vmem" id="vmem"><label for="vmem">GB</label>
+				<label for="vmem" class="job-submission-form__label">Virtual memory (GB):</label>
+				<input type="number" name="vmem" id="vmem" class="job-submission-form__input">
 
-				<label for="pmem">Memory per processor:</label>
-				<input type="number" name="pmem" id="pmem"><label for="pmem">GB</label>
+				<label for="pmem" class="job-submission-form__label">Memory per processor (GB):</label>
+				<input type="number" name="pmem" id="pmem" class="job-submission-form__input">
 			</fieldset>
 
-			<button>Save as job submission script</button>
+			<button id="saveJobForm" class="job-submission-form__button">Save as job submission script</button>
 
 			<h4>Upload a PBSpro batch script</h4>
-			<label for="jobScript">Upload job submission script:</label>
-			<input name="jobScript" id="jobScript" type="file">
-			<button>Submit job</button>
-
+			<label for="jobScript" class="job-submission-form__label">Upload job submission script:</label>
+			<input name="jobScript" id="jobScript" type="file" class="job-submission-form__input">
+			<button type="submit" id="submitJobForm" class="job-submission-form__button">Submit job</button>
 		</form>
 	</main>
 	<aside>
@@ -87,5 +69,6 @@
 			<p>Parameter explanation with a helpful explanation or diagram.</p>
 		</header>
 	</aside>
+<script src="script.js"></script>
 </body>
 </html>
