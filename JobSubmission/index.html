@@ -24,7 +24,7 @@
 			<p>A message parsing interface (MPI) job submission (recommended for advanced users only) <code>-l select=2:ncpus=24:mem=120GB:mpiprocs=1</code> or: <code>-l select=48:ncpus=1:mem=5GB:mpiprocs=1</code></p>
 		</header>
 
-		<form method=POST and enctype=multipart/form-data id="jobSubmissionForm" class="job-submission-form">
+		<form method="POST" enctype="multipart/form-data" id="jobSubmissionForm" class="job-submission-form">
 			<h3>Multi page 'One thing per page' Form</h3>
 			<button class="job-submission-form__button">Load previous job submission</button>
 
@@ -55,12 +55,15 @@
 				<input type="number" name="pmem" id="pmem" class="job-submission-form__input">
 			</fieldset>
 
-			<button id="saveJobForm" class="job-submission-form__button">Save as job submission script</button>
+			<button type="button" id="saveJobButton" class="job-submission-form__button">Save as job submission script</button>
 
 			<h4>Upload a PBSpro batch script</h4>
 			<label for="jobScript" class="job-submission-form__label">Upload job submission script:</label>
 			<input name="jobScript" id="jobScript" type="file" class="job-submission-form__input">
 			<button type="submit" id="submitJobForm" class="job-submission-form__button">Submit job</button>
+			
+			<output name="saveAsOutput" id="saveAsOutput"></output>
+			<output name="result"></output>
 		</form>
 	</main>
 	<aside>
