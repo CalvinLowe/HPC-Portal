@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<!--
-		Set the character encoding for this document, so that
-		all characters within the UTF-8 space (such as emoji)
-		are rendered correctly.
-	-->
 	<meta charset="utf-8">
-
-	<!-- Set the document's title -->
 	<title>High Performance Computing Portal</title>
-
-	<!-- Link to an external CSS file -->
-	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div id="HPCPortal">
+	<header>
+		<h1>{{ message }}</h1>
+	</header>
 	<main>
 		<header>
 			<h1>Job Submission Form Title</h1>
@@ -72,6 +66,12 @@
 			<p>Parameter explanation with a helpful explanation or diagram.</p>
 		</header>
 	</aside>
+	<footer></footer>
+</div>
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- production version, optimized for size and speed -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
 <script src="script.js"></script>
 </body>
 </html>
