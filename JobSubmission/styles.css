@@ -3,8 +3,8 @@ body {
     padding: 2rem;
     background-color: lightgray;
 
-    display: grid;
-    grid-template-columns: 50% 25%;
+    /*display: grid;
+    grid-template-columns: 50% 25%;*/
 }
 
 main, aside {

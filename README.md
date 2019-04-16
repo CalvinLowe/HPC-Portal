@@ -1,29 +1,12 @@
 # HPC-Portal
 
-## Component Tree
+## Application Tree
 ```
-RootInstance
+HPC Portal
 └─ Header
 └─ JobSubmission
-  ├─ JobSubmissionHeader
-  ├─ JobSubmissionMain
-  │  ├─ JobSubmissionMainHeader
-  │  │  ├─ Heading
-  │  │  ├─ Instructions
-  │  │  ├─ LoadPreviousJobButton
-  │  ├─ JobSubmissionForm (Include JobSubmissionFormPage)
-  │  │  ├─ SectionHeading
-  │  │  ├─ TextInput
-  │  │  ├─ NumberInput
-  │  │  ├─ SelectInput
-  │  │  ├─ FileInput
-  │  │  ├─ FileDropInput
-  │  │  ├─ SavAsButton
-  │  │  └─ SubmitButton
-  │  └─ JobSubmissionMainFooter
-  ├─ JobSubmissionAside
-  │  ├─ 
-  │  └─ 
-  └─  PBSProScriptLiveOutput
+  ├─ JobSubmissionModel 
+  ├─ JobSubmissionView
+  └─ JobSubmissionController
 └─ Footer
 ```

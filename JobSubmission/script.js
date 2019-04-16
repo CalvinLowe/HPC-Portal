@@ -1,12 +1,3 @@
-var app = new Vue({
-	el: "#HPCPortal",
-	data: {
-		message: "Welcome to the HPC Portal"
-	}
-})
-
-
-
 // Form
 let jobSubmissionForm = document.getElementById("jobSubmissionForm");
 
