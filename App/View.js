@@ -1,3 +1,5 @@
+import {select, attach} from './helper.js';
+
 /**
  * A view for the HPC Portal job submission form.
  *
@@ -11,9 +13,9 @@ export default class View {
 
 	constructor() {
 		//console.log("View instance constructed");
-		this.jobName = document.getElementById('jobName');
-		this.output = document.getElementById('output');
-		this.outputButton = document.getElementById('outputButton');
+		this.jobName = select('jobName');
+		this.output = select('output');
+		this.outputButton = select('outputButton');
 	}
 
 	getOutput() {
@@ -28,6 +30,6 @@ export default class View {
 	attachShowOutputEvent(handler) {
 		//console.log(handler);
 		// TODO: construct alias function for adding event listeners like TODO MVC
-		this.outputButton.addEventListener('click', handler);
+		attach(this.outputButton, 'click', handler);
 	}
 }
