@@ -25,7 +25,11 @@ export default class Controller {
 		var jobName = this.view.getJobName();
 		this.updateModel(this.model, jobName);
 		event.preventDefault();
-		this.view.getOutput().innerHTML = "<b>Job name: </b>" + jobName;
+		this.view.getOutput().innerHTML =
+		`
+			Job name: ` + jobName + `</p>` +
+			`<p>Some other bollocks </p>
+		`
 		// TODO: create an output template in template.js?
 	}
 
