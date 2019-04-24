@@ -21,15 +21,20 @@ export default class Controller {
 		this.model.setJobName(jobName);
 	}
 
+	// ON CHANGE for all inputs - update the model......
+
 	showOutput() {
 		var jobName = this.view.getJobName();
+		var accountGroup = this.view.getAccountGroup();
+		var accountGroup = this.view.getAccountGroup();
+		var walltime = this.view.getWalltime();
 		this.updateModel(this.model, jobName);
 		event.preventDefault();
 		this.view.getOutput().innerHTML =
 		`
-			Job name: ` + jobName + `</p>` +
-			`<p>Some other bollocks </p>
-		`
+			Job name: ` + jobName + `<br>` +  
+			`Account group: ` + accountGroup + `<br>` +  
+			`Wall time: ` + walltime;
 		// TODO: create an output template in template.js?
 	}
 

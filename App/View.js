@@ -14,6 +14,8 @@ export default class View {
 	constructor() {
 		//console.log("View instance constructed");
 		this.jobName = select('jobName');
+		this.accountGroup = select('accountGroup');
+		this.walltime = select('wallTimeHours').value + ":" + select('wallTimeMinutes').value + ":" + select('wallTimeSeconds').value; // make this a helper function
 		this.output = select('output');
 		this.outputButton = select('outputButton');
 	}
@@ -25,6 +27,16 @@ export default class View {
 	getJobName() {
 		return this.jobName.value;
 	}
+
+	getAccountGroup() {
+		//console.log(this.accountGroup);
+		return this.accountGroup.selected;
+	}
+
+	getWalltime() {
+		return this.walltime;
+	}
+
 
 	// I think I have to bind this again because I am using the handler
 	attachShowOutputEvent(handler) {

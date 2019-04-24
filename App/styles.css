@@ -7,10 +7,17 @@ body {
     grid-template-columns: 50% 25%;*/
 }
 
-main, aside {
+main {
     padding: 1rem;
     margin: 1rem;
     background-color: #eeeeee;
+}
+
+aside {
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: white;
+    width: 32rem;
 }
 
 output {
@@ -26,6 +33,7 @@ output {
     padding: 1rem;
     border: 1px dotted lightblue;
     background-color: white;
+    width: 32rem;
 
     display: grid;
     grid-template-columns: auto;
@@ -48,6 +56,6 @@ output {
     }
 
     .job-submission-form__button {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
+        width: 8rem;
+        height: 2rem;
     }
