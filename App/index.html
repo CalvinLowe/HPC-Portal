@@ -11,38 +11,38 @@
 </header>
 <main>
 	<header>
-		<h1>Job Submission Form Title</h1>
-		<p>Job Submission instructions.</p>
+		<h1>Create a Job</h1>
+		<!--<p>Job Submission instructions.</p>
 		<p>A single core job submission e.g. <code>-l select=1:ncpus=1:mem=20GB</code></p>
 		<p>A multi core job submission e.g. <code>-l select=1:ncpus=12:mem=60GB</code></p>
-		<p>A message parsing interface (MPI) job submission (recommended for advanced users only) <code>-l select=2:ncpus=24:mem=120GB:mpiprocs=1</code> or: <code>-l select=48:ncpus=1:mem=5GB:mpiprocs=1</code></p>
+		<p>A message parsing interface (MPI) job submission (recommended for advanced users only) <code>-l select=2:ncpus=24:mem=120GB:mpiprocs=1</code> or: <code>-l select=48:ncpus=1:mem=5GB:mpiprocs=1</code></p>-->
 	</header>
 
 	<form method="POST" enctype="multipart/form-data" id="jobSubmissionForm" class="job-submission-form">
 		<h3>Output</h3>
 		<output name="output" id="output"></output>
-		<button type="button" id="outputButton">Output</button>
+		<button type="button" id="outputButton" class="job-submission-form__button">Output</button>
 		
-		<h3>Multi page 'One thing per page' Form</h3>
-		<button class="job-submission-form__button">Load previous job submission</button>
+		<h3>Form Page 1</h3>
+		<!--<button class="job-submission-form__button">Load previous job submission</button>-->
 
 		<h4>Enter your job details</h4>
 		<label for="jobName" class="job-submission-form__label">Job name (required):</label>
-		<input type="text" name="jobName" id="jobName" required class="job-submission-form__input" value="Delete me">
+		<input type="text" name="jobName" id="jobName" required class="job-submission-form__input" value="">
 
 		<label for="accountGroup" class="job-submission-form__label">Account group (required):</label>
 		<select name="accountGroup" id="accountGroup" multiple required class="job-submission-form__input">
-			<option selected="selected">RCC-UQ</option>
+			<option selected="selected" value="RCC-UQ">RCC-UQ</option> <!-- Will be generated from a REST endpoint -->
 		</select>
 
-		<fieldset>
+		<fieldset class="job-submission-form__fieldset">
 			<legend>Walltime</legend>
 			<label for="wallTimeHours" class="job-submission-form__label">Hours (required):</label>
 			<input type="number" name="wallTimeHours" id="wallTimeHours" required class="job-submission-form__input" value="1">
 			<label for="wallTimeMinutes" class="job-submission-form__label">Minutes (required):</label>
-			<input type="number" name="wallTimeMinutes" id="wallTimeMinutes" required class="job-submission-form__input" value="0">
-			<label for="wallTimeSeconds" class="job-submission-form__label">Minutes (required):</label>
-			<input type="number" name="wallTimeSeconds" id="wallTimeSeconds" required class="job-submission-form__input" value="0">
+			<input type="number" name="wallTimeMinutes" id="wallTimeMinutes" required class="job-submission-form__input" value="00">
+			<label for="wallTimeSeconds" class="job-submission-form__label">Seconds (required):</label>
+			<input type="number" name="wallTimeSeconds" id="wallTimeSeconds" required class="job-submission-form__input" value="00">
 		</fieldset>
 
 
@@ -64,22 +64,23 @@
 			<input type="number" name="pmem" id="pmem" class="job-submission-form__input">
 		</fieldset>
 
-		<button type="button" id="saveJobButton" class="job-submission-form__button">Save as job submission script</button>
+		<!--<button type="button" id="saveJobButton" class="job-submission-form__button">Save as job submission script</button>-->
 
-		<h4>Upload a PBSpro batch script</h4>
+		<!--<h4>Upload a PBSpro batch script</h4>
 		<label for="jobScript" class="job-submission-form__label">Upload job submission script:</label>
 		<input name="jobScript" id="jobScript" type="file" class="job-submission-form__input">
 		<button type="submit" id="submitJobForm" class="job-submission-form__button">Submit job</button>
 		
-		<output name="saveAsOutput" id="saveAsOutput"></output>
+		<output name="saveAsOutput" id="saveAsOutput"></output>-->
 	</form>
+	<!--<aside>
+		<header>
+			<h2>Parameter name</h2>
+			<p>Parameter explanation with a helpful explanation or diagram.</p>
+		</header>
+	</aside>-->
 </main>
-<aside>
-	<header>
-		<h2>Parameter name</h2>
-		<p>Parameter explanation with a helpful explanation or diagram.</p>
-	</header>
-</aside>
+
 <footer></footer>
 <script src="app.js" type="module"></script>
 </body>
