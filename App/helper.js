@@ -12,10 +12,10 @@ export function select(id) {
  * 
  * @param {Element} target Target element
  * @param {string} type Event name to bind to
- * @param {Function} callback Event callback
+ * @param {Function} handler Event handler
  */
-export function attach(target, type, callback) {
-	target.addEventListener(type, callback);
+export function attach(target, type, handler) {
+	target.addEventListener(type, handler);
 }
 
 /**
