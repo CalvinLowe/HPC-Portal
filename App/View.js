@@ -5,43 +5,21 @@ import {select, attach} from './helper.js';
  *
  * @author: Calvin Lowe <calvin.lowe@uqconnect.edu.au>
  */
-
- 
-// TODO: Helper for function for document.getElemebyId...
-
 export default class View {
 
+	/**
+	 * TODO: Comments
+	 */
 	constructor() {
-		//console.log("View instance constructed");
-		this.jobName = select('jobName');
-		this.accountGroup = select('accountGroup');
-		this.walltime = select('wallTimeHours').value + ":" + select('wallTimeMinutes').value + ":" + select('wallTimeSeconds').value; // make this a helper function
-		this.output = select('output');
-		this.outputButton = select('outputButton');
+		console.log("Constructing new instance of View...");
+		this.jobSubmissionForm = select("jobSubmissionForm");
+
+		let formData = new FormData();
 	}
 
-	getOutput() {
-		return this.output;
-	}
+	//attachEvent
 
-	getJobName() {
-		return this.jobName.value;
-	}
-
-	getAccountGroup() {
-		//console.log(this.accountGroup);
-		return this.accountGroup.selected;
-	}
-
-	getWalltime() {
-		return this.walltime;
-	}
-
-
-	// I think I have to bind this again because I am using the handler
-	attachShowOutputEvent(handler) {
-		//console.log(handler);
-		// TODO: construct alias function for adding event listeners like TODO MVC
-		attach(this.outputButton, 'click', handler);
-	}
+	// TODO: Just get the formData from the form. Figure out validation as we go along..
+	// TODO: Adding classes during editing, verfication, validation, adding a green tick once verified, a red cross is needing changing..
+	// Should verify as editing so I will need to get the selectors for each
 }
