@@ -10,36 +10,19 @@ export default class Controller {
 
 	// TODO: comments, unit tests, add data store
 	constructor(model, view) {
-		this.view = view;
-		this.model = model;
+		console.log("Constructing new instance of Controller...");
+		this._view = view;
+		this._model = model;
 
 		// Methods need to bind this so that they can access instance variables
-		this.view.attachShowOutputEvent(this.showOutput.bind(this));
+		// e.g. this.view.attachShowOutputEvent(this.showOutput.bind(this));
 	}
 
-	updateModel(model, jobName) { // Add other model variables as required. This is what will be submitted via XHR
-		this.model.setJobName(jobName);
-	}
 
-	// ON CHANGE for all inputs - update the model......
 
-	showOutput() {
-		var jobName = this.view.getJobName();
-		var accountGroup = this.view.getAccountGroup();
-		var accountGroup = this.view.getAccountGroup();
-		var walltime = this.view.getWalltime();
-		this.updateModel(this.model, jobName);
-		event.preventDefault();
-		this.view.getOutput().innerHTML =
-		`
-			Job name: ` + jobName + `<br>` +  
-			`Account group: ` + accountGroup + `<br>` +  
-			`Wall time: ` + walltime;
-		// TODO: create an output template in template.js?
-	}
 
-	setView() {
+	/*setView() {
 		// not sure of the use of this just yet.. perhaps useful for live updating the window with new information
 		//console.log("Controller.setView() called");
-	}
+	}*/
 }
