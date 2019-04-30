@@ -9,7 +9,7 @@ export default class Model {
 	/**
 	 * Class constructor for Model.
 	 */
-	constructor() { // TODO: Initial values for constructor
+	constructor() { // TODO: Initial values for constructor, TODO: Allow constructor to be created with default values
 		console.log("Constructing new instance of Model...");
 
 		// User information - retrived from Auth server using iFrame

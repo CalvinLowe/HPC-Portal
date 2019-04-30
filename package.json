@@ -1,0 +1,6 @@
+{
+	"name": "hpc-portal",
+	"version": "0.0.1",
+	"description": "A JavaScript MVC application.",
+	"main": "app/app.js"
+}
