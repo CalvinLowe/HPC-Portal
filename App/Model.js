@@ -27,6 +27,7 @@ export default class Model {
 		this._select = 1; // User input, default = 1
 		this._ncpus = 1; // User input, default = 1
 		this._memory = 1; // User input, default = 1 GB
+		this._payload = null; // User input
 	}
 
 	//***************//
@@ -152,5 +153,19 @@ export default class Model {
 	 */
 	set memory(newMemoryValue) {
 		this._memory = newMemoryValue;
+	}
+
+	/**
+	 * Get the current payload value
+	 */
+	get payload() {
+		return this._payload;
+	}
+
+	/**
+	 * Set the payload value
+	 */
+	set payload(newPayloadValue) {
+		return this._payload;
 	}
 }
