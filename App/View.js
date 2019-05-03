@@ -8,14 +8,17 @@ import {select, attach} from './helper.js';
 export default class View {
 
 	/**
-	 * TODO: Comments
+	 * Class constructor for View.
 	 */
 	constructor() {
 		console.log("Constructing new instance of View...");
 		this.jobSubmissionForm = select("jobSubmissionForm");
-
-		let formData = new FormData();
+		this.formData = new FormData(this.jobSubmissionForm);
 	}
+
+	/*TODO: Do this in controller? for(var pair of formData.entries()) {
+		console.log(pair[0]+ ', '+ pair[1]);
+	} */
 
 	//attachEvent
 
