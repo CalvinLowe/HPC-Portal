@@ -20,81 +20,50 @@
 <main>
 	<header>
 		<h1>Create a Job</h1>
-		<!--<p>Job Submission instructions.</p>
-		<p>A single core job submission e.g. <code>-l select=1:ncpus=1:mem=20GB</code></p>
-		<p>A multi core job submission e.g. <code>-l select=1:ncpus=12:mem=60GB</code></p>
-		<p>A message parsing interface (MPI) job submission (recommended for advanced users only) <code>-l select=2:ncpus=24:mem=120GB:mpiprocs=1</code> or: <code>-l select=48:ncpus=1:mem=5GB:mpiprocs=1</code></p>-->
 	</header>
 
 	<form 
-		method="POST"
-		enctype="multipart/form-data"
-		name="jobSubmissionForm"
-		id="jobSubmissionForm"
 		class="job-submission-form"
-	>
-		
+		id="jobSubmissionForm"
+		name="jobSubmissionForm"
+		enctype="multipart/form-data"
+		method="POST">
 		<h3>Form Page 1</h3>
-		<!--<button class="job-submission-form__button">Load previous job submission</button>-->
-
 		<h4>Enter your job details</h4>
-		<label for="jobName" class="job-submission-form__label">Job name (required):</label>
-		<input type="text" name="jobName" id="jobName" required class="job-submission-form__input" value="">
+		<label class="job-submission-form__label" for="jobName">Job name (required):</label>
+		<input class="job-submission-form__input" id="jobName" name="jobName" type="text" value="" required>
 
-		<label for="accountGroup" class="job-submission-form__label">Account group (required):</label>
-		<select name="accountGroup" id="accountGroup" multiple required class="job-submission-form__input">
+		<label class="job-submission-form__label" for="accountGroup" >Account group (required):</label>
+		<select class="job-submission-form__input" id="accountGroup" name="accountGroup" multiple required >
 			<option selected="selected" value="RCC-UQ">RCC-UQ</option> <!-- Will be generated from a REST endpoint -->
 		</select>
 
 		<fieldset class="job-submission-form__fieldset">
 			<legend>Walltime</legend>
-			<label for="wallTimeHours" class="job-submission-form__label">Hours (required):</label>
-			<input type="number" name="wallTimeHours" id="wallTimeHours" required class="job-submission-form__input" value="1">
-			<label for="wallTimeMinutes" class="job-submission-form__label">Minutes (required):</label>
-			<input type="number" name="wallTimeMinutes" id="wallTimeMinutes" required class="job-submission-form__input" value="00">
-			<label for="wallTimeSeconds" class="job-submission-form__label">Seconds (required):</label>
-			<input type="number" name="wallTimeSeconds" id="wallTimeSeconds" required class="job-submission-form__input" value="00">
+			<label class="job-submission-form__label" for="wallTimeHours">Hours (required):</label>
+			<input class="job-submission-form__input" id="wallTimeHours" name="wallTimeHours" type="number" value="1" required>
+			<label class="job-submission-form__label" for="wallTimeMinutes">Minutes (required):</label>
+			<input class="job-submission-form__input" id="wallTimeMinutes" name="wallTimeMinutes" type="number" value="00" required>
+			<label class="job-submission-form__label" for="wallTimeSeconds">Seconds (required):</label>
+			<input class="job-submission-form__input" id="wallTimeSeconds" name="wallTimeSeconds" type="number" value="00" required>
 		</fieldset>
 
+		<label class="job-submission-form__label" for="select">Select (required):</label>
+		<input class="job-submission-form__input" id="select" name="select" type="number" value="1" required>
 
-		<label for="select" class="job-submission-form__label">Select (required):</label>
-		<input type="number" name="select" id="select" value="1" required class="job-submission-form__input">
-
-		<label for="cpus" class="job-submission-form__label">Number of CPUS (required):</label>
-		<input type="number" name="cpus" id="cpus" value="1" required class="job-submission-form__input">
+		<label for="ncpus" class="job-submission-form__label">Number of CPUS (required):</label>
+		<input class="job-submission-form__input" id="ncpus" name="ncpus" type="number" value="1" required >
 
 		<fieldset class="job-submission-form__fieldset">
 			<legend>Memory</legend>
-			<label for="mem" class="job-submission-form__label">Memory (GB) (required): </label>
-			<input type="number" name="mem" id="mem" value="1" required class="job-submission-form__input">
-
-			<!--<label for="vmem" class="job-submission-form__label">Virtual memory (GB):</label>
-			<input type="number" name="vmem" id="vmem" class="job-submission-form__input">-->
-
-			<!--<label for="pmem" class="job-submission-form__label">Memory per processor (GB):</label>
-			<input type="number" name="pmem" id="pmem" class="job-submission-form__input">-->
+			<label class="job-submission-form__label" for="mem">Memory (GB) (required): </label>
+			<input class="job-submission-form__input" id="mem" name="mem" type="number" value="1" required>
 		</fieldset>
-		<textarea>Payload</textarea>
-
-		<!--<button type="button" id="saveJobButton" class="job-submission-form__button">Save as job submission script</button>-->
-
-		<!--<h4>Upload a PBSpro batch script</h4>
-		<label for="jobScript" class="job-submission-form__label">Upload job submission script:</label>
-		<input name="jobScript" id="jobScript" type="file" class="job-submission-form__input">
-		
-		<output name="saveAsOutput" id="saveAsOutput"></output>-->
-		
-		<button type="submit" id="submitJobForm" class="job-submission-form__button">Submit job</button>
+		<label class="job-submission-form__label" for="payload">Payload (required): </label>
+		<textarea id="payload" name="payload" cols="40" rows="10" placeholder="echo $HOSTNAME" required></textarea>
+		<button class="job-submission-form__button" id="submitJobForm" type="submit">Submit job</button>
 	</form>
-	<!--<aside>
-		<header>
-			<h2>Parameter name</h2>
-			<p>Parameter explanation with a helpful explanation or diagram.</p>
-		</header>
-	</aside>-->
 </main>
-
-<footer></footer>
 <script type="module" src="app.js"></script>
 <script type="module" src="../spec/ModelSpec.js"></script>
 </body>
