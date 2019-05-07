@@ -7,10 +7,10 @@
 	<link rel="shortcut icon" type="image/png" href="">
 
 	<!-- TESTING -->
-	<link rel="stylesheet" type="text/css" href="../jasmine/lib/jasmine-3.4.0/jasmine.css">
+	<!--<link rel="stylesheet" type="text/css" href="../jasmine/lib/jasmine-3.4.0/jasmine.css">
 	<script type="text/javascript" src="../jasmine/lib/jasmine-3.4.0/jasmine.js"></script>
 	<script type="text/javascript" src="../jasmine/lib/jasmine-3.4.0/jasmine-html.js"></script>
-	<script type="text/javascript" src="../jasmine/lib/jasmine-3.4.0/boot.js"></script>
+	<script type="text/javascript" src="../jasmine/lib/jasmine-3.4.0/boot.js"></script>-->
 	<!-- END TESTING -->
 </head>
 <body>
@@ -40,12 +40,12 @@
 
 		<fieldset class="job-submission-form__fieldset">
 			<legend>Walltime</legend>
-			<label class="job-submission-form__label" for="wallTimeHours">Hours (required):</label>
-			<input class="job-submission-form__input" id="wallTimeHours" name="wallTimeHours" type="number" value="1" required>
-			<label class="job-submission-form__label" for="wallTimeMinutes">Minutes (required):</label>
-			<input class="job-submission-form__input" id="wallTimeMinutes" name="wallTimeMinutes" type="number" value="00" required>
-			<label class="job-submission-form__label" for="wallTimeSeconds">Seconds (required):</label>
-			<input class="job-submission-form__input" id="wallTimeSeconds" name="wallTimeSeconds" type="number" value="00" required>
+			<label class="job-submission-form__label" for="walltimeHours">Hours (required):</label>
+			<input class="job-submission-form__input" id="walltimeHours" name="walltimeHours" type="number" value="1" required>
+			<label class="job-submission-form__label" for="walltimeMinutes">Minutes (required):</label>
+			<input class="job-submission-form__input" id="walltimeMinutes" name="walltimeMinutes" type="number" value="00" required>
+			<label class="job-submission-form__label" for="walltimeSeconds">Seconds (required):</label>
+			<input class="job-submission-form__input" id="walltimeSeconds" name="walltimeSeconds" type="number" value="00" required>
 		</fieldset>
 
 		<label class="job-submission-form__label" for="select">Select (required):</label>
@@ -56,8 +56,8 @@
 
 		<fieldset class="job-submission-form__fieldset">
 			<legend>Memory</legend>
-			<label class="job-submission-form__label" for="mem">Memory (GB) (required): </label>
-			<input class="job-submission-form__input" id="mem" name="mem" type="number" value="1" required>
+			<label class="job-submission-form__label" for="memory">Memory (GB) (required): </label>
+			<input class="job-submission-form__input" id="memory" name="memory" type="number" value="1" required>
 		</fieldset>
 		<label class="job-submission-form__label" for="payload">Payload (required): </label>
 		<textarea id="payload" name="payload" cols="40" rows="10" placeholder="echo $HOSTNAME" required></textarea>
@@ -65,6 +65,6 @@
 	</form>
 </main>
 <script type="module" src="app.js"></script>
-<script type="module" src="../spec/ModelSpec.js"></script>
+<!--<script type="module" src="../spec/ModelSpec.js"></script>-->
 </body>
 </html>
