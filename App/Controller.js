@@ -14,15 +14,30 @@ export default class Controller {
 		this._view = view;
 		this._model = model;
 
-		// Methods need to bind this so that they can access instance variables
-		// e.g. this.view.attachShowOutputEvent(this.showOutput.bind(this));
+		// Attach events 
+		this._view.attachFormSubmitEvent(this.onJobSubmit.bind(this));
 	}
 
+	// TODO: Comments
+	get view() {
+		return this._view;
+	}
 
+	// TODO: comments
+	get model() {
+		return this._model;
+	}
 
+	onJobSubmit(e) {
+		e.preventDefault();
+		console.log("onJobSubmit called");
+		let data = this.view.formData; // a FormData object
+		this.model.formData = data;
+		
+		this.model.processFormData();
 
-	/*setView() {
-		// not sure of the use of this just yet.. perhaps useful for live updating the window with new information
-		//console.log("Controller.setView() called");
-	}*/
+		//console.log(this.model.formData());
+		// so call set data then called processData
+		// TODO: pass the formData object to the model and have the model process it
+	}
 }
