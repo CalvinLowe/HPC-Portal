@@ -28,6 +28,9 @@ export default class Model {
 		this._ncpus = 1; // User input, default = 1
 		this._memory = 1; // User input, default = 1 GB
 		this._payload = null; // User input
+
+		// Form Data
+		this._formData = null;
 	}
 
 	//***************//
@@ -166,6 +169,66 @@ export default class Model {
 	 * Set the payload value
 	 */
 	set payload(newPayloadValue) {
-		return this._payload;
+		this._payload = newPayLoadValue;
+	}
+
+	/**
+	 * Get the current formData object
+	 */
+	get formData() {
+		return this._formData;
+	}
+
+	/**
+	 * Set the formData object
+	 */
+	set formData(newFormData) {
+		this._formData = newFormData;
+	}
+
+	//*********************//
+	//== Data processing ==//
+	//*********************//
+
+	processFormData() {
+		let data = this.formData;
+
+		// TODO: Check if null
+		// TODO: check if key exists in data
+		// Check [] array of key names is found in keys then set all variables
+
+		// jobName
+		this.jobName = data.get('jobName');
+
+		// accountGroup
+		this.accountGroup = data.get('accountGroup');
+
+		// walltime
+		// TODO: Must be have minumum 2 significant figures
+		this.walltime = data.get('walltimeHours') + ":" + data.get('walltimeMinutes') + ":" + data.get('walltimeSeconds');
+
+		// select
+		this.select = data.get('select');
+		
+		// ncpus
+		this.ncpus = data.get('ncpus');
+
+		// memory
+		this.memory = data.get('memory');
+		
+		// payload
+		this.payload = data.get('payload');
+
+		
+		// TODO: get the template literal for the pbsScrip TODO: create the instance variable corresponding to this
+		// TODO: add the variables to the pbsscript
+		// TODO: encode the pbsscript into base 64
+		// TODO: create a new form data object with the base 64 encoded script as the data object
+		// TODO: create a new XHR for that formData object
+		// TODO: send that to the REST ENDPOINT
+		// encode that literal into base_64, save it in a new formData object called 
+		// pbsScript_bas64 and send it via a XHR to the rest endpoint
+		// Or get indivdual elements and create a formData object?
+		// in model create formData object to be sent via XHR containing on pbsScript_base64 = ""
 	}
 }
