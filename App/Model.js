@@ -1,10 +1,12 @@
 /**
  * A model for the HPC Portal job submission form.
- *
  * @author: Calvin Lowe <calvin.lowe@uqconnect.edu.au>
 */
 export default class Model {
-// TODO: comments for all methods and constructors
+	
+	// TODO: Rename view, model, controller with JobSubmissionPrefix
+	// TODO: create JobSubmission Module folder containing necessary files - this is for when JobList and FileList is created...
+	// TODO: comments for all methods and constructors
 	
 	/**
 	 * Class constructor for Model.
@@ -31,6 +33,10 @@ export default class Model {
 
 		// Form Data
 		this._formData = null;
+
+		// PBS Script
+		this._pbsScript = null;
+		this._pbsScriptBase64 = null;
 	}
 
 	//***************//
@@ -41,6 +47,7 @@ export default class Model {
 	//-- User info --//
 	//***************//
 	// TODO: Need access to iframe/REST API on how to handle this
+	// TODO: User info and token info will probably need to be stored in the app.js
 	/**
 	 * Get the username
 	 */
@@ -164,12 +171,11 @@ export default class Model {
 	get payload() {
 		return this._payload;
 	}
-
 	/**
 	 * Set the payload value
 	 */
 	set payload(newPayloadValue) {
-		this._payload = newPayLoadValue;
+		this._payload = newPayloadValue;
 	}
 
 	/**
@@ -178,7 +184,6 @@ export default class Model {
 	get formData() {
 		return this._formData;
 	}
-
 	/**
 	 * Set the formData object
 	 */
@@ -186,49 +191,134 @@ export default class Model {
 		this._formData = newFormData;
 	}
 
+	/**
+	 * Get the current pbsScript value.
+	 */
+	get pbsScript() {
+		return this._pbsScript;
+	}
+	/**
+	 * Set the pbsScript value.
+	 */
+	set pbsScript(newPbsScriptValue) {
+		this._pbsScript = newPbsScriptValue;
+	}
+
+	/**
+	 * Get the current pbsScriptBase64 value.
+	 */
+	get pbsScriptBase64() {
+		return this._pbsScriptBase64;
+	}
+	/**
+	 * Set the pbsScriptBase64 value.
+	 */
+	set pbsScriptBase64(newPbsScriptBase64Value) {
+		this._pbsScriptBase64 = newPbsScriptBase64Value;
+	}
+
 	//*********************//
 	//== Data processing ==//
 	//*********************//
 
-	processFormData() {
+	// TODO: Break up processFormData into more methods and call those methods in the controller...
+	processFormData() {		
 		let data = this.formData;
 
-		// TODO: Check if null
-		// TODO: check if key exists in data
-		// Check [] array of key names is found in keys then set all variables
+		// Check that the formData object contains all the necessary keys.
+		if (this.jobSubmissionKeyCheck(data)) { // data contains all necessary keys
 
-		// jobName
-		this.jobName = data.get('jobName');
+			// jobName
+			this.jobName = data.get('jobName');
 
-		// accountGroup
-		this.accountGroup = data.get('accountGroup');
+			// accountGroup
+			this.accountGroup = data.get('accountGroup');
 
-		// walltime
-		// TODO: Must be have minumum 2 significant figures
-		this.walltime = data.get('walltimeHours') + ":" + data.get('walltimeMinutes') + ":" + data.get('walltimeSeconds');
+			// walltime
+			// TODO: Must be have minumum 2 significant figures
+			this.walltime = data.get('walltimeHours') + ":" + data.get('walltimeMinutes') + ":" + data.get('walltimeSeconds');
 
-		// select
-		this.select = data.get('select');
-		
-		// ncpus
-		this.ncpus = data.get('ncpus');
+			// select
+			this.select = data.get('select');
+			
+			// ncpus
+			this.ncpus = data.get('ncpus');
 
-		// memory
-		this.memory = data.get('memory');
-		
-		// payload
-		this.payload = data.get('payload');
+			// memory
+			this.memory = data.get('memory');
+			
+			// payload
+			this.payload = data.get('payload');
 
-		
-		// TODO: get the template literal for the pbsScrip TODO: create the instance variable corresponding to this
-		// TODO: add the variables to the pbsscript
-		// TODO: encode the pbsscript into base 64
-		// TODO: create a new form data object with the base 64 encoded script as the data object
-		// TODO: create a new XHR for that formData object
-		// TODO: send that to the REST ENDPOINT
-		// encode that literal into base_64, save it in a new formData object called 
-		// pbsScript_bas64 and send it via a XHR to the rest endpoint
-		// Or get indivdual elements and create a formData object?
-		// in model create formData object to be sent via XHR containing on pbsScript_base64 = ""
+		} else {
+			console.log("Key missing from formData"); // TODO: turn into an error message
+			return; // TODO: not sure if I can return here
+		}
+
+		// TODO: Shouldn't reach this point unless passed jobSubmissionKeyCheck
+		// TODO: do I need to put up a guard?
+		// Populate the template literal with form values
+		let newPbsScriptValue = this.populateScriptTemplate();
+		this.pbsScript = newPbsScriptValue;
+
+		// Encode the PBS Script
+		let encodedData = this.encodeBase64(this.pbsScript);
+		console.log(encodedData);
+
+		let decodedData = this.decodeBase64(encodedData);
+		console.log(decodedData);
+
+		// TODO: Create a new FormData object with the base64 encoded data as a string.
+		// TODO: Send the FormData via XHR to the REST ENDPOINT
+	}
+
+	// TODO: comments
+	// TODO: unit test
+	// TODO: add jobSubmissionCheckArray as a parameter
+	jobSubmissionKeyCheck(formData) {
+		let jobSubmissionCheckArray = ['jobName', 'accountGroup', 'walltimeHours', 'walltimeMinutes', 'walltimeSeconds', 'select', 'ncpus', 'memory', 'payload']; // TODO: How to make this match the required values?????
+		let jobSubmissionCheck = true;
+
+		for (let i = 0; i < jobSubmissionCheckArray.length; i++) {
+			if (formData.get(jobSubmissionCheckArray[i]) === null) {
+				console.log("Key was missing!"); // TODO: Turn into an error message
+				jobSubmissionCheck = false;
+			}
+		}
+		return jobSubmissionCheck;
+	}
+
+	// TODO: Comments
+	populateScriptTemplate() {
+		let scriptTemplate = 
+`#!/bin/bash
+#
+#PBS -A ${this.accountGroup}
+#
+#PBS -l select=${this.select}:ncpus=${this.ncpus}:mem=${this.memory}GB
+#PBS -l walltime=${this.walltime}
+#PBS -N ${this.jobName}
+#PBS -h
+#
+${this.payload}`;
+		return scriptTemplate;
+	}
+
+	/**
+	 * Encodes a PBS Script template literal to base 64.
+	 * @param {String} pbsTemplate 
+	 */
+	encodeBase64(pbsTemplate) {
+		let encodedData = window.btoa(pbsTemplate);
+		return encodedData;
+	}
+
+	/**
+	 * Decodes a base 64 encoded PBS Script template literal.
+	 * @param {String} encodedPbsTemplate 
+	 */
+	decodeBase64(encodedPbsTemplate) {
+		let decodedData = window.atob(encodedPbsTemplate);
+		return decodedData;
 	}
 }

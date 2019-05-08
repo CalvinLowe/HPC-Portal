@@ -2,40 +2,46 @@ import {select, attach} from './helper.js';
 
 /**
  * A view for the HPC Portal job submission form.
- *
  * @author: Calvin Lowe <calvin.lowe@uqconnect.edu.au>
  */
 export default class View {
+
+	// TODO: Unit tests
+	// TODO: Data validation
+	// TODO: onChange events for the form fields.
+	// TODO: Adding and removing classes for editing, verifying, validation. Add a grene tick once verifed, a red cross if validation failed
+	// TODO: Form field default values should be set from the Model. I will need to attach additional events for this.
 
 	/**
 	 * Class constructor for View.
 	 */
 	constructor() {
-		console.log("Constructing new instance of View...");
+		console.log("Constructing new instance of View..."); // TODO: Remove after testing.
 		this._jobSubmissionForm = select("jobSubmissionForm");
-		//this._formData = new FormData(this._jobSubmissionForm); // TODO: not sure if this should be in view or not..
 	}
 
-	// TODO: Comments
+	/**
+	 * Get the Job Submission Form element.
+	 */
 	get jobSubmissionForm() {
 		return this._jobSubmissionForm;
 	}
 
-	// TODO: comments
-	get formData() {
-		return new FormData(jobSubmissionForm);
+	/**
+	 * Create a new formData object using the Job Submission Form element.
+	 */
+	retrieveFormData() {
+		let formData = new FormData(this.jobSubmissionForm);
+		return formData;
 	}
 
-	// TODO: Comments attach Event for job submission form
+	/**
+	 * Attach an event handler to the Job Submission Form element for the submit event.
+	 * @param {Function} handler 
+	 */
 	attachFormSubmitEvent(handler) {
 		let target = jobSubmissionForm;
 		let type = 'submit';
 		attach(target, type, handler);
 	}
-
-
-	// TODO: Just get the formData from the form. Figure out validation as we go along..
-	// TODO: Adding classes during editing, verfication, validation, adding a green tick once verified, a red cross is needing changing..
-	// Should verify as editing so I will need to get the selectors for each
-	// TODO: get defaults THROUGH controller from Model and attach to value on pages..
 }

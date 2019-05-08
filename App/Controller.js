@@ -3,16 +3,15 @@ import View from './view.js';
 
 /**
  * A controller for the HPC Portal job submission form.
- *
  * @author: Calvin Lowe <calvin.lowe@uqconnect.edu.au>
  */
 export default class Controller {
+
 	// TODO: Unit tests
 	// TODO: Decide if I will use a data store. I will likely just use Model as my data store for now.
 
 	/**
 	 * Construct a new instance of class Controller, taking in View and Model instances.
-	 * 
 	 * @param {Model} model 
 	 * @param {View} view 
 	 */
@@ -41,16 +40,13 @@ export default class Controller {
 
 	/**
 	 * The event handler for the Job Submission Form submit event.
-	 * 
 	 * @param {Event} e 
 	 */
 	onJobSubmit(e) {
 		e.preventDefault();
 
-		console.log("onJobSubmit called"); // TODO: Remove after testing
+		let data = this.view.retrieveFormData(); // Retrieve the FormData object from View.
 
-		let data = this.view.formData; // Retrieve the FormData object from View.
-		
 		this.model.formData = data; // Set the formData instance variable in Model.
 		this.model.processFormData(); // Process the formData instance variable in Model.
 	}
