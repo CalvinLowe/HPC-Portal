@@ -46,6 +46,11 @@ export default class Controller {
 		e.preventDefault();
 
 		// On submit - enable select button and submit
+		// Disabling an element
+		//document.getElementById('buttonRemove').setAttribute("disabled", "disabled");
+
+		// Enabling back an element by removing the "disabled" attribute
+		//document.getElementById('buttonRemove').removeAttribute("disabled");
 
 		let data = this.view.retrieveFormData(); // Retrieve the FormData object from View.
 
