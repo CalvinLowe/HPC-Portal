@@ -25,7 +25,7 @@ export default class Model {
 		// Job Submission
 		this._jobName = null; // User input
 		this._accountGroup = null; // Selected from accountGroupList
-		this._walltime = null; // Calculated value
+		this._walltime = null; // User input, default = 1
 		this._select = 1; // User input, default = 1
 		this._ncpus = 1; // User input, default = 1
 		this._memory = 1; // User input, default = 1 GB
@@ -123,7 +123,6 @@ export default class Model {
 	 */
 	set walltime(newWalltime) {
 		this._walltime = newWalltime;
-		// TODO: Calculate walltime from hours, seconds minutes.
 	}
 
 	/** 
@@ -235,8 +234,7 @@ export default class Model {
 			this.accountGroup = data.get('accountGroup');
 
 			// walltime
-			// TODO: Must be have minumum 2 significant figures
-			this.walltime = data.get('walltimeHours') + ":" + data.get('walltimeMinutes') + ":" + data.get('walltimeSeconds');
+			this.walltime = data.get('walltime') + ":00:00";
 
 			// select
 			this.select = data.get('select');
@@ -276,7 +274,7 @@ export default class Model {
 	// TODO: unit test
 	// TODO: add jobSubmissionCheckArray as a parameter
 	jobSubmissionKeyCheck(formData) {
-		let jobSubmissionCheckArray = ['jobName', 'accountGroup', 'walltimeHours', 'walltimeMinutes', 'walltimeSeconds', 'select', 'ncpus', 'memory', 'payload']; // TODO: How to make this match the required values?????
+		let jobSubmissionCheckArray = ['jobName', 'accountGroup', 'walltime', 'select', 'ncpus', 'memory', 'payload']; // TODO: How to make this match the required values?????
 		let jobSubmissionCheck = true;
 
 		for (let i = 0; i < jobSubmissionCheckArray.length; i++) {
@@ -290,6 +288,7 @@ export default class Model {
 
 	// TODO: Comments
 	populateScriptTemplate() {
+		// TODO: save this template somewhere else?
 		let scriptTemplate = 
 `#!/bin/bash
 #
@@ -298,7 +297,6 @@ export default class Model {
 #PBS -l select=${this.select}:ncpus=${this.ncpus}:mem=${this.memory}GB
 #PBS -l walltime=${this.walltime}
 #PBS -N ${this.jobName}
-#PBS -h
 #
 ${this.payload}`;
 		return scriptTemplate;

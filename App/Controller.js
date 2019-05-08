@@ -45,6 +45,8 @@ export default class Controller {
 	onJobSubmit(e) {
 		e.preventDefault();
 
+		// On submit - enable select button and submit
+
 		let data = this.view.retrieveFormData(); // Retrieve the FormData object from View.
 
 		this.model.formData = data; // Set the formData instance variable in Model.
