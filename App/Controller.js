@@ -7,10 +7,17 @@ import View from './view.js';
  * @author: Calvin Lowe <calvin.lowe@uqconnect.edu.au>
  */
 export default class Controller {
+	// TODO: Unit tests
+	// TODO: Decide if I will use a data store. I will likely just use Model as my data store for now.
 
-	// TODO: comments, unit tests, add data store
+	/**
+	 * Construct a new instance of class Controller, taking in View and Model instances.
+	 * 
+	 * @param {Model} model 
+	 * @param {View} view 
+	 */
 	constructor(model, view) {
-		console.log("Constructing new instance of Controller...");
+		console.log("Constructing new instance of Controller..."); // TODO: Remove after testing
 		this._view = view;
 		this._model = model;
 
@@ -18,26 +25,33 @@ export default class Controller {
 		this._view.attachFormSubmitEvent(this.onJobSubmit.bind(this));
 	}
 
-	// TODO: Comments
+	/**
+	 * Get the view.
+	 */
 	get view() {
 		return this._view;
 	}
 
-	// TODO: comments
+	/**
+	 * Get the model.
+	 */
 	get model() {
 		return this._model;
 	}
 
+	/**
+	 * The event handler for the Job Submission Form submit event.
+	 * 
+	 * @param {Event} e 
+	 */
 	onJobSubmit(e) {
 		e.preventDefault();
-		console.log("onJobSubmit called");
-		let data = this.view.formData; // a FormData object
-		this.model.formData = data;
-		
-		this.model.processFormData();
 
-		//console.log(this.model.formData());
-		// so call set data then called processData
-		// TODO: pass the formData object to the model and have the model process it
+		console.log("onJobSubmit called"); // TODO: Remove after testing
+
+		let data = this.view.formData; // Retrieve the FormData object from View.
+		
+		this.model.formData = data; // Set the formData instance variable in Model.
+		this.model.processFormData(); // Process the formData instance variable in Model.
 	}
 }
