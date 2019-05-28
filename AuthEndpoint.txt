@@ -1,7 +1,4 @@
-Login endpoint
-https://hpcportal.rcc.uq.edu.au/client/login?service=hpcportal
-
-REdirect after login
+Login endpoint & redirect after login
 https://hpcportal.rcc.uq.edu.au/client/login?service=hpcportal
 
 Info cotained within token
