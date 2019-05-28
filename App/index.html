@@ -7,95 +7,31 @@
 	<link rel="shortcut icon" type="image/png" href="">
 
 	<!-- TESTING -->
-	<link rel="stylesheet" type="text/css" href="../jasmine/lib/jasmine-3.4.0/jasmine.css">
+	<!--<link rel="stylesheet" type="text/css" href="../jasmine/lib/jasmine-3.4.0/jasmine.css">
 	<script type="text/javascript" src="../jasmine/lib/jasmine-3.4.0/jasmine.js"></script>
 	<script type="text/javascript" src="../jasmine/lib/jasmine-3.4.0/jasmine-html.js"></script>
-	<script type="text/javascript" src="../jasmine/lib/jasmine-3.4.0/boot.js"></script>
+	<script type="text/javascript" src="../jasmine/lib/jasmine-3.4.0/boot.js"></script>-->
 	<!-- END TESTING -->
 </head>
 <body>
-<header>
+<header class="global-header">
 	<h1>High Performance Computing Portal</h1>
 </header>
+<nav class="global-navigation">
+	<ul class="global-navigation__menu">
+		<li class="global-navigation__menu__list-item">Create new job</li>
+		<li class="global-navigation__menu__list-item">List active jobs</li>
+		<li class="global-navigation__menu__list-item">List files</li>
+	</ul>
+</nav>
 <main>
 	<header>
-		<h1>Create a Job</h1>
-		<!--<p>Job Submission instructions.</p>
-		<p>A single core job submission e.g. <code>-l select=1:ncpus=1:mem=20GB</code></p>
-		<p>A multi core job submission e.g. <code>-l select=1:ncpus=12:mem=60GB</code></p>
-		<p>A message parsing interface (MPI) job submission (recommended for advanced users only) <code>-l select=2:ncpus=24:mem=120GB:mpiprocs=1</code> or: <code>-l select=48:ncpus=1:mem=5GB:mpiprocs=1</code></p>-->
+		<h1>Welcome to the HPC Portal</h1>
 	</header>
-
-	<form 
-		method="POST"
-		enctype="multipart/form-data"
-		name="jobSubmissionForm"
-		id="jobSubmissionForm"
-		class="job-submission-form"
-	>
-		
-		<h3>Form Page 1</h3>
-		<!--<button class="job-submission-form__button">Load previous job submission</button>-->
-
-		<h4>Enter your job details</h4>
-		<label for="jobName" class="job-submission-form__label">Job name (required):</label>
-		<input type="text" name="jobName" id="jobName" required class="job-submission-form__input" value="">
-
-		<label for="accountGroup" class="job-submission-form__label">Account group (required):</label>
-		<select name="accountGroup" id="accountGroup" multiple required class="job-submission-form__input">
-			<option selected="selected" value="RCC-UQ">RCC-UQ</option> <!-- Will be generated from a REST endpoint -->
-		</select>
-
-		<fieldset class="job-submission-form__fieldset">
-			<legend>Walltime</legend>
-			<label for="wallTimeHours" class="job-submission-form__label">Hours (required):</label>
-			<input type="number" name="wallTimeHours" id="wallTimeHours" required class="job-submission-form__input" value="1">
-			<label for="wallTimeMinutes" class="job-submission-form__label">Minutes (required):</label>
-			<input type="number" name="wallTimeMinutes" id="wallTimeMinutes" required class="job-submission-form__input" value="00">
-			<label for="wallTimeSeconds" class="job-submission-form__label">Seconds (required):</label>
-			<input type="number" name="wallTimeSeconds" id="wallTimeSeconds" required class="job-submission-form__input" value="00">
-		</fieldset>
-
-
-		<label for="select" class="job-submission-form__label">Select (required):</label>
-		<input type="number" name="select" id="select" value="1" required class="job-submission-form__input">
-
-		<label for="cpus" class="job-submission-form__label">Number of CPUS (required):</label>
-		<input type="number" name="cpus" id="cpus" value="1" required class="job-submission-form__input">
-
-		<fieldset class="job-submission-form__fieldset">
-			<legend>Memory</legend>
-			<label for="mem" class="job-submission-form__label">Memory (GB) (required): </label>
-			<input type="number" name="mem" id="mem" value="1" required class="job-submission-form__input">
-
-			<!--<label for="vmem" class="job-submission-form__label">Virtual memory (GB):</label>
-			<input type="number" name="vmem" id="vmem" class="job-submission-form__input">-->
-
-			<!--<label for="pmem" class="job-submission-form__label">Memory per processor (GB):</label>
-			<input type="number" name="pmem" id="pmem" class="job-submission-form__input">-->
-		</fieldset>
-		<textarea>Payload</textarea>
-
-		<!--<button type="button" id="saveJobButton" class="job-submission-form__button">Save as job submission script</button>-->
-
-		<!--<h4>Upload a PBSpro batch script</h4>
-		<label for="jobScript" class="job-submission-form__label">Upload job submission script:</label>
-		<input name="jobScript" id="jobScript" type="file" class="job-submission-form__input">
-		
-		<output name="saveAsOutput" id="saveAsOutput"></output>-->
-		
-		<button type="submit" id="submitJobForm" class="job-submission-form__button">Submit job</button>
-	</form>
-	<!--<aside>
-		<header>
-			<h2>Parameter name</h2>
-			<p>Parameter explanation with a helpful explanation or diagram.</p>
-		</header>
-	</aside>-->
 </main>
-
-<footer></footer>
+<aside>
+</aside>
 <script type="module" src="app.js"></script>
-<script type="module" src="../spec/ModelSpec.js"></script>
+<!--<script type="module" src="../spec/ModelSpec.js"></script>-->
 </body>
 </html>

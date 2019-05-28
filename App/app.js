@@ -1,6 +1,6 @@
-import Model from './model.js';
-import View from './view.js';
-import Controller from './controller.js';
+import CreateJobModel from './model.js';
+import CreateJobView from './view.js';
+import CreateJobController from './controller.js';
 import {attach} from './helper.js';
 
 /**
@@ -26,3 +26,6 @@ function initialiseApp() {
 
 // Initialise application on window load... TODO: Should this be on first load only?
 attach(window, 'load', initialiseApp);
+
+// TODO: check if logged in
+// TODO: if logged in and page is equal to job creation create the job modles, views and controllers.
