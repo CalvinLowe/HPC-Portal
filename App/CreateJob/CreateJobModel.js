@@ -2,25 +2,20 @@
  * A model for the HPC Portal job submission form.
  * @author: Calvin Lowe <calvin.lowe@uqconnect.edu.au>
 */
-export default class Model {
+export default class CreateJobModel {
 	
 	// TODO: Rename view, model, controller with JobSubmissionPrefix
 	// TODO: create JobSubmission Module folder containing necessary files - this is for when JobList and FileList is created...
 	// TODO: comments for all methods and constructors
 	
 	/**
-	 * Class constructor for Model.
+	 * Class constructor for CreateJobModel.
 	 */
 	constructor() { // TODO: Initial values for constructor, TODO: Allow constructor to be created with default values
-		console.log("Constructing new instance of Model...");
-
-		// User information - retrived from Auth server using iFrame
-		// TODO: Decide whether I need to store this info in model when typing (It will be accessed using an iFrame)
-		this._username = "TestUser123"; // TODO: Remove test userName
-		this._accessToken = null;
+		console.log("Constructing new instance of CreateJobModel...");
 
 		// Retrieved
-		this._accountGroupList = ['RCC-UQ', 'ADMIN-UQ', 'EXAMPLE3-UQ']; // TODO: Remove test accountGroupList
+		this._accountGroupList = ['RCC-UQ', 'ADMIN-UQ', 'EXAMPLE3-UQ']; // TODO: Remove test accountGroupList // TODO: Get with user and REST API
 
 		// Job Submission
 		this._jobName = null; // User input
@@ -43,28 +38,6 @@ export default class Model {
 	//== Accessors ==//
 	//***************//
 	
-	//***************//
-	//-- User info --//
-	//***************//
-	// TODO: Need access to iframe/REST API on how to handle this
-	// TODO: User info and token info will probably need to be stored in the app.js
-	/**
-	 * Get the username
-	 */
-	get username() {
-		return this.username;
-	}
-	/**
-	 * Set the user's name instance variables.
-	 */
-	set username(newUsername) {
-		this._username = username;
-	}
-
-	// TODO: Need access to Auth REST API on how to handle this
-	// TODO: Comments
-	get accessToken() {/** TODO: */}
-	set accessToken(accessToken) {/** TODO: */}
 
 	//***************//
 	//-- Retrieved --//

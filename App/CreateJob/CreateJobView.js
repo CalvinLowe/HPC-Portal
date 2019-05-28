@@ -4,7 +4,7 @@ import {select, attach} from './helper.js';
  * A view for the HPC Portal job submission form.
  * @author: Calvin Lowe <calvin.lowe@uqconnect.edu.au>
  */
-export default class View {
+export default class CreateJobView {
 
 	// TODO: Unit tests
 	// TODO: Data validation

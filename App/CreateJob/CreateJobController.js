@@ -1,11 +1,11 @@
-import Model from './model.js';
-import View from './view.js';
+import CreateJobModel from './CreateJobModel.js';
+import CreateJobView from './CreateJobView.js';
 
 /**
  * A controller for the HPC Portal job submission form.
  * @author: Calvin Lowe <calvin.lowe@uqconnect.edu.au>
  */
-export default class Controller {
+export default class CreateJobController {
 
 	// TODO: Unit tests
 	// TODO: Decide if I will use a data store. I will likely just use Model as my data store for now.

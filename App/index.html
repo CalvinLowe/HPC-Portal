@@ -19,50 +19,18 @@
 </header>
 <nav class="global-navigation">
 	<ul class="global-navigation__menu">
-		<li class="global-navigation__menu__list-item">Job Submission</li>
-		<li class="global-navigation__menu__list-item">List Active Jobs</li>
-		<li class="global-navigation__menu__list-item">List Files</li>
+		<li class="global-navigation__menu__list-item">Create new job</li>
+		<li class="global-navigation__menu__list-item">List active jobs</li>
+		<li class="global-navigation__menu__list-item">List files</li>
 	</ul>
 </nav>
 <main>
 	<header>
-		<h1>Create a Job</h1>
+		<h1>Welcome to the HPC Portal</h1>
 	</header>
-
-	<form 
-		class="job-submission-form"
-		id="jobSubmissionForm"
-		name="jobSubmissionForm"
-		enctype="multipart/form-data"
-		method="POST">
-		<h3>Form Page 1</h3>
-		<h4>Enter your job details</h4>
-		<label class="job-submission-form__label" for="jobName">Job name (required):</label>
-		<input class="job-submission-form__input" id="jobName" name="jobName" type="text" value="" required>
-
-		<label class="job-submission-form__label" for="accountGroup" >Account group (required):</label>
-		<select class="job-submission-form__input" id="accountGroup" name="accountGroup" multiple required >
-			<option selected="selected" value="RCC-UQ">RCC-UQ</option> <!-- Will be generated from a REST endpoint -->
-		</select>
-
-
-		<label class="job-submission-form__label" for="walltime">Walltime (hours) (required):</label>
-		<input class="job-submission-form__input" id="walltime" name="walltime" type="number" value="1" min="1" required>
-
-		<label class="job-submission-form__label" for="select">Select (required):</label>
-		<input class="job-submission-form__input" id="select" name="select" type="number" value="1" required>
-
-		<label for="ncpus" class="job-submission-form__label">Number of CPUS (required):</label>
-		<input class="job-submission-form__input" id="ncpus" name="ncpus" type="number" value="1" min="1" max="24" required >
-
-		<label class="job-submission-form__label" for="memory">Memory (GB) (required): </label>
-		<input class="job-submission-form__input" id="memory" name="memory" type="number" value="1" min="1" required>
-
-		<label class="job-submission-form__label" for="payload">Payload (required): </label>
-		<textarea id="payload" name="payload" cols="40" rows="10" placeholder="echo $HOSTNAME" required></textarea>
-		<button class="job-submission-form__button" id="submitJobForm" type="submit">Submit job</button>
-	</form>
 </main>
+<aside>
+</aside>
 <script type="module" src="app.js"></script>
 <!--<script type="module" src="../spec/ModelSpec.js"></script>-->
 </body>
