@@ -7,35 +7,79 @@ export default class UserModel {
 	/**
 	 * Class constructor for UserModel.
 	 */
-	constructor() { // TODO: Initial values for constructor, TODO: Allow constructor to be created with default values
+	constructor() {
 		console.log("Constructing new instance of UserModel...");
 		
-		// User information - retrived from Auth server
-		this._username = "TestUser123"; // TODO: Remove test userName
-		this._accessToken = null;
+		// Session information
+		this._username = ""; // uname
+		this._sessionId = null; // session_id
+		this._hasToken = false; //  has_oauth_access_token
+		this._providers = ""; // proviers TODO: not sure if I need this?
+		this._email = ""; // email
 	}
 
-
-	//***************//
-	//-- User info --//
-	//***************//
-	// TODO: Need access to iframe/REST API on how to handle this
-	// TODO: User info and token info will probably need to be stored in the app.js
 	/**
 	 * Get the username
 	 */
 	get username() {
-		return this.username;
+		return this._username;
 	}
 	/**
-	 * Set the user's name instance variables.
+	 * Set the username.
 	 */
 	set username(newUsername) {
-		this._username = username;
+		this._username = newUsername;
 	}
 
-	// TODO: Need access to Auth REST API on how to handle this
-	// TODO: Comments
-	get accessToken() {/** TODO: */}
-	set accessToken(accessToken) {/** TODO: */}
+	/**
+	 * Get the session id
+	 */
+	get sessionId() {
+		return this._sessionId;
+	}
+	/**
+	 * Set the session id
+	 */
+	set sessionId(newSessionId) {
+		this._sessionId = newSessionId;
+	}
+
+	/**
+	 * Get the email address
+	 */
+	get email() {
+		return this._email;
+	}
+	/**
+	 * Set the email address
+	 */
+	set email(newEmail) {
+		this._email = newEmail;
+	}
+
+	/**
+	 * Determine whether the user has an access token.
+	 * Returns true if the user has an access token, else false.
+	 */
+	hasAccessToken() {
+		return this._accessToken;
+	}
+
+	/**
+	 * Get the session info.
+	 */
+	getSessionInfo() {
+		fetch('https://hpcportal.rcc.uq.edu.au/client/api/session_info ')
+  			.then(function(response) {
+    			return response.json();
+  			})
+  			.then(function(myJson) {
+    			console.log(JSON.stringify(myJson));
+			});
+	}
+
+
+	//TODO: getSessionInfo - XHR get request for https://hpcportal.rcc.uq.edu.au/client/api/session_info
+	// TODO: getAccessToken - XHR get request for https://hpcportal.rcc.uq.edu.au/client/api/access_token
+	// TODO: these should then call the setters for all the other variables if legit..
 }

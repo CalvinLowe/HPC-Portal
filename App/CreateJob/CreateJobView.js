@@ -1,4 +1,4 @@
-import {select, attach} from './helper.js';
+import {select, attach} from '../../Utility/helper.js';
 
 /**
  * A view for the HPC Portal job submission form.
