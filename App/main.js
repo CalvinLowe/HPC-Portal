@@ -67,5 +67,7 @@ function openLoginWindow(event) {
 	//loginWindow = window.open(url, windowName);
 	let loginWindow = window.open('about:blank', '', "top=" + top + ",left=" + left + ",width="+width+",height="+height);
 	loginWindow.location = url;
+
+	attach(loginWindow, 'unload', () => {console.log(loginWindow.location)});
 	
 }
