@@ -5,10 +5,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="shortcut icon" type="image/png" href="https://web-publishing.uq.edu.au/sites/all/themes/custom/uq_standard/favicon.ico">
-	<title>Create Job - High Performance Computing Portal, Research Computing Centre - The University of Queensland, Australia</title>
+	<title>Create new job - High Performance Computing Portal, Research Computing Centre - The University of Queensland, Australia</title>
 
 	<link type="text/css" rel="stylesheet" href="https://static.uq.net.au/v1/fonts/Roboto/roboto.css" media="all" />
 	<link type="text/css" rel="stylesheet" href="styles.css" />
+	<link type="text/css" rel="stylesheet" href="CreateJobFormStyles.css" />
 	<style type="text/css" media="all">
 		@import url("https://web-publishing.uq.edu.au/sites/all/themes/custom/uq_standard/css/styles.css?olt1wp");
 		</style>
@@ -63,27 +64,25 @@
 		</div>
 	</nav>
 
-	<main class="page">
+	<main class="page create__new__job__page">
 		<div class="page__content"> 
-			<!-- application add here START -->
-			<div class="hero-banner--dark-tint light-palette hero-banner hero-banner--background-image" style="background-image:url('images/bg3.jpg')">
+			<!--<div class="hero-banner--dark-tint light-palette hero-banner hero-banner--background-image" style="background-image:url('images/bg3.jpg')">
 			  <div class="hero-banner__container">
 				<div class="hero-banner__content">
 				  <h1 class="hero-banner__title">Create new job</h1>
 				</div>
 			  </div>
-			</div>
-			<!-- application add here END --> 
+			</div>-->
 
-			<div class="section__container">
+			<div class="section__container form__container">
 					<form 
 					class="job-submission-form"
 					id="jobSubmissionForm"
 					name="jobSubmissionForm"
 					enctype="multipart/form-data"
 					method="POST">
-						<h3>Form Page 1</h3>
-						<h4>Enter your job details</h4>
+						<h3>Create new job</h3>
+						<p>Enter your job details</p>
 						<label class="job-submission-form__label" for="jobName">Job name (required):</label>
 						<input class="job-submission-form__input" id="jobName" name="jobName" type="text" value="" required>
 				
@@ -106,12 +105,16 @@
 				
 						<label class="job-submission-form__label" for="payload">Payload (required): </label>
 						<textarea id="payload" name="payload" cols="40" rows="10" placeholder="echo $HOSTNAME" required></textarea>
+						
+						<button class="job-submission-form__button button--secondary" id="prevSectionJobForm" type="submit">Previous</button>
+						<button class="job-submission-form__button button--primary" id="nextSectionJobForm" type="submit">Next</button>
+						
 						<button class="job-submission-form__button" id="submitJobForm" type="submit">Submit job</button>
 					</form>
 			</div>
 
 			<div class="section__container">
-				<aside>
+				<aside class="section__container__aside">
 					<code class="code">
 						<p class="code__line">#!/bin/bash</p>
 						<p class="code__line ">#</p>

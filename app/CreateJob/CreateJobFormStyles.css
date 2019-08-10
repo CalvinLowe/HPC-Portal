@@ -1,0 +1,30 @@
+.create__new__job__page {
+	background-color: lightgrey;/*#2b2b2b;*/
+	padding: 5rem;
+}
+
+.form__container {
+	background-color: white;
+	padding: 2rem 2rem 0 2rem;
+	box-shadow: 2px 4px rgba(0,0,0,0.18)
+}
+
+.job-submission-form {
+	display: grid;
+}
+
+.job-submission-form__input {
+	justify-self: start;
+}
+
+#prevSectionJobForm, #nextSectionJobForm {
+	
+}
+
+.job-submission-form__button {
+	justify-self: end;
+}
+
+.section__container__aside {
+	margin-top: 2rem;
+}
