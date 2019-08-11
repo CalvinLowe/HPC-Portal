@@ -2,12 +2,9 @@
  * A model for the HPC Portal job submission form.
  * @author: Calvin Lowe <calvin.lowe@uqconnect.edu.au>
 */
-export default class CreateJobModel {
-	
-	// TODO: Rename view, model, controller with JobSubmissionPrefix
-	// TODO: create JobSubmission Module folder containing necessary files - this is for when JobList and FileList is created...
-	// TODO: comments for all methods and constructors
-	
+//export default class CreateJobModel {
+class CreateJobModel {
+
 	/**
 	 * Class constructor for CreateJobModel.
 	 */
@@ -34,14 +31,6 @@ export default class CreateJobModel {
 		this._pbsScriptBase64 = null;
 	}
 
-	//***************//
-	//== Accessors ==//
-	//***************//
-	
-
-	//***************//
-	//-- Retrieved --//
-	//***************//
 	/**
 	 * Get the accountGroupList
 	 */
@@ -53,12 +42,10 @@ export default class CreateJobModel {
 	 */
 	set accountGroupList(newAccountGroupList) {} // TODO: grabs the accountGroupList from the REST API
 
-	//********************//
-	//-- Job submission --//
-	//********************//
 	// TODO: Helper methods for validating user inputs
 	// TODO: Explain what each variable means in terms of the HPC 
 
+	//#region Field values
 	/** 
 	 * Get the job name.
 	 */
@@ -189,10 +176,9 @@ export default class CreateJobModel {
 		this._pbsScriptBase64 = newPbsScriptBase64Value;
 	}
 
-	//*********************//
-	//== Data processing ==//
-	//*********************//
+	//#endregion
 
+	//#region Data processing
 	// TODO: Break up processFormData into more methods and call those methods in the controller...
 	processFormData() {		
 		let data = this.formData;
@@ -292,4 +278,5 @@ ${this.payload}`;
 		let decodedData = window.atob(encodedPbsTemplate);
 		return decodedData;
 	}
+	//#endregion
 }

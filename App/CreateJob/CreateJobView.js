@@ -1,10 +1,11 @@
-import {select, attach} from '../../Utility/helper.js';
+//import {select, attach} from '../../Utility/helper.js';
 
 /**
  * A view for the HPC Portal job submission form.
  * @author: Calvin Lowe <calvin.lowe@uqconnect.edu.au>
  */
-export default class CreateJobView {
+//export default class CreateJobView {
+class CreateJobView {
 
 	// TODO: Unit tests
 	// TODO: Data validation
@@ -17,14 +18,39 @@ export default class CreateJobView {
 	 */
 	constructor() {
 		console.log("Constructing new instance of View..."); // TODO: Remove after testing.
-		this._jobSubmissionForm = select("jobSubmissionForm");
+		//this._jobSubmissionForm = select("jobSubmissionForm"); // TODO: see if you can get imports etc working again, might need some bundling JS
+		this._jobSubmissionForm = document.getElementById("jobSubmissionForm");
+		this._prevSectionJobForm = document.getElementById("prevSectionJobForm");
+		this._nextSectionJobForm = document.getElementById("nextSectionJobForm");
+		this._jobSubmissionFieldsetList = document.getElementsByClassName('job-submission-form__fieldset');
+		this._formIndex = 0;
+		this.setupForm();
 	}
 
-	/**
-	 * Get the Job Submission Form element.
-	 */
 	get jobSubmissionForm() {
 		return this._jobSubmissionForm;
+	}
+	
+	get prevSectionJobForm() {
+		return this._prevSectionJobForm;
+	}
+
+	get nextSectionJobForm() {
+		return this._nextSectionJobForm;
+	}
+
+	get jobSubmissionFieldsetList() {
+		return this._jobSubmissionFieldsetList;
+	}
+
+	// TODO: move to model
+	get formIndex() {
+		return this._formIndex;
+	}
+
+	// TODO: move to model
+	set formIndex(index) {
+		this._formIndex = index;
 	}
 
 	/**
@@ -42,6 +68,34 @@ export default class CreateJobView {
 	attachFormSubmitEvent(handler) {
 		let target = jobSubmissionForm;
 		let type = 'submit';
-		attach(target, type, handler);
+		//attach(target, type, handler);
+		target.addEventListener(type, handler);
+	}
+
+	/**
+	 * Attach an event handler to the Job Submission Form  previous button for the click event.
+	 * @param {*} handler 
+	 */
+	attachFormPrevEvent(handler) {
+		let target = prevSectionJobForm;
+		let type = 'click';
+		target.addEventListener(type, handler);
+	}
+
+	/**
+	 * Attach an event handler to the Job Submission Form  next button for the click event.
+	 * @param {*} handler 
+	 */
+	attachFormNextEvent(handler) {
+		let target = nextSectionJobForm;
+		let type = 'click';
+		target.addEventListener(type, handler);
+	}
+
+
+	// TODO: comments and decide where this should go
+	setupForm() {
+		 this.jobSubmissionFieldsetList[0].classList.add("job-submission-form__fieldset--active");
+		 this.jobSubmissionFieldsetList[1].classList.add("job-submission-form__fieldset--hidden");
 	}
 }

@@ -7,13 +7,13 @@
 	<link rel="shortcut icon" type="image/png" href="https://web-publishing.uq.edu.au/sites/all/themes/custom/uq_standard/favicon.ico">
 	<title>Create new job - High Performance Computing Portal, Research Computing Centre - The University of Queensland, Australia</title>
 
-	<link type="text/css" rel="stylesheet" href="https://static.uq.net.au/v1/fonts/Roboto/roboto.css" media="all" />
-	<link type="text/css" rel="stylesheet" href="styles.css" />
-	<link type="text/css" rel="stylesheet" href="CreateJobFormStyles.css" />
-	<style type="text/css" media="all">
+	<link rel="stylesheet" href="https://static.uq.net.au/v1/fonts/Roboto/roboto.css" media="all" />
+	<link rel="stylesheet" href="styles.css" />
+	<link rel="stylesheet" href="CreateJobFormStyles.css" />
+	<style media="all">
 		@import url("https://web-publishing.uq.edu.au/sites/all/themes/custom/uq_standard/css/styles.css?olt1wp");
-		</style>
-		<style type="text/css" media="print">
+	</style>
+	<style media="print">
 		@import url("https://web-publishing.uq.edu.au/sites/all/themes/custom/uq_standard/css/print.css?olt1wp");
 	</style>
 
@@ -66,67 +66,62 @@
 
 	<main class="page create__new__job__page">
 		<div class="page__content"> 
-			<!--<div class="hero-banner--dark-tint light-palette hero-banner hero-banner--background-image" style="background-image:url('images/bg3.jpg')">
-			  <div class="hero-banner__container">
-				<div class="hero-banner__content">
-				  <h1 class="hero-banner__title">Create new job</h1>
-				</div>
-			  </div>
-			</div>-->
-
 			<div class="section__container form__container">
-					<form 
+				<form 
 					class="job-submission-form"
 					id="jobSubmissionForm"
 					name="jobSubmissionForm"
 					enctype="multipart/form-data"
 					method="POST">
-						<h3>Create new job</h3>
-						<p>Enter your job details</p>
-						<label class="job-submission-form__label" for="jobName">Job name (required):</label>
-						<input class="job-submission-form__input" id="jobName" name="jobName" type="text" value="" required>
-				
-						<label class="job-submission-form__label" for="accountGroup" >Account group (required):</label>
-						<select class="job-submission-form__input" id="accountGroup" name="accountGroup" multiple required >
-							<option selected="selected" value="RCC-UQ">RCC-UQ</option> <!-- Will be generated from a REST endpoint -->
-						</select>
-				
-						<label class="job-submission-form__label" for="walltime">Walltime (hours) (required):</label>
-						<input class="job-submission-form__input" id="walltime" name="walltime" type="number" value="1" min="1" required>
-				
-						<label class="job-submission-form__label" for="select">Select (required):</label>
-						<input class="job-submission-form__input" id="select" name="select" type="number" value="1" required>
-				
-						<label for="ncpus" class="job-submission-form__label">Number of CPUS (required):</label>
-						<input class="job-submission-form__input" id="ncpus" name="ncpus" type="number" value="1" min="1" max="24" required >
-				
-						<label class="job-submission-form__label" for="memory">Memory (GB) (required): </label>
-						<input class="job-submission-form__input" id="memory" name="memory" type="number" value="1" min="1" required>
-				
-						<label class="job-submission-form__label" for="payload">Payload (required): </label>
-						<textarea id="payload" name="payload" cols="40" rows="10" placeholder="echo $HOSTNAME" required></textarea>
-						
-						<button class="job-submission-form__button button--secondary" id="prevSectionJobForm" type="submit">Previous</button>
-						<button class="job-submission-form__button button--primary" id="nextSectionJobForm" type="submit">Next</button>
-						
-						<button class="job-submission-form__button" id="submitJobForm" type="submit">Submit job</button>
-					</form>
-			</div>
+						<h3 class="job-submission-form__heading">Create new job</h3>
+						<p class="job-submission-form__description">Enter your job details</p>
+						<fieldset class="job-submission-form__fieldset" id="jobSubmissionPage1">
+							<label class="job-submission-form__label" for="jobName">Job name (required):</label>
+							<input class="job-submission-form__input" id="jobName" name="jobName" type="text" value="Default job name" required>
+					<!--TODO: remove default job names-->
+							<label class="job-submission-form__label" for="accountGroup" >Account group (required):</label>
+							<select class="job-submission-form__input" id="accountGroup" name="accountGroup" multiple required >
+								<!-- TODO: Will be generated from a REST endpoint -->
+								<option selected="selected" value="RCC-UQ">RCC-UQ</option>
+								<option selected="selected" value="ADMIN-UQ">ADMIN-UQ</option> 
+								<option selected="selected" value="IMB-UQ">IMB-UQ</option> 
+							</select>
+					
+							<label class="job-submission-form__label" for="walltime">Walltime (hours) (required):</label>
+							<input class="job-submission-form__input" id="walltime" name="walltime" type="number" value="1" min="1" required>
+					
+							<label class="job-submission-form__label" for="select">Select (required):</label>
+							<input class="job-submission-form__input" id="select" name="select" type="number" value="1" required>
+					
+							<label for="ncpus" class="job-submission-form__label">Number of CPUS (required):</label>
+							<input class="job-submission-form__input" id="ncpus" name="ncpus" type="number" value="1" min="1" max="24" required >
+					
+							<label class="job-submission-form__label" for="memory">Memory (GB) (required): </label>
+							<input class="job-submission-form__input" id="memory" name="memory" type="number" value="1" min="1" required>
+					
+							<label class="job-submission-form__label" for="payload">Payload (required): </label>
+							<textarea class="job-submission-form__input" id="payload" name="payload" cols="40" rows="10" placeholder="echo $HOSTNAME" required>Default text value</textarea>
+							<!--TODO: remove default text values-->
+						</fieldset>
 
-			<div class="section__container">
-				<aside class="section__container__aside">
-					<code class="code">
-						<p class="code__line">#!/bin/bash</p>
-						<p class="code__line ">#</p>
-						<p class="code__line">#PBS -A RCC-UQ <mark>##Account string</mark></p>
-						<p class="code__line">#</p>
-						<p class="code__line">#PBS -l select=1:ncpus=1:mem=1GB <mark>##Job parameters</mark></p>
-						<p class="code__line">#PBS -l walltime=1:00:00 <mark>##The Walltime</mark></p>
-						<p class="code__line">#PBS -N ExampleJob <mark>##The Job name</mark></p>
-						<p class="code__line">#</p>
-						<p class="code__line">echo $HOSTNAME <mark>##The payload</mark></p>	
-					</code>
-				</aside>
+						<fieldset class="job-submission-form__fieldset" id="jobSubmissionPageReview">
+							<output>
+								<p class="code__line">#!/bin/bash</p>
+								<p class="code__line ">#</p>
+								<p class="code__line">#PBS -A RCC-UQ <mark>##Account string</mark></p>
+								<p class="code__line">#</p>
+								<p class="code__line">#PBS -l select=1:ncpus=1:mem=1GB <mark>##Job parameters</mark></p>
+								<p class="code__line">#PBS -l walltime=1:00:00 <mark>##The Walltime</mark></p>
+								<p class="code__line">#PBS -N ExampleJob <mark>##The Job name</mark></p>
+								<p class="code__line">#</p>
+								<p class="code__line">echo $HOSTNAME <mark>##The payload</mark></p>	
+							</output>	
+						</fieldset>
+
+						<button class="job-submission-form__button button--secondary" id="prevSectionJobForm" type="submit">Previous</button>
+						<button class="job-submission-form__button button--secondary" id="nextSectionJobForm" type="submit">Next</button>
+						<button class="job-submission-form__button" id="submitJobForm" type="submit">Submit job</button>
+				</form>
 			</div>
 		</div>
 	</main>
@@ -152,6 +147,17 @@
 		</div>
 	</footer>
 
-<!--<script type="module" src="app.js"></script>-->
+<!--TODO: <script type="module" src="app.js"></script>-->
+<script src="./CreateJobView.js"></script>
+<script src="./CreateJobController.js"></script>
+<script src="./CreateJobModel.js"></script>
+<script>
+
+// TODO: find a better way to organise this
+var model = new CreateJobModel();
+var view = new CreateJobView();
+var controller = new CreateJobController(model, view);
+
+</script>
 </body>
 </html>
