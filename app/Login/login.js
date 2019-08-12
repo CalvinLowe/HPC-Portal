@@ -1,26 +1,31 @@
-let login = document.getElementById('login');
+let siteLogin = document.getElementById('login');
+let siteLogout = document.getElementById('logout');
 
-// TODO: do we wanna show the login url to users?
-let loginUrl = login.getAttribute('href');
+let loginUrl = siteLogin.getAttribute('href'); // TODO: do we wanna show the login url to users?
 
-attach(login, 'click', handleLogin);
+attach(siteLogin, 'click', handleLogin);
+attach(siteLogout, 'click', handleLogout);
 
 function handleLogin(e) {
 	e.preventDefault();
 	openLoginWindow(loginUrl);
-	
-	// TODO: wait for signal
-	frontEndSignIn()
+	login(); // TODO: need to do checks before calling login
 }
 
-function frontEndSignIn() {
-	login.removeEventListener('click', handleLogin);
-	login.title = "Log out";
-	login.href = "#";
-	login.id = "logout";
-	login.text = "Log out";
-	console.log(login);
+function handleLogout(e) {
+	e.preventDefault();
+	logout();
 }
+
+function login() {
+	siteLogin.classList.add("login--hidden");
+	siteLogout.classList.remove("logout--hidden");
+}
+
+function logout() {
+	siteLogin.classList.remove("login--hidden");
+	siteLogout.classList.add("logout--hidden");
+	}
 
 function openLoginWindow(url) {
 	event.preventDefault();
