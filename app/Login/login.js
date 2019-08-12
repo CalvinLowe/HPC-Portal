@@ -1,13 +1,28 @@
 let login = document.getElementById('login');
-let url = login.getAttribute('href');
 
-console.log(login);
-console.log(url);
+// TODO: do we wanna show the login url to users?
+let loginUrl = login.getAttribute('href');
 
+attach(login, 'click', handleLogin);
 
-attach(login, 'click', openLoginWindow);
+function handleLogin(e) {
+	e.preventDefault();
+	openLoginWindow(loginUrl);
+	
+	// TODO: wait for signal
+	frontEndSignIn()
+}
 
-function openLoginWindow(event) {
+function frontEndSignIn() {
+	login.removeEventListener('click', handleLogin);
+	login.title = "Log out";
+	login.href = "#";
+	login.id = "logout";
+	login.text = "Log out";
+	console.log(login);
+}
+
+function openLoginWindow(url) {
 	event.preventDefault();
 	console.log(url);
 	let windowName = "Test window";
@@ -22,5 +37,4 @@ function openLoginWindow(event) {
 	loginWindow.location = url;
 
 	attach(loginWindow, 'unload', () => {console.log(loginWindow.location)});
-	
 }
