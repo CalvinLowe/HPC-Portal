@@ -3,7 +3,7 @@
  * 
  * @param {string} id Id to retrieve
  */
-export function select(id) {
+function select(id) {
 	return document.getElementById(id);
 }
 
@@ -14,7 +14,7 @@ export function select(id) {
  * @param {string} type Event name to bind to
  * @param {Function} handler Event handler
  */
-export function attach(target, type, handler) {
+function attach(target, type, handler) {
 	target.addEventListener(type, handler);
 }
 
@@ -26,4 +26,4 @@ export function attach(target, type, handler) {
  *
  * @returns {string} String with unsafe characters escaped with entity codes
  */
-export const escapeForHTML = s => s.replace(/[&<]/g, c => c === '&' ? '&amp;' : '&lt;');
+const escapeForHTML = s => s.replace(/[&<]/g, c => c === '&' ? '&amp;' : '&lt;');
