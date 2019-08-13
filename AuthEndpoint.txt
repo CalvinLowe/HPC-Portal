@@ -6,3 +6,6 @@ https://hpcportal.rcc.uq.edu.au/client/api/session_info
 
 Access token
 https://hpcportal.rcc.uq.edu.au/client/api/access_token
+
+End session
+https://hpcportal.rcc.uq.edu.au/client/api/end_session
