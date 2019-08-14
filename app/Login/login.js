@@ -1,45 +1,38 @@
 let siteLogin = document.getElementById('login');
 let siteLogout = document.getElementById('logout');
 
-let loginUrl = siteLogin.getAttribute('href'); // TODO: do we wanna show the login url to users?
+let loginUrl = siteLogin.getAttribute('href');
 
 attach(siteLogin, 'click', handleLogin);
 attach(siteLogout, 'click', handleLogout);
 
 function handleLogin(e) {
-	e.preventDefault();
-	openLoginWindow(loginUrl);
-	login(); // TODO: need to do checks before calling login
+	//window.location = "dashboard/dashboard.html"
+	// Check if logged in then do the rest  and the redirect
+	toggleLoginShow();
 }
 
 function handleLogout(e) {
-	e.preventDefault();
-	logout();
+	// Check if logged out then do the rest and the redirect
+	toggleLoginShow();
 }
 
-function login() {
-	siteLogin.classList.add("login--hidden");
-	siteLogout.classList.remove("logout--hidden");
+function toggleLoginShow(element) {
+	siteLogin.classList.toggle("login--hidden");
+	siteLogout.classList.toggle("logout--hidden");
 }
 
-function logout() {
-	siteLogin.classList.remove("login--hidden");
-	siteLogout.classList.add("logout--hidden");
-	}
+// TODO: just for testing
+let test = document.getElementById('FETCH');
+attach(test, 'click', isLoggedIn);
 
-function openLoginWindow(url) {
-	event.preventDefault();
-	console.log(url);
-	let windowName = "Test window";
-	let width = 800,
-        height = 600;
-	let left = screen.width/2 - width/2,
-		top = screen.height/2 - height/2;
-
-	//let loginWindow = window.open(url, windowName, [windowFeatures]);
-	//loginWindow = window.open(url, windowName);
-	let loginWindow = window.open('about:blank', '', "top=" + top + ",left=" + left + ",width="+width+",height="+height);
-	loginWindow.location = url;
-
-	attach(loginWindow, 'unload', () => {console.log(loginWindow.location)});
+function isLoggedIn() {
+	let resource = "https://hpcportal.rcc.uq.edu.au/client/api/session_info";
+	//let resource = "https://hpcportal.rcc.uq.edu.au/";
+	
+	fetch(resource);
+	//let fetchResponsePromise = fetch(resource);
+	//console.log(fetchResponsePromise);
+	
+	//return false;
 }

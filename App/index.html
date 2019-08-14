@@ -54,17 +54,13 @@
 		<div id="block-system-main-menu" class="block block-system block-menu main-menu">
 			<ul class="menu" id="main-menu">
 				<li class="first leaf active-trail"><a href="#" title="" class="active-trail menu__link active">Home</a></li>
-				<li class="leaf"><a href="CreateJob/index.html" title="" class="menu__link">Create new job</a></li>
-				<li class="leaf"><a href="#" title="" class="menu__link">List active jobs</a></li>
-				<li class="leaf"><a href="#" title="" class="menu__link">List files</a></li>
-				<!--TODO: Move the link call to the JS code--> 
-				<li class="last leaf"><a id="login" href="https://hpcportal.rcc.uq.edu.au/client/login?service=hpcportal" title="Log in" class="menu__link login">Log in</a></li>
-				<li class="last leaf"><a id="logout" href="https://hpcportal.rcc.uq.edu.au/client/api/end_session" title="Log out" class="menu__link logout logout--hidden">Log out</a></li>
+				<li class="last leaf"><a id="login" rel="noreferrer" target="_blank" href="https://hpcportal.rcc.uq.edu.au/client/login?service=hpcportal" title="Log in" class="menu__link login">Log in</a></li>
+				<li class="last leaf"><a id="logout" rel="noreferrer" target="_blank" href="https://hpcportal.rcc.uq.edu.au/client/api/end_session" title="Log out" class="menu__link logout logout--hidden">Log out</a></li>
 			</ul>
 		</div>
 		</div>
 	</nav>
-
+	<a id="FETCH" href="#" class="button">TEST FETCH SESSION_INFO</a>
 	<main class="page">
 		<div class="page__content"> 
 			<!-- application add here START -->
@@ -73,6 +69,7 @@
 				<div class="hero-banner__content">
 				  <h1 class="hero-banner__title">High Performance Computing Portal</h1>
 				</div>
+				
 			  </div>
 			</div>
 			<!-- application add here END --> 
