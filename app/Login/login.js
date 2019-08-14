@@ -29,10 +29,10 @@ attach(test, 'click', isLoggedIn);
 function isLoggedIn() {
 	let resource = "https://hpcportal.rcc.uq.edu.au/client/api/session_info";
 	//let resource = "https://hpcportal.rcc.uq.edu.au/";
+
+	fetch(resource)
+		.then(response => {console.log(response)});
 	
-	fetch(resource);
-	//let fetchResponsePromise = fetch(resource);
-	//console.log(fetchResponsePromise);
-	
-	//return false;
+	//return response.has_oauth_access_token. TO BOOLEAN
+	// at the endpoint session_info has_oauth_access_token is "true" or "false"
 }
