@@ -8,8 +8,11 @@ attach(siteLogout, 'click', handleLogout);
 
 function handleLogin(e) {
 	//window.location = "dashboard/dashboard.html"
-	// Check if logged in then do the rest  and the redirect
-	toggleLoginShow();
+	let answer = isLoggedIn();
+	//console.log(answer);
+	if (answer == true) {
+		toggleLoginShow();
+	}
 }
 
 function handleLogout(e) {
@@ -22,17 +25,12 @@ function toggleLoginShow(element) {
 	siteLogout.classList.toggle("logout--hidden");
 }
 
-// TODO: just for testing
-let test = document.getElementById('FETCH');
-attach(test, 'click', isLoggedIn);
-
-function isLoggedIn() {
+async function isLoggedIn() {
 	let resource = "https://hpcportal.rcc.uq.edu.au/client/api/session_info";
-	//let resource = "https://hpcportal.rcc.uq.edu.au/";
-
-	fetch(resource)
-		.then(response => {console.log(response)});
-	
-	//return response.has_oauth_access_token. TO BOOLEAN
-	// at the endpoint session_info has_oauth_access_token is "true" or "false"
+	let response = await fetch(resource, {});
+	//console.log(response);
+	let responseJSON = await response.json();
+	//console.log(responseJSON);
+	// TODO: errors?
+	return responseJSON.has_oauth_access_token;
 }
