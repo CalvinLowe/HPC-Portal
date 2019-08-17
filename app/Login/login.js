@@ -1,3 +1,10 @@
+// TODO: document onload - check if logged in
+window.onload = function() {
+	console.log("document loaded");
+	loginRequest();
+}
+// TODO: trigger page reload after check..
+
 let isLoggedIn = false;
 
 let login = document.getElementById('login');
@@ -9,25 +16,6 @@ attach(document.getElementById('logout'), 'click', handleLogoutButtonClick);
 function handleLoginButtonClick(e) {
 	loginRequest();
 }
-
-// Need to wait for page https://hpcportal.rcc.uq.edu.au/client/login?service=hpcportal to return 
-// "Login complete! You can close me now :)"
-var TEST = new XMLHttpRequest();
-TEST.onload = function(){
-	if (TEST.status != 200)
-	{
-		console.log("Not yet logged in");
-		console.log(TEST.response);
-		console.log(TEST.status);
-	}
-	else {
-		console.log("Should be logged in now");
-		console.log(TEST.response);
-		console.log(TEST.status);
-	}
-};
-TEST.open('GET', 'https://hpcportal.rcc.uq.edu.au/client/login?service=hpcportal');
-TEST.send();
 
 function loginRequest() {
 	var xhr = new XMLHttpRequest();
@@ -52,9 +40,6 @@ function doUserLogin() {
 		console.log("Login was true");
 		console.log(isLoggedIn);
 		toggleLoginShow();
-		// TODO: set application state to logged in
-		
-		// Redirect after small timeout..
 		setTimeout(function() {
 			window.location = "Dashboard/dashboard.html"
 		}, 2000);
