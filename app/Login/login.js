@@ -1,19 +1,29 @@
-// TODO: move to user model
 let isLoggedIn;
 let interval;
 
-// TODO: move to to view
+function checkSessionsStorage() {
+	if (sessionStorage.getItem("isLoggedIn") == null) {
+		sessionStorage.setItem("isLoggedIn", "false");
+	} else if (sessionStorage.getItem("isLoggedIn") == "true") {
+		checkLoginStatus();
+	}
+}
+
+document.onload = checkSessionsStorage();
+
 let login = document.getElementById('login');
 
-// TODO: move to controller
-attach(document.getElementById('login'), 'click', handleLoginButtonClick);
+if (login != null) {
+	attach(document.getElementById('login'), 'click', handleLoginButtonClick);
+}
+
 function handleLoginButtonClick() {
 	checkLoginStatus();
 	interval = window.setInterval(checkLoginStatus, 5000);
 }
 
-// TODO: move to user model
 async function checkLoginStatus() {
+	// TODO: handle errors
 	let response = await fetch('https://hpcportal.rcc.uq.edu.au/client/api/session_info');
 	let data = await response.json();
 	isLoggedIn = (data.has_oauth_access_token == "true");
@@ -26,7 +36,6 @@ async function checkLoginStatus() {
 	}
 }
 
-// TODO: move to controller & view
 function redirectAfterLogin() {
 	console.log("Redirecting...");
 	setTimeout(function() {
@@ -34,7 +43,6 @@ function redirectAfterLogin() {
 	}, 2000);
 }
 
-// TODO: move to view or controller?
 function toggleLoginShow() {
 	login.classList.toggle("login--hidden");
 }
