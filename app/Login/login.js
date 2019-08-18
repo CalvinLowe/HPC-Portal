@@ -1,15 +1,13 @@
 let isLoggedIn;
 let interval;
 
-function checkSessionsStorage() {
+function initSessionsStorage() {
 	if (sessionStorage.getItem("isLoggedIn") == null) {
 		sessionStorage.setItem("isLoggedIn", "false");
-	} else if (sessionStorage.getItem("isLoggedIn") == "true") {
-		checkLoginStatus();
 	}
 }
 
-document.onload = checkSessionsStorage();
+document.onload = initSessionsStorage();
 
 let login = document.getElementById('login');
 
@@ -30,8 +28,10 @@ async function checkLoginStatus() {
 	if (isLoggedIn == true) {
 		console.log("Login successful");
 		window.clearInterval(interval);
+		sessionStorage.setItem("isLoggedIn", "true");
 		redirectAfterLogin();
 	} else {
+		// LOGOUT and redirect
 		console.log("Login in progress");
 	}
 }
@@ -39,7 +39,7 @@ async function checkLoginStatus() {
 function redirectAfterLogin() {
 	console.log("Redirecting...");
 	setTimeout(function() {
-		window.location = "Dashboard/dashboard.html"
+		window.location = "dashboard/dashboard.html"
 	}, 2000);
 }
 
