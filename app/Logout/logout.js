@@ -8,4 +8,13 @@ function toggleLogoutShow() {
 function handleLogoutButtonClick(e) {
 	// Check if logged out then do the rest and the redirect
 	toggleLoginShow();
+	sessionStorage.setItem("isLoggedIn", "false");
+
+}
+
+function redirectAfterLogout() {
+	console.log("Redirecting...");
+	setTimeout(function() {
+		window.location = "../index.html"
+	}, 2000);
 }
