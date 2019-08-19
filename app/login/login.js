@@ -9,10 +9,10 @@ function initSessionsStorage() {
 
 document.onload = initSessionsStorage();
 
-let login = document.getElementById('login');
+let loginButton = document.getElementById('login');
 
-if (login != null) {
-	attach(document.getElementById('login'), 'click', handleLoginButtonClick);
+if (loginButton != null) {
+	attach(loginButton, 'click', handleLoginButtonClick);
 }
 
 function handleLoginButtonClick() {
@@ -44,5 +44,5 @@ function redirectAfterLogin() {
 }
 
 function toggleLoginShow() {
-	login.classList.toggle("login--hidden");
+	loginButton.classList.toggle("login--hidden");
 }
