@@ -7,7 +7,15 @@ function initSessionsStorage() {
 	}
 }
 
-document.onload = initSessionsStorage();
+function loginUI() {
+	initSessionsStorage();
+	if (sessionStorage.getItem("isLoggedIn") == "true") {
+		document.body.classList.add("logged-in");
+
+	}
+}
+
+document.onload = loginUI();
 
 let loginButton = document.getElementById('login');
 
@@ -17,7 +25,7 @@ if (loginButton != null) {
 
 function handleLoginButtonClick() {
 	checkLoginStatus();
-	interval = window.setInterval(checkLoginStatus, 5000);
+	interval = window.setInterval(checkLoginStatus, 2000);
 }
 
 async function checkLoginStatus() {
@@ -40,9 +48,10 @@ function redirectAfterLogin() {
 	console.log("Redirecting...");
 	setTimeout(function() {
 		window.location = "dashboard/dashboard.html"
-	}, 2000);
+	}, 1000);
 }
 
 function toggleLoginShow() {
 	loginButton.classList.toggle("login--hidden");
 }
+

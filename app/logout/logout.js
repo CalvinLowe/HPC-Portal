@@ -25,7 +25,7 @@ function redirectAfterLogout() {
 	console.log("Redirecting...");
 	setTimeout(function() {
 		window.location = "../index.html"
-	}, 2000);
+	}, 1000);
 }
 
 function toggleLogoutShow() {
