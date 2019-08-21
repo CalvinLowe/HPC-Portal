@@ -54,4 +54,3 @@ function redirectAfterLogin() {
 function toggleLoginShow() {
 	loginButton.classList.toggle("login--hidden");
 }
-
