@@ -29,7 +29,6 @@ function handleLoginButtonClick() {
 }
 
 async function checkLoginStatus() {
-	// TODO: handle errors
 	let response = await fetch('https://hpcportal.rcc.uq.edu.au/client/api/session_info');
 	let data = await response.json();
 	isLoggedIn = (data.has_oauth_access_token == "true");

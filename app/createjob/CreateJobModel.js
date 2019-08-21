@@ -8,11 +8,11 @@ class CreateJobModel {
 	/**
 	 * Class constructor for CreateJobModel.
 	 */
-	constructor() { // TODO: Initial values for constructor, TODO: Allow constructor to be created with default values
+	constructor() {
 		console.log("Constructing new instance of CreateJobModel...");
 
 		// Retrieved
-		this._accountGroupList = ['RCC-UQ', 'ADMIN-UQ', 'EXAMPLE3-UQ']; // TODO: Remove test accountGroupList // TODO: Get with user and REST API
+		this._accountGroupList = ['RCC-UQ', 'ADMIN-UQ', 'EXAMPLE3-UQ'];
 
 		// Job Submission
 		this._jobName = null; // User input
@@ -40,10 +40,7 @@ class CreateJobModel {
 	/**
 	 * Set the account group list. Account group list is retrieved using the REST API.
 	 */
-	set accountGroupList(newAccountGroupList) {} // TODO: grabs the accountGroupList from the REST API
-
-	// TODO: Helper methods for validating user inputs
-	// TODO: Explain what each variable means in terms of the HPC 
+	set accountGroupList(newAccountGroupList) {}
 
 	//#region Field values
 	/** 
@@ -179,7 +176,6 @@ class CreateJobModel {
 	//#endregion
 
 	//#region Data processing
-	// TODO: Break up processFormData into more methods and call those methods in the controller...
 	processFormData() {		
 		let data = this.formData;
 
@@ -208,12 +204,10 @@ class CreateJobModel {
 			this.payload = data.get('payload');
 
 		} else {
-			console.log("Key missing from formData"); // TODO: turn into an error message
-			return; // TODO: not sure if I can return here
+			console.log("Key missing from formData");
+			return;
 		}
 
-		// TODO: Shouldn't reach this point unless passed jobSubmissionKeyCheck
-		// TODO: do I need to put up a guard?
 		// Populate the template literal with form values
 		let newPbsScriptValue = this.populateScriptTemplate();
 		this.pbsScript = newPbsScriptValue;
@@ -225,29 +219,22 @@ class CreateJobModel {
 		let decodedData = this.decodeBase64(encodedData);
 		console.log(decodedData);
 
-		// TODO: Create a new FormData object with the base64 encoded data as a string.
-		// TODO: Send the FormData via XHR to the REST ENDPOINT
 	}
 
-	// TODO: comments
-	// TODO: unit test
-	// TODO: add jobSubmissionCheckArray as a parameter
 	jobSubmissionKeyCheck(formData) {
-		let jobSubmissionCheckArray = ['jobName', 'accountGroup', 'walltime', 'select', 'ncpus', 'memory', 'payload']; // TODO: How to make this match the required values?????
+		let jobSubmissionCheckArray = ['jobName', 'accountGroup', 'walltime', 'select', 'ncpus', 'memory', 'payload'];
 		let jobSubmissionCheck = true;
 
 		for (let i = 0; i < jobSubmissionCheckArray.length; i++) {
 			if (formData.get(jobSubmissionCheckArray[i]) === null) {
-				console.log("Key was missing!"); // TODO: Turn into an error message
+				console.log("Key was missing!");
 				jobSubmissionCheck = false;
 			}
 		}
 		return jobSubmissionCheck;
 	}
 
-	// TODO: Comments
 	populateScriptTemplate() {
-		// TODO: save this template somewhere else?
 		let scriptTemplate = 
 `#!/bin/bash
 #

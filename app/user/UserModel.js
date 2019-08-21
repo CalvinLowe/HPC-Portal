@@ -14,7 +14,7 @@ export default class UserModel {
 		this._username = ""; // uname
 		this._sessionId = null; // session_id
 		this._hasToken = false; //  has_oauth_access_token
-		this._providers = ""; // proviers TODO: not sure if I need this?
+		this._providers = ""; // proviers
 		this._email = ""; // email
 	}
 
@@ -77,9 +77,4 @@ export default class UserModel {
     			console.log(JSON.stringify(myJson));
 			});
 	}
-
-
-	//TODO: getSessionInfo - XHR get request for https://hpcportal.rcc.uq.edu.au/client/api/session_info
-	// TODO: getAccessToken - XHR get request for https://hpcportal.rcc.uq.edu.au/client/api/access_token
-	// TODO: these should then call the setters for all the other variables if legit..
 }

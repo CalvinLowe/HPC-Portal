@@ -9,7 +9,6 @@ function handleLogoutButtonClick(e) {
 }
 
 async function logout() {
-	// TODO: handle errors
 	let response = await fetch('https://hpcportal.rcc.uq.edu.au/client/api/end_session');
 	let data = await response.json();
 	if (data.message.includes("invalidated")) {

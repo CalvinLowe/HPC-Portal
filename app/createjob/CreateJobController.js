@@ -14,11 +14,10 @@ class CreateJobController {
 	 * @param {View} view 
 	 */
 	constructor(model, view) {
-		console.log("Constructing new instance of Controller..."); // TODO: Remove after testing
+		console.log("Constructing new instance of Controller...");
 		this._view = view;
 		this._model = model;
 
-		// TODO: should I do this via a method that I call? rather than in the constcutor
 		// Attach events 
 		this._view.attachFormSubmitEvent(this.onJobSubmit.bind(this));
 		this._view.attachFormPrevEvent(this.onPrevClick.bind(this));
@@ -55,11 +54,6 @@ class CreateJobController {
 		this.model.processFormData(); // Process the formData instance variable in Model.
 	}
 
-	
-	// TODO: comments
-	// TODO: check if is last index in list before incrementing further
-	// TODO: figure out when to disable button
-	// TODO: return error if last or first in list
 	onPrevClick(e) {
 		e.preventDefault();
 

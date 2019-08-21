@@ -80,10 +80,8 @@
 						<fieldset class="job-submission-form__fieldset" id="jobSubmissionPage1">
 							<label class="job-submission-form__label" for="jobName">Job name (required):</label>
 							<input class="job-submission-form__input" id="jobName" name="jobName" type="text" value="Default job name" required>
-					<!--TODO: remove default job names-->
 							<label class="job-submission-form__label" for="accountGroup" >Account group (required):</label>
 							<select class="job-submission-form__input" id="accountGroup" name="accountGroup" multiple required >
-								<!-- TODO: Will be generated from a REST endpoint -->
 								<option selected="selected" value="RCC-UQ">RCC-UQ</option>
 								<option selected="selected" value="ADMIN-UQ">ADMIN-UQ</option> 
 								<option selected="selected" value="IMB-UQ">IMB-UQ</option> 
@@ -103,7 +101,6 @@
 					
 							<label class="job-submission-form__label" for="payload">Payload (required): </label>
 							<textarea class="job-submission-form__input" id="payload" name="payload" cols="40" rows="10" placeholder="echo $HOSTNAME" required>Default text value</textarea>
-							<!--TODO: remove default text values-->
 						</fieldset>
 
 						<fieldset class="job-submission-form__fieldset" id="jobSubmissionPageReview">
@@ -153,13 +150,11 @@
 <script src="../utility/helper.js"></script>
 <script src="../login/login.js"></script>
 <script src="../logout/logout.js"></script>
-<!--TODO: <script type="module" src="app.js"></script>-->
 <script src="./CreateJobView.js"></script>
 <script src="./CreateJobController.js"></script>
 <script src="./CreateJobModel.js"></script>
 <script>
 
-// TODO: find a better way to organise this
 var model = new CreateJobModel();
 var view = new CreateJobView();
 var controller = new CreateJobController(model, view);
