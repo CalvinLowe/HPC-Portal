@@ -1,0 +1,6 @@
+   52  qsub -I -A UQ-RCC -l walltime=01:00:00 -l select=1:ncpus=1:mem=1GB
+   53  logout
+   54  qstat -f -F json
+   55  history
+
+   ssh s4178182@awoonga.rcc.uq.edu.au
