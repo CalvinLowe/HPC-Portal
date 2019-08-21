@@ -1,3 +1,7 @@
+// TODO: FOR TESTING ONLY //
+sessionStorage.setItem("isLoggedIn", "true");
+// TODO: FOR TESTING ONLY //
+
 let isLoggedIn;
 let interval;
 
