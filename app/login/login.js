@@ -11,7 +11,6 @@ function loginUI() {
 	initSessionsStorage();
 	if (sessionStorage.getItem("isLoggedIn") == "true") {
 		document.body.classList.add("logged-in");
-
 	}
 }
 
@@ -44,9 +43,10 @@ async function checkLoginStatus() {
 }
 
 function redirectAfterLogin() {
+	let dashboardLocationPath = "app/dashboard/dashboard.html";
 	console.log("Redirecting...");
 	setTimeout(function() {
-		window.location = "dashboard/dashboard.html"
+		window.location.pathname = dashboardLocationPath;
 	}, 1000);
 }
 

@@ -21,9 +21,14 @@ async function logout() {
 }
 
 function redirectAfterLogout() {
+	let homePageLocationPath = "/app/index.html";
 	console.log("Redirecting...");
 	setTimeout(function() {
-		window.location = "../index.html"
+		if (window.location.pathname != homePageLocationPath) {
+			window.location.pathname = homePageLocationPath;
+		} else {
+			window.location.reload();
+		}
 	}, 1000);
 }
 
