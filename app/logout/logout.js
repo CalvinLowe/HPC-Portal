@@ -21,7 +21,7 @@ async function logout() {
 }
 
 function redirectAfterLogout() {
-	let homePageLocationPath = "/app/index.html";
+	// TODO: moved this variable to login.js see if it wokrs.. let homePageLocationPath = "/app/index.html";
 	console.log("Redirecting...");
 	setTimeout(function() {
 		if (window.location.pathname != homePageLocationPath) {
