@@ -9,7 +9,6 @@ document.onload = loginUI();
 //function isLoggedIn TODO:
 
 function loginUI() {
-	console.log("Log in UI called!");
 	initSessionsStorage();
 
 	if (sessionStorage.getItem("isLoggedIn") == "false" && window.location.pathname != homePageLocationPath) {
@@ -28,8 +27,6 @@ function initSessionsStorage() {
 	}
 }
 
-
-
 let loginButton = document.getElementById('login');
 
 if (loginButton != null) {
@@ -42,17 +39,21 @@ function handleLoginButtonClick() {
 }
 
 async function checkLoginStatus() {
-	let response = await fetch('https://hpcportal.rcc.uq.edu.au/client/api/session_info');
-	let data = await response.json();
-	isLoggedIn = (data.has_oauth_access_token == "true");
-	if (isLoggedIn == true) {
-		console.log("Login successful");
+	try {
+		let response = await fetch('https://hpcportal.rcc.uq.edu.au/client/api/session_info');
+		let data = await response.json();
+		isLoggedIn = (data.has_oauth_access_token == "true");
+		if (isLoggedIn == true) {
+			console.log("Login successful");
+			window.clearInterval(interval);
+			sessionStorage.setItem("isLoggedIn", "true");
+			redirectAfterLogin();
+		} else {
+			console.log("Login in progress");
+		}
+	} catch(error) {
 		window.clearInterval(interval);
-		sessionStorage.setItem("isLoggedIn", "true");
-		redirectAfterLogin();
-	} else {
-		// LOGOUT and redirect
-		console.log("Login in progress");
+		console.error(error);
 	}
 }
 

@@ -9,14 +9,18 @@ function handleLogoutButtonClick(e) {
 }
 
 async function logout() {
-	let response = await fetch('https://hpcportal.rcc.uq.edu.au/client/api/end_session');
-	let data = await response.json();
-	if (data.message.includes("invalidated")) {
-		console.log("Logout successful");
-		sessionStorage.setItem("isLoggedIn", "false");
-		redirectAfterLogout();
-	} else {
-		console.log("Something went wrong...");
+	try {
+		let response = await fetch('https://hpcportal.rcc.uq.edu.au/client/api/end_session');
+		let data = await response.json();
+		if (data.message.includes("invalidated")) {
+			console.log("Logout successful");
+			sessionStorage.setItem("isLoggedIn", "false");
+			redirectAfterLogout();
+		} else {
+			console.log("Something went wrong...");
+		}
+	} catch(error) {
+		console.error(error);
 	}
 }
 
