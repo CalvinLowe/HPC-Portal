@@ -25,7 +25,7 @@ if (loginButton != null) {
 function handleLoginButtonClick() {
 	openLoginWindow();
 	APIcheckLoginStatus();
-	interval = window.setInterval(APIcheckLoginStatus, 2000);
+	interval = window.setInterval(APIcheckLoginStatus, 1000);
 }
 
 function openLoginWindow() {
