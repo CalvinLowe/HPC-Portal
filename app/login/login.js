@@ -11,7 +11,6 @@ function loginUI() {
 	initSessionsStorage();
 	if (sessionStorage.getItem("isLoggedIn") == "true") {
 		document.body.classList.add("logged-in");
-
 	}
 }
 
@@ -24,11 +23,20 @@ if (loginButton != null) {
 }
 
 function handleLoginButtonClick() {
-	checkLoginStatus();
-	interval = window.setInterval(checkLoginStatus, 2000);
+	openLoginWindow();
+	APIcheckLoginStatus();
+	interval = window.setInterval(APIcheckLoginStatus, 2000);
 }
 
-async function checkLoginStatus() {
+function openLoginWindow() {
+	let myWindow = window.open("https://hpcportal.rcc.uq.edu.au/client/login?service=hpcportal");
+	if (isLoggedIn === true) {
+		myWindow.close();
+	}
+}
+
+
+async function APIcheckLoginStatus() {
 	let response = await fetch('https://hpcportal.rcc.uq.edu.au/client/api/session_info');
 	let data = await response.json();
 	isLoggedIn = (data.has_oauth_access_token == "true");
