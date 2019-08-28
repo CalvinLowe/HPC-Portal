@@ -10,7 +10,6 @@ document.onload = loginUI();
 
 function loginUI() {
 	initSessionsStorage();
-
 	if (sessionStorage.getItem("isLoggedIn") == "false" && window.location.pathname != homePageLocationPath) {
 		console.log("Redirecting...");
 		setTimeout(function() {
@@ -34,11 +33,19 @@ if (loginButton != null) {
 }
 
 function handleLoginButtonClick() {
-	checkLoginStatus();
-	interval = window.setInterval(checkLoginStatus, 2000);
+	openLoginWindow();
+	APIcheckLoginStatus();
+	interval = window.setInterval(APIcheckLoginStatus, 1000);
 }
 
-async function checkLoginStatus() {
+function openLoginWindow() {
+	let myWindow = window.open("https://hpcportal.rcc.uq.edu.au/client/login?service=hpcportal");
+	if (isLoggedIn === true) {
+		myWindow.close();
+	}
+}
+
+async function APIcheckLoginStatus() {
 	try {
 		let response = await fetch('https://hpcportal.rcc.uq.edu.au/client/api/session_info');
 		let data = await response.json();
