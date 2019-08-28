@@ -3,4 +3,5 @@
    54  qstat -f -F json
    55  history
 
-   ssh s4178182@awoonga.rcc.uq.edu.au
+   ssh username@awoonga.rcc.uq.edu.au
+   ssh username@flashlite.rcc.uq.edu.au
