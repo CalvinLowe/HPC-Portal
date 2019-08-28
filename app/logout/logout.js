@@ -9,21 +9,30 @@ function handleLogoutButtonClick(e) {
 }
 
 async function logout() {
-	let response = await fetch('https://hpcportal.rcc.uq.edu.au/client/api/end_session');
-	let data = await response.json();
-	if (data.message.includes("invalidated")) {
-		console.log("Logout successful");
-		sessionStorage.setItem("isLoggedIn", "false");
-		redirectAfterLogout();
-	} else {
-		console.log("Something went wrong...");
+	try {
+		let response = await fetch('https://hpcportal.rcc.uq.edu.au/client/api/end_session');
+		let data = await response.json();
+		if (data.message.includes("invalidated")) {
+			console.log("Logout successful");
+			sessionStorage.setItem("isLoggedIn", "false");
+			redirectAfterLogout();
+		} else {
+			console.log("Something went wrong...");
+		}
+	} catch(error) {
+		console.error(error);
 	}
 }
 
 function redirectAfterLogout() {
+	// TODO: moved this variable to login.js see if it wokrs.. let homePageLocationPath = "/app/index.html";
 	console.log("Redirecting...");
 	setTimeout(function() {
-		window.location = "../index.html"
+		if (window.location.pathname != homePageLocationPath) {
+			window.location.pathname = homePageLocationPath;
+		} else {
+			window.location.reload();
+		}
 	}, 1000);
 }
 
