@@ -35,7 +35,6 @@ function openLoginWindow() {
 	}
 }
 
-
 async function APIcheckLoginStatus() {
 	let response = await fetch('https://hpcportal.rcc.uq.edu.au/client/api/session_info');
 	let data = await response.json();
