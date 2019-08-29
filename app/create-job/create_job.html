@@ -19,7 +19,7 @@
 	</style>
 
 </head>
-<body class="page-create-job" >
+<body class="page-create-job">
 
 	<nav class="skip-link">
 		<a href="#main-menu" class="element-invisible element-focusable">Skip to menu</a>
@@ -55,11 +55,11 @@
 		<div class="region region-navigation">
 		<div id="block-system-main-menu" class="block block-system block-menu main-menu">
 			<ul class="menu" id="main-menu">
-				<li class="first leaf"><a href="../index.html" title="" class="menu__link">Home</a></li>
-				<li class="leaf menu__logged-in-item"><a href="../dashboard/dashboard.html" title="" class="menu__link"">Dashboard</a></li>
-				<li class="leaf active-trail menu__logged-in-item"><a href="#" title="" class="active-trail menu__link active">Create new job</a></li>
-				<li class="leaf menu__logged-in-item"><a href="#" title="" class="menu__link">List active jobs</a></li>
-				<li class="leaf menu__logged-in-item"><a href="../listfiles/list_files.html" title="" class="menu__link">List files</a></li>
+				<li class="first leaf"><a href="/" title="" class="menu__link">Home</a></li>
+				<li class="leaf menu__logged-in-item"><a href="/dashboard" title="" class="menu__link"">Dashboard</a></li>
+				<li class="leaf active-trail menu__logged-in-item"><a href="/create-job" title="" class="active-trail menu__link active">Create new job</a></li>
+				<li class="leaf menu__logged-in-item"><a href="/list-jobs" title="" class="menu__link">List active jobs</a></li>
+				<li class="leaf menu__logged-in-item"><a href="/list-files" title="" class="menu__link">List files</a></li>
 				<li class="last leaf menu__logged-in-item"><a id="logout" href="#" title="Log out" class="menu__link logout logout--hidden">Log out</a></li>
 			</ul>
 		</div>
@@ -80,11 +80,9 @@
 						<fieldset class="job-submission-form__fieldset" id="jobSubmissionPage1">
 							<label class="job-submission-form__label" for="jobName">Job name (required):</label>
 							<input class="job-submission-form__input" id="jobName" name="jobName" type="text" value="Default job name" required>
-							<label class="job-submission-form__label" for="accountGroup" >Account group (required):</label>
-							<select class="job-submission-form__input" id="accountGroup" name="accountGroup" multiple required >
-								<option selected="selected" value="RCC-UQ">RCC-UQ</option>
-								<option selected="selected" value="ADMIN-UQ">ADMIN-UQ</option> 
-								<option selected="selected" value="IMB-UQ">IMB-UQ</option> 
+							<label class="job-submission-form__label" for="accountGroups" >Account group (required):</label>
+							<select class="job-submission-form__input" id="accountGroups" name="accountGroup" multiple required >
+								<option selected="selected" value="Select a group">Select a group</option>
 							</select>
 					
 							<label class="job-submission-form__label" for="walltime">Walltime (hours) (required):</label>
@@ -153,7 +151,7 @@
 <script src="./CreateJobView.js"></script>
 <script src="./CreateJobController.js"></script>
 <script src="./CreateJobModel.js"></script>
-<script>
+<script src="groups.js"></script>
 
 var model = new CreateJobModel();
 var view = new CreateJobView();

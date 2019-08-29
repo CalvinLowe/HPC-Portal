@@ -1,6 +1,5 @@
 # HPC-Portal
 https://hpcportal.rcc.uq.edu.au/
-ssh ubuntu@rcc.uq.edu.au
 
 ## Application Tree
 ```
