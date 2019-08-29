@@ -1,39 +1,38 @@
+displayGroups()
+	.catch(error => {
+		console.log(error);
+	})
+
 // Token expires every five minutes
-
-let groups;
-
-displayGroups();
-
-function displayGroups() {
-	Promise.resolve(getGroups());
-	//interval = window.setInterval(getGroups, 1000);
-	console.log(groups.length);
+async function getAccessToken() {
+	const response = await fetch('https://hpcportal.rcc.uq.edu.au/client/api/access_token');
+	const data = await response.json();
+	return data.access_token;
 }
 
 async function getGroups() {
-	let accessToken = await accessTokenRequest();
-	let url = `https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/getprojects?access_token=${accessToken}`;
-	try {
-		let response = await fetch(url);
-		let data = await response.json();
-		if (data !== null) {
-			groups = data.commandResult;
-		}
-	} catch(error) {
-		console.log(error);
-	}
+	const accessToken = await getAccessToken()
+		.catch(error => {
+			console.log(error);
+		});
+	const url = `https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/getprojects?access_token=${accessToken}`;
+	const response = await fetch(url);
+	const data = await response.json();
+	return data.commandResult;
 }
 
-// TODO: move to user object
-async function accessTokenRequest() {
-	try {
-		let response = await fetch('https://hpcportal.rcc.uq.edu.au/client/api/access_token');
-		let data = await response.json();
-		if (data !== null) {
-			return data.access_token;
-		}
-	} catch(error) {
-		console.error(error);
-	}
-
+async function displayGroups() {
+	console.log("Display groups called!");
+	let accountGroupsContainer = document.getElementById("accountGroups");
+	const groups = await getGroups()
+		.catch(error => {
+			console.log(error);
+		});
+	groups.forEach(function(item, index, array) {
+		let groupElement = document.createElement("option");
+		groupElement.textContent = item.group;
+		groupElement.id = item.group;
+		groupElement.value = item.group;
+		accountGroupsContainer.appendChild(groupElement);
+	});
 }
