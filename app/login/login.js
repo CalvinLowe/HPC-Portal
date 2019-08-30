@@ -1,12 +1,10 @@
-let isLoggedIn; // TODO: transfer to function
+let isLoggedIn;
 let interval;
 
-let homePageLocationPath = "/";  // TODO: move to a navigation somewhere
-let dashboardLocationPath = "/dashboard"; // TODO: move to a navigation somewhere
+let homePageLocationPath = "/";
+let dashboardLocationPath = "/dashboard";
 
 document.onload = loginUI();
-// TODO: document.onload = function() {// series of function calls go here}
-//function isLoggedIn TODO:
 
 function loginUI() {
 	initSessionsStorage();

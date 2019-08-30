@@ -10,14 +10,12 @@ async function getAccessToken() {
 	return data.access_token;
 }
 
-// TODO: what to do if token expired? how to check..
 async function getFileList() {
 	const accessToken = await getAccessToken()
 		.catch(error => {
 			console.log(error);
 		});
 	const url = `https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/listfolderbase64?folderpath=__based64_url__&access_token=${accessToken}`;
-	// TODO: folder path
 	const response = await fetch(url);
 	const data = await response.json();
 	console.log(data.commandResult);
@@ -62,7 +60,5 @@ async function displayFileList() {
 		tableRow.appendChild(permissionsTableCell);
 
 		tableBody.appendChild(tableRow);
-
-		// TODO: create a file object
 	});
 }
