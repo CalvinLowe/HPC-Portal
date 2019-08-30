@@ -10,6 +10,8 @@ async function getAccessToken() {
 	return data.access_token;
 }
 
+
+// TODO: what to do if token expired? how to check..
 async function getFileList() {
 	const accessToken = await getAccessToken()
 		.catch(error => {
@@ -30,26 +32,39 @@ async function displayFileList() {
 		.catch(error => {
 			console.log(error);
 		});
-	fileList.forEach(function(item, index, array) {
-		console.log("Heres the item you asked for: ");
-		console.log(item.name);
-		console.log(item.owner);
-		console.log(item.modd); //modified day
-		console.log(item.modh); //modified hour 
-		console.log(item.modm); //modified month
-		console.log(item.permission);
-		console.log(item.group);
 
-		let tableRow = document.createElement("tr");
+	let tableBody = document.getElementById("files");	
+	fileList.forEach(function(item, index, array) {
+		console.log("Day: ", item.modd);
+		console.log("Hour: ", item.modh); //modified hour 
+		console.log("Month: ", item.modm); //modified month
+
 		let nameTableCell = document.createElement("td");
 		let ownerTableCell = document.createElement("td");
-		let modifiedDayTableCell = document.createElement("td");
-		let modifiedHourTableCell = document.createElement("td");
-		let modifiedMonthTableCell = document.createElement("td");
+		//let modifiedDayTableCell = document.createElement("td");
+		//let modifiedHourTableCell = document.createElement("td");
+		//let modifiedMonthTableCell = document.createElement("td");
+		let modifiedDateTableCell = document.createElement("td");
 		let permissionsTableCell = document.createElement("td");
 		let groupTableCell = document.createElement("td");
-			
+		
+		nameTableCell.textContent = item.name;
+		ownerTableCell.textContent = item.owner;
+		modifiedDateTableCell.textContent = "placeholder";
+		permissionsTableCell.textContent = item.permission;
+		groupTableCell.textContent = item.group;
+		
+		let tableRow = document.createElement("tr");
+		
+		tableRow.appendChild(nameTableCell);
+		tableRow.appendChild(ownerTableCell);
+		tableRow.appendChild(modifiedDateTableCell);
+		tableRow.appendChild(groupTableCell);
+		tableRow.appendChild(permissionsTableCell);
 
+		tableBody.appendChild(tableRow);
+
+		// TODO: create a file object
 		//let groupElement = document.createElement("option");
 		//groupElement.textContent = item.group;
 		//groupElement.id = item.group;
