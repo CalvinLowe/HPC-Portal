@@ -1,6 +1,5 @@
 .create__new__job__page {
-	background-color: lightgrey;/*#2b2b2b;*/
-	padding: 5rem;
+	background-color: lightgrey;/*#2b2b2b;*/ /*TODO: Find a better place for this colour */ 
 }
 
 .form__container {
