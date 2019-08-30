@@ -10,7 +10,6 @@ async function getAccessToken() {
 	return data.access_token;
 }
 
-
 // TODO: what to do if token expired? how to check..
 async function getFileList() {
 	const accessToken = await getAccessToken()
@@ -65,10 +64,5 @@ async function displayFileList() {
 		tableBody.appendChild(tableRow);
 
 		// TODO: create a file object
-		//let groupElement = document.createElement("option");
-		//groupElement.textContent = item.group;
-		//groupElement.id = item.group;
-		//groupElement.value = item.group;
-		//accountGroupsContainer.appendChild(groupElement);
 	});
 }
