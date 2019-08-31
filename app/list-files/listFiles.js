@@ -1,3 +1,5 @@
+import FileModel from './FileModel.js';
+
 displayFileList()
 	.catch(error => {
 		console.log(error);
@@ -32,24 +34,23 @@ async function displayFileList() {
 
 	let tableBody = document.getElementById("files");	
 	fileList.forEach(function(item, index, array) {
-		console.log("Day: ", item.modd);
-		console.log("Hour: ", item.modh); //modified hour 
-		console.log("Month: ", item.modm); //modified month
+
+		let file = new FileModel(item.name, item.size, item.owner, item.modh, item.modd, item.modm, item.permission, item.links, item.group);
+		console.log(file);
+
+		// TODO: let fileView = new FileView(FileModel);
 
 		let nameTableCell = document.createElement("td");
 		let ownerTableCell = document.createElement("td");
-		//let modifiedDayTableCell = document.createElement("td");
-		//let modifiedHourTableCell = document.createElement("td");
-		//let modifiedMonthTableCell = document.createElement("td");
 		let modifiedDateTableCell = document.createElement("td");
 		let permissionsTableCell = document.createElement("td");
 		let groupTableCell = document.createElement("td");
 		
-		nameTableCell.textContent = item.name;
-		ownerTableCell.textContent = item.owner;
-		modifiedDateTableCell.textContent = "placeholder";
-		permissionsTableCell.textContent = item.permission;
-		groupTableCell.textContent = item.group;
+		nameTableCell.textContent = file.name;
+		ownerTableCell.textContent = file.owner;
+		modifiedDateTableCell.textContent = file.lastModified;
+		permissionsTableCell.textContent = file.permissions;
+		groupTableCell.textContent = file.group;
 		
 		let tableRow = document.createElement("tr");
 		
