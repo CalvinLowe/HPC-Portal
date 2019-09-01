@@ -12,22 +12,31 @@ async function getAccessToken() {
 	return data.access_token;
 }
 
-async function getFileList() {
+async function getFileList(folderPath = "") {
+	console.log("File path in getFileList was: ", folderPath);
 	const accessToken = await getAccessToken()
 		.catch(error => {
 			console.log(error);
 		});
-	const url = `https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/listfolderbase64?folderpath=__based64_url__&access_token=${accessToken}`;
+	let folderPathBase64 = window.btoa(folderPath);
+	const url = `https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/listfolderbase64?folderpath=${folderPathBase64}&access_token=${accessToken}`;
 	const response = await fetch(url);
 	const data = await response.json();
 	console.log(data.commandResult);
 	return data.commandResult;
 }
 
-async function displayFileList() {
-	console.log("Display file list called!");
+function handleFolderPathClick(event) {
+	console.log("handleFolderPathClick called!");
+	console.log(event);
+	let folderPath = event.target.dataset.filePath;
+	console.log(folderPath);
+	displayFileList(folderPath);
+}
+
+async function displayFileList(folderPath = "") {
 	let accountGroupsContainer = document.getElementById("listFilesContainer");
-	const fileList = await getFileList()
+	const fileList = await getFileList(folderPath)
 		.catch(error => {
 			console.log(error);
 		});
@@ -46,7 +55,12 @@ async function displayFileList() {
 		let permissionsTableCell = document.createElement("td");
 		let groupTableCell = document.createElement("td");
 		
-		nameTableCell.textContent = file.name;
+		let nameTableCellLink = document.createElement("a");
+		nameTableCellLink.addEventListener("click", handleFolderPathClick);
+		nameTableCellLink.dataset.filePath = file.name;
+		nameTableCellLink.textContent = file.name;
+		nameTableCell.appendChild(nameTableCellLink);
+
 		ownerTableCell.textContent = file.owner;
 		modifiedDateTableCell.textContent = file.lastModified;
 		permissionsTableCell.textContent = file.permissions;
