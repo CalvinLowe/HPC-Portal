@@ -1,46 +1,27 @@
 export default class FileModel {
-	constructor(name, size, owner, modh, modd, modm, permissions, links, group) {
-		this._name = name;
-		this._size = size;
+	constructor(owner, modifiedDate, size, modifiedTimeOrYear, name, permission, links, group, parent = "/") {
 		this._owner = owner;
-		this._modifiedHour = modh;
-		this._modifiedDay = modd;
-		this._modifiedMonth = modm;
-		this._permissions = permissions;
+		this._modifiedDate = modifiedDate;
+		this._size = size;
+		this._modifiedTimeOrYear = modifiedTimeOrYear;
+		this._name = name;
+		this._permission = permission;
 		this._links = links;
 		this._group = group;
+		this._parent = parent;
 	}
 
-	//#region getters
-	get name() {
-		return this._name;
-	}
-
-	get size() {
-		return this._size;
-	}
-
-	get owner() {
-		return this._owner;
-	}
-
-	get permissions() {
-		return this._permissions;
-	}
-
-	get links() {
-		return this._links;
-	}
-
-	get group() {
-		return this._group;
-	}
-
-	get lastModified() {
-		return "Placeholder";
-		// TODO: 
-		// return some combination of modifiedHour, modifiedDay, modifiedMonth
-	}
+	//#region default getters
+	get owner() { return this._owner; }
+	get modifiedDate() { return this._modifiedDate; }
+	get size() { return this._size; }
+	get modifieidTimeOrYear() { return this._modifiedTimeOrYear; }
+	get name() { return this._name; }
+	get permission() { return this._permission; }
+	get links() { return this._links; }
+	get group() { return this._group; }
+	get parent() { return this._parent }
+	//#endregion
 
 	get type() {
 		// TODO:
@@ -55,5 +36,4 @@ export default class FileModel {
 		// TODO:
 		// calculated from name..
 	}
-	//#endregion
 }
