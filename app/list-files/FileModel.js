@@ -20,12 +20,18 @@ export default class FileModel {
 	get permission() { return this._permission; }
 	get links() { return this._links; }
 	get group() { return this._group; }
-	get parent() { return this._parent }
+	get parent() { return this._parent; }
 	//#endregion
 
 	get type() {
-		// TODO:
-		// extract link, folder, file calculated from permissions
+		let typeIdentifier = this.permission[0];
+		if (typeIdentifier == 'l') {
+			return "symlink";
+		} else if (typeIdentifier == 'd') {
+			return "directory";
+		} else if(typeIdentifier == '-') {
+			return "file";
+		}
 	}
 
 	get fileExtension() {
@@ -35,5 +41,13 @@ export default class FileModel {
 	get filePath() {
 		// TODO:
 		// calculated from name..
+	}
+
+	IsDirectory() {
+		return this.type == "directory";
+	}
+
+	HasChildren() {
+		return this.links > 1;
 	}
 }

@@ -1,9 +1,10 @@
 import FileModel from './FileModel.js';
+import ListFileView from './ListFileView.js';
 
 displayFileList()
 	.catch(error => {
 		console.log(error);
-	})
+	});
 
 // Token expires every five minutes
 async function getAccessToken() {
@@ -24,11 +25,14 @@ async function requestFiles(folderPath = "") {
 	return data.commandResult;
 }
 
-function handleFolderPathClick(event) {
-	console.log("handleFolderPathClick called!");
-	console.log(event);
-	let folderPath = event.target.dataset.filePath;
-	displayFileList(folderPath);
+function handleFolderPathClick() {
+	if(event.target && event.target.id == 'navigableDirectory') {
+		console.log("handleFolderPathClick called!");
+		console.log("Event: " + event);
+		console.log("Event target: " + event.target);
+		console.log("Event target dataset: " + event.target.dataset);
+		displayFileList(event.target.dataset.directoryPath);
+	}
 }
 
 async function displayFileList(folderPath = "") {
@@ -53,8 +57,16 @@ async function displayFileList(folderPath = "") {
 		fileList.push(file);
 	});
 		
-	let fileView = new fileView(fileList);
-
 	let listFilesContainer = document.getElementById("listFilesContainer");
-	listFilesContainer.appendChild(fileView.getFilesTable());
+	let fileView = new ListFileView(fileList);
+	listFilesContainer.innerHTML = fileView.getFileListView();
+	// listFilesContainer.addEventListener('click', handleFolderPathClick, true);
+	listFilesContainer.addEventListener('click', function(e) {
+		console.log("Clicked");
+		if(e.target && e.target.id == 'navigableDirectory') {
+			console.log("Event: " + e);
+			console.log("Event target: " + e.target);
+			console.log("Event target dataset: " + e.target.dataset);
+		}
+	}, false);
 }
