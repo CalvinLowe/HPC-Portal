@@ -61,12 +61,13 @@ async function displayFileList(folderPath = "") {
 	let fileView = new ListFileView(fileList);
 	listFilesContainer.innerHTML = fileView.getFileListView();
 	// listFilesContainer.addEventListener('click', handleFolderPathClick, true);
-	listFilesContainer.addEventListener('click', function(e) {
+	listFilesContainer.addEventListener('click', function(event) {
 		console.log("Clicked");
-		if(e.target && e.target.id == 'navigableDirectory') {
-			console.log("Event: " + e);
-			console.log("Event target: " + e.target);
-			console.log("Event target dataset: " + e.target.dataset);
-		}
-	}, false);
+		console.log(event);
+		// if (event.target && event.target.id == 'navigableDirectory') {
+		// 	console.log("Event: " + event);
+		// 	console.log("Event target: " + event.target);
+		// 	console.log("Event target dataset: " + event.target.dataset);
+		// }
+	});
 }
