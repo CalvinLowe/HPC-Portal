@@ -28,9 +28,9 @@ async function requestFiles(folderPath = "") {
 function handleFolderPathClick() {
 	if(event.target && event.target.id == 'navigableDirectory') {
 		console.log("handleFolderPathClick called!");
-		console.log("Event: " + event);
-		console.log("Event target: " + event.target);
-		console.log("Event target dataset: " + event.target.dataset);
+		console.log("Event: ", event);
+		console.log("Event target: ", event.target);
+		console.log("Event target dataset: ", event.target.dataset.directoryPath);
 		displayFileList(event.target.dataset.directoryPath);
 	}
 }
@@ -60,14 +60,14 @@ async function displayFileList(folderPath = "") {
 	let listFilesContainer = document.getElementById("listFilesContainer");
 	let fileView = new ListFileView(fileList);
 	listFilesContainer.innerHTML = fileView.getFileListView();
-	// listFilesContainer.addEventListener('click', handleFolderPathClick, true);
-	listFilesContainer.addEventListener('click', function(event) {
-		console.log("Clicked");
-		console.log(event);
-		// if (event.target && event.target.id == 'navigableDirectory') {
-		// 	console.log("Event: " + event);
-		// 	console.log("Event target: " + event.target);
-		// 	console.log("Event target dataset: " + event.target.dataset);
-		// }
-	});
+	listFilesContainer.addEventListener('click', handleFolderPathClick, true);
+	// listFilesContainer.addEventListener('click', function(event) {
+	// 	console.log("Clicked");
+	// 	console.log(event);
+	// 	if (event.target && event.target.id == 'navigableDirectory') {
+	// 		console.log("Event: " + event);
+	// 		console.log("Event target: " + event.target);
+	// 		console.log("Event target dataset: " + event.target.dataset);
+	// 	}
+	// });
 }

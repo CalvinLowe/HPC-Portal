@@ -28,7 +28,7 @@ export default class ListFileView {
 						<td>${file.size}</td>
 						<td>${file.modifieidTimeOrYear}</td>
 						<td>
-							${file.IsDirectory() && file.HasChildren() ? `<a id="navigableDirectory" data-directoryPath="${file.name}">` : ''}
+							${file.IsDirectory() && file.HasChildren() ? `<a id="navigableDirectory" data-directory-path="${file.name}">` : ''}
 							${file.name}
 							${file.IsDirectory() && file.HasChildren() ? `</a>` : ''}
 						</td>
