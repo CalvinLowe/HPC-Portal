@@ -1,7 +1,8 @@
 export default class ListFileView {
 	constructor(fileList) {
 		this._fileListViewMarkup =
-		`<table>
+		`<button>Back</button>
+		<table>
 			<thead>
 				<tr>
 					<th id="currentDirectory" colspan="10"></th>
