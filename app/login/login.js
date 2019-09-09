@@ -4,10 +4,15 @@ let interval;
 let homePageLocationPath = "/";
 let dashboardLocationPath = "/dashboard";
 
+
+// #IF DEVELOPMENT //
+document.onload = sessionStorage.setItem("isLoggedIn", "true");
+// #ENDIF DEVELOPMENT //
+
 document.onload = loginUI();
 
 function loginUI() {
-	initSessionsStorage();
+	initSessionStorage();
 	if (sessionStorage.getItem("isLoggedIn") == "false" && window.location.pathname != homePageLocationPath) {
 		console.log("Redirecting...");
 		setTimeout(function() {
@@ -18,7 +23,7 @@ function loginUI() {
 	}
 }
 
-function initSessionsStorage() {
+function initSessionStorage() {
 	if (sessionStorage.getItem("isLoggedIn") == null) {
 		sessionStorage.setItem("isLoggedIn", "false");
 	}
