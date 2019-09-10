@@ -2,7 +2,7 @@
  * A model for the HPC Portal user.
  * @author: Calvin Lowe <calvin.lowe@uqconnect.edu.au>
 */
-export default class UserModel {
+export default class User {
 
 	/**
 	 * Class constructor for UserModel.
@@ -76,5 +76,24 @@ export default class UserModel {
   			.then(function(myJson) {
     			console.log(JSON.stringify(myJson));
 			});
+	}
+
+	// Token expires every five minutes
+	static async getAccessToken() {
+		const response = await fetch('https://hpcportal.rcc.uq.edu.au/client/api/access_token');
+		const data = await response.json();
+		return data.access_token;
+	}
+
+	static async requestFiles(folderPath = "") {
+		const accessToken = await User.getAccessToken()
+			.catch(error => {
+				console.log(error);
+			});
+		let folderPathBase64 = window.btoa(folderPath);
+		const url = `https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/listfolderbase64?folderpath=${folderPathBase64}&access_token=${accessToken}`;
+		const response = await fetch(url);
+		const data = await response.json();
+		return data.commandResult;
 	}
 }
