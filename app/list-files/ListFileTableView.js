@@ -1,11 +1,11 @@
-export default class ListFileView {
-	constructor(fileList) {
+export default class ListFileViewTable {
+	constructor(fileList, currentPath) {
 		this._fileListViewMarkup =
-		`<button>Back</button>
+		`<button id="backButton">Back</button>
 		<table>
 			<thead>
 				<tr>
-					<th id="currentDirectory" colspan="10"></th>
+					<th id="currentDirectory" colspan="10">${currentPath}</th>
 				</tr>
 				<tr class="file-list__file-attributes">
 					<th>Owner</th>
@@ -17,6 +17,7 @@ export default class ListFileView {
 					<th>Links</th>
 					<th>Group</th>
 					<th>Parent</th>
+					<th>Path</th>
 					<th>Is Directory?</th>
 					<th>Has Children?</th>
 				</tr>
@@ -37,6 +38,7 @@ export default class ListFileView {
 						<td>${file.links}</td>
 						<td>${file.group}</td>
 						<td>${file.parent}</td>
+						<td>${file.path}</td>
 						<td>${file.IsDirectory()}</td>
 						<td>${file.HasChildren()}</td>
 					</tr>`
