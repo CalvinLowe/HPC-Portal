@@ -1,5 +1,5 @@
 export default class FileModel {
-	constructor(owner, modifiedDate, size, modifiedTimeOrYear, name, permission, links, group, parent = "/") {
+	constructor(owner, modifiedDate, size, modifiedTimeOrYear, name, permission, links, group, parent) {
 		this._owner = owner;
 		this._modifiedDate = modifiedDate;
 		this._size = size;
@@ -34,13 +34,12 @@ export default class FileModel {
 		}
 	}
 
-	get fileExtension() {
+	get extension() {
 		// calculated from name
 	}
 
-	get filePath() {
-		// TODO:
-		// calculated from name..
+	get path() {
+		return this.parent + "/" + this.name;
 	}
 
 	IsDirectory() {
