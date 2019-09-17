@@ -1,55 +1,65 @@
 import FileModel from './FileModel.js';
-import ListFileView from './ListFileView.js';
+import ListFileTableView from './ListFileTableView.js';
 import User from '../user/User.js';
 
-let fileNavigationStack = ["root"];
-// TODO: create a fileNavigationStack object with peak() to the prototype
-
-function getCurrentPath() {
-	return fileNavigationStack[fileNavigationStack.length - 1];
-}
+let fileNavigationStack = [];
 
 document.onload = displayFileList()
 	.catch(error => {
 		console.log(error);
 	});
 
+function getCurrentPath() {
+	return fileNavigationStack[fileNavigationStack.length - 1];
+}
+
 function handleFolderPathClick() {
 	if(event.target && event.target.id == 'navigableDirectory') {
-		displayFileList(getCurrentPath(), event.target.dataset.directoryPath);
+		displayFileList(event.target.dataset.directoryPath);
 	}
 }
 
-async function displayFileList(currentPath = getCurrentPath(), folderName) {
-	console.log("Current path: ", currentPath);
-	console.log("Foldername path: ", folderName);
-	
-	let nextPath = folderName; // TODO: 
+async function displayFileList(folderName) {
+	let nextPath;
+	let currentPath = getCurrentPath();
 
-	if (currentPath != "root") {
+	if (currentPath) {
 		nextPath = currentPath + "/" + folderName;
+	} else {
+		nextPath = folderName;
 	}
 
-	console.log("Next path: ", nextPath);
 	const filesJSON = await User.requestFiles(nextPath)
 	.catch(error => {
 		console.log(error);
 	});
 	
-	// TODO: Only add to the navigation stack if requestFilesJSON succeeded and we are at the /home, /root or whatever we want to call it
-	// if (filesJSON) {
-	// 	fileNavigationStack.push(folderPath);
-	// }
+	if (filesJSON) {
+		if(!nextPath) {
+			nextPath = "";
+		}
+	 	fileNavigationStack.push(nextPath);
+	} 
 
 	let fileList = [];
 	
 	filesJSON.forEach(function(item, index, array) {
-		let file = new FileModel(item.owner, item.modd, item.size, item.modh, item.name, item.permission, item.links, item.group );
+		let file = new FileModel(item.owner, item.modd, item.size, item.modh, item.name, item.permission, item.links, item.group, nextPath);
 		fileList.push(file);
 	});
 		
 	let listFilesContainer = document.getElementById("listFilesContainer");
-	let fileView = new ListFileView(fileList);
+	let fileView = new ListFileTableView(fileList, currentPath);
 	listFilesContainer.innerHTML = fileView.getFileListView();
 	listFilesContainer.addEventListener('click', handleFolderPathClick, true);
+	//let backButton = document.getElementById("backButton");
+	//backButton.addEventListener('click', back, true);
 }
+
+// function back() {
+// 	console.log("back clicked");
+// 	let navigateBack = fileNavigationStack.pop();
+// 	console.log(navigateBack);
+// 	displayFileList(navigateBack);
+
+// }
