@@ -1,64 +1,65 @@
-displayFileList()
+import FileModel from './FileModel.js';
+import ListFileTableView from './ListFileTableView.js';
+import User from '../user/User.js';
+
+let fileNavigationStack = [];
+
+document.onload = displayFileList()
 	.catch(error => {
 		console.log(error);
-	})
-
-// Token expires every five minutes
-async function getAccessToken() {
-	const response = await fetch('https://hpcportal.rcc.uq.edu.au/client/api/access_token');
-	const data = await response.json();
-	return data.access_token;
-}
-
-async function getFileList() {
-	const accessToken = await getAccessToken()
-		.catch(error => {
-			console.log(error);
-		});
-	const url = `https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/listfolderbase64?folderpath=__based64_url__&access_token=${accessToken}`;
-	const response = await fetch(url);
-	const data = await response.json();
-	console.log(data.commandResult);
-	return data.commandResult;
-}
-
-async function displayFileList() {
-	console.log("Display file list called!");
-	let accountGroupsContainer = document.getElementById("listFilesContainer");
-	const fileList = await getFileList()
-		.catch(error => {
-			console.log(error);
-		});
-
-	let tableBody = document.getElementById("files");	
-	fileList.forEach(function(item, index, array) {
-		console.log("Day: ", item.modd);
-		console.log("Hour: ", item.modh); //modified hour 
-		console.log("Month: ", item.modm); //modified month
-
-		let nameTableCell = document.createElement("td");
-		let ownerTableCell = document.createElement("td");
-		//let modifiedDayTableCell = document.createElement("td");
-		//let modifiedHourTableCell = document.createElement("td");
-		//let modifiedMonthTableCell = document.createElement("td");
-		let modifiedDateTableCell = document.createElement("td");
-		let permissionsTableCell = document.createElement("td");
-		let groupTableCell = document.createElement("td");
-		
-		nameTableCell.textContent = item.name;
-		ownerTableCell.textContent = item.owner;
-		modifiedDateTableCell.textContent = "placeholder";
-		permissionsTableCell.textContent = item.permission;
-		groupTableCell.textContent = item.group;
-		
-		let tableRow = document.createElement("tr");
-		
-		tableRow.appendChild(nameTableCell);
-		tableRow.appendChild(ownerTableCell);
-		tableRow.appendChild(modifiedDateTableCell);
-		tableRow.appendChild(groupTableCell);
-		tableRow.appendChild(permissionsTableCell);
-
-		tableBody.appendChild(tableRow);
 	});
+
+function getCurrentPath() {
+	return fileNavigationStack[fileNavigationStack.length - 1];
 }
+
+function handleFolderPathClick() {
+	if(event.target && event.target.id == 'navigableDirectory') {
+		displayFileList(event.target.dataset.directoryPath);
+	}
+}
+
+async function displayFileList(folderName) {
+	let nextPath;
+	let currentPath = getCurrentPath();
+
+	if (currentPath) {
+		nextPath = currentPath + "/" + folderName;
+	} else {
+		nextPath = folderName;
+	}
+
+	const filesJSON = await User.requestFiles(nextPath)
+	.catch(error => {
+		console.log(error);
+	});
+	
+	if (filesJSON) {
+		if(!nextPath) {
+			nextPath = "";
+		}
+	 	fileNavigationStack.push(nextPath);
+	} 
+
+	let fileList = [];
+	
+	filesJSON.forEach(function(item, index, array) {
+		let file = new FileModel(item.owner, item.modd, item.size, item.modh, item.name, item.permission, item.links, item.group, nextPath);
+		fileList.push(file);
+	});
+		
+	let listFilesContainer = document.getElementById("listFilesContainer");
+	let fileView = new ListFileTableView(fileList, currentPath);
+	listFilesContainer.innerHTML = fileView.getFileListView();
+	listFilesContainer.addEventListener('click', handleFolderPathClick, true);
+	//let backButton = document.getElementById("backButton");
+	//backButton.addEventListener('click', back, true);
+}
+
+// function back() {
+// 	console.log("back clicked");
+// 	let navigateBack = fileNavigationStack.pop();
+// 	console.log(navigateBack);
+// 	displayFileList(navigateBack);
+
+// }
