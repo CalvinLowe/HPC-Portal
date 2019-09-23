@@ -87,7 +87,7 @@
 						<p class="job-submission-form__description">Enter your job details</p>
 						<fieldset class="job-submission-form__fieldset" id="jobSubmissionPage1">
 							<label class="job-submission-form__label" for="jobName">Job name (required):</label>
-							<input class="job-submission-form__input" id="jobName" name="jobName" type="text" value="Default job name" required>
+							<input class="job-submission-form__input" id="jobName" name="jobName" type="text" value="" required>
 							<label class="job-submission-form__label" for="accountGroups" >Account group (required):</label>
 							<select class="job-submission-form__input" id="accountGroups" name="accountGroup" multiple required >
 								<option selected="selected" value="Select a group">Select a group</option>
@@ -106,20 +106,20 @@
 							<input class="job-submission-form__input" id="memory" name="memory" type="number" value="1" min="1" required>
 					
 							<label class="job-submission-form__label" for="payload">Payload (required): </label>
-							<textarea class="job-submission-form__input" id="payload" name="payload" cols="40" rows="10" placeholder="echo $HOSTNAME" required>Default text value</textarea>
+							<textarea class="job-submission-form__input" id="payload" name="payload" cols="40" rows="10" placeholder="echo $HOSTNAME" required></textarea>
 						</fieldset>
 
-						<fieldset class="job-submission-form__fieldset" id="jobSubmissionPageReview">
+						<fieldset class="#job-submission-form__fieldset" id="jobSubmissionPageReview">
 							<output>
 								<p class="code__line">#!/bin/bash</p>
 								<p class="code__line ">#</p>
-								<p class="code__line">#PBS -A RCC-UQ <mark>##Account string</mark></p>
+								<p class="code__line">#PBS -A {group}</p>
 								<p class="code__line">#</p>
-								<p class="code__line">#PBS -l select=1:ncpus=1:mem=1GB <mark>##Job parameters</mark></p>
-								<p class="code__line">#PBS -l walltime=1:00:00 <mark>##The Walltime</mark></p>
-								<p class="code__line">#PBS -N ExampleJob <mark>##The Job name</mark></p>
+								<p class="code__line">#PBS -l select={select}:ncpus={ncpus}:mem={memory}</p>
+								<p class="code__line">#PBS -l walltime={walltime}</p>
+								<p class="code__line">#PBS -N {JobName}</p>
 								<p class="code__line">#</p>
-								<p class="code__line">echo $HOSTNAME <mark>##The payload</mark></p>	
+								<p class="code__line">{payload}</p>	
 							</output>	
 						</fieldset>
 
@@ -159,12 +159,5 @@
 <script src="./CreateJobView.js"></script>
 <script src="./CreateJobController.js"></script>
 <script src="./CreateJobModel.js"></script>
-<script src="groups.js"></script>
-
-var model = new CreateJobModel();
-var view = new CreateJobView();
-var controller = new CreateJobController(model, view);
-
-</script>
 </body>
 </html>
