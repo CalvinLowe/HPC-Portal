@@ -104,8 +104,8 @@ class CreateJobView {
 		});
 	}
 
-	displayGroups()
-	.catch(error => {
-		console.log(error);
-	})
+	// displayGroups()
+	// .catch(error => {
+	// 	console.log(error);
+	// })
 }
