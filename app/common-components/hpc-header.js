@@ -28,18 +28,38 @@ export let HPCHeaderComponent = {
 </div>`
 }
 
+let HPCNavigationLinkComponent = {
+	props: ['location', 'title'],
+	computed: {
+		isActive: function() {
+				// If the navigation-item component location prop matches the current pathname then set it to active
+				return document.location.pathname.replace(/\b\/+/,'').replace(/^\//, '') === this.location;
+			}
+	},
+	template: `
+	<li class="leaf">
+		<a :href="'/' + location" :title="title" class="menu__link" :class="{ active: isActive, 'active-trail': isActive }">
+			<slot></slot>
+		</a>
+	</li>`
+}
+
 export let HPCNavigationComponent = {
+	components: {
+		'navigation-item': HPCNavigationLinkComponent
+	},
 	template: `
 <div class="region region-navigation">
 	<div id="block-system-main-menu" class="block block-system block-menu main-menu">
 		<ul class="menu" id="main-menu">
-			<li class="first leaf"><a href="/" title="" class="menu__link">Home</a></li>
-			<li class="leaf menu__logged-in-item"><a href="/dashboard" title="" class="menu__link"">Dashboard</a></li>
-			<li class="leaf active-trail menu__logged-in-item"><a href="/create-job" title="" class="active-trail menu__link active">Create new job</a></li>
-			<li class="leaf menu__logged-in-item"><a href="/list-jobs" title="" class="menu__link">List active jobs</a></li>
-			<li class="leaf menu__logged-in-item"><a href="/list-files" title="" class="menu__link">List files</a></li>
-			<li class="last leaf menu__logged-in-item"><a id="logout" href="#" title="Log out" class="menu__link logout logout--hidden">Log out</a></li>
+			<navigation-item class="first" location="" title="Home">Home</navigation-item>
+			<navigation-item location="dashboard" title="Dashboard">Dashboard</navigation-item>
+			<navigation-item class="active-trail" location="create-job" title="Create new job">Create new job</navigation-item>
+			<navigation-item location="list-jobs" title="List active jobs">List active jobs</navigation-item>
+			<navigation-item location="list-files" title="List files">List files</navigation-item>
+			<navigation-item class="last" location="list-logout" title="Log out">Log out</navigation-item>
 		</ul>
 	</div>
 </div>`
 }
+
