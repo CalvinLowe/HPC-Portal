@@ -33,12 +33,12 @@ let HPCNavigationLinkComponent = {
 	computed: {
 		isActive: function() {
 				// If the navigation-item component location prop matches the current pathname then set it to active
-				return document.location.pathname.replace(/\b\/+/,'').replace(/^\//, '') === this.location;
+				return document.location.pathname.replace(/\b\/+/,'') === this.location;
 			}
 	},
 	template: `
 	<li class="leaf">
-		<a :href="'/' + location" :title="title" class="menu__link" :class="{ active: isActive, 'active-trail': isActive }">
+		<a :href="location" :title="title" class="menu__link" :class="{ active: isActive, 'active-trail': isActive }">
 			<slot></slot>
 		</a>
 	</li>`
@@ -52,12 +52,12 @@ export let HPCNavigationComponent = {
 <div class="region region-navigation">
 	<div id="block-system-main-menu" class="block block-system block-menu main-menu">
 		<ul class="menu" id="main-menu">
-			<navigation-item class="first" location="" title="Home">Home</navigation-item>
-			<navigation-item location="dashboard" title="Dashboard">Dashboard</navigation-item>
-			<navigation-item class="active-trail" location="create-job" title="Create new job">Create new job</navigation-item>
-			<navigation-item location="list-jobs" title="List active jobs">List active jobs</navigation-item>
-			<navigation-item location="list-files" title="List files">List files</navigation-item>
-			<navigation-item class="last" location="list-logout" title="Log out">Log out</navigation-item>
+			<navigation-item location="/" title="Home" class="first">Home</navigation-item>
+			<navigation-item location="/dashboard" title="Dashboard">Dashboard</navigation-item>
+			<navigation-item location="/create-job" title="Create new job">Create new job</navigation-item>
+			<navigation-item location="/list-jobs" title="List active jobs">List active jobs</navigation-item>
+			<navigation-item location="/list-files" title="List files">List files</navigation-item>
+			<navigation-item location="#" title="Log out" id="logout" class="last">Log out</navigation-item>
 		</ul>
 	</div>
 </div>`

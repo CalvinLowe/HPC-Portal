@@ -6,7 +6,7 @@ let dashboardLocationPath = "/dashboard";
 
 
 // #IF DEVELOPMENT //
-document.onload = sessionStorage.setItem("isLoggedIn", "true");
+//document.onload = sessionStorage.setItem("isLoggedIn", "true");
 // #ENDIF DEVELOPMENT //
 
 document.onload = loginUI();
@@ -18,7 +18,7 @@ function loginUI() {
 		setTimeout(function() {
 			window.location.pathname = homePageLocationPath;
 		}, 1000);
-	} else if(sessionStorage.getItem("isLoggedIn") == "true") {
+	} else if (sessionStorage.getItem("isLoggedIn") == "true") {
 		document.body.classList.add("logged-in");
 	}
 }
