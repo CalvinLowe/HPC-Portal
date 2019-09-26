@@ -4,41 +4,82 @@ let interval;
 let homePageLocationPath = "/";
 let dashboardLocationPath = "/dashboard";
 
-
 // #IF DEVELOPMENT //
-//document.onload = sessionStorage.setItem("isLoggedIn", "true");
+//window.onload = sessionStorage.setItem("isLoggedIn", "true");
 // #ENDIF DEVELOPMENT //
 
-document.onload = loginUI();
+window.onload = initialiseLogin();
 
-function loginUI() {
-	initSessionStorage();
-	if (sessionStorage.getItem("isLoggedIn") == "false" && window.location.pathname != homePageLocationPath) {
-		console.log("Redirecting...");
-		setTimeout(function() {
-			window.location.pathname = homePageLocationPath;
-		}, 1000);
-	} else if (sessionStorage.getItem("isLoggedIn") == "true") {
-		document.body.classList.add("logged-in");
-	}
+function initialiseLogin() {
+	initialiseLoginButton();
+	loginUI();
 }
 
-function initSessionStorage() {
-	if (sessionStorage.getItem("isLoggedIn") == null) {
-		sessionStorage.setItem("isLoggedIn", "false");
+function initialiseLoginButton() {
+	let loginButton = document.getElementById('login');
+	if (loginButton != null) {
+		attach(loginButton, 'click', handleLoginButtonClick);
 	}
-}
-
-let loginButton = document.getElementById('login');
-
-if (loginButton != null) {
-	attach(loginButton, 'click', handleLoginButtonClick);
 }
 
 function handleLoginButtonClick() {
 	openLoginWindow();
 	APIcheckLoginStatus();
 	interval = window.setInterval(APIcheckLoginStatus, 1000);
+}
+
+function loginUI() {
+	initSessionStorage();
+	if (sessionStorage.getItem("isLoggedIn") == "false") {
+		document.body.classList.add("logged-out");
+		if (window.location.pathname != homePageLocationPath) {
+			console.log("Redirecting...");
+			setTimeout(function () {
+				window.location.pathname = homePageLocationPath;
+			}, 100);
+		}
+		toggleMenuItemVisibility();
+	} else if (sessionStorage.getItem("isLoggedIn") == "true") {
+		document.body.classList.remove("logged-out");
+		toggleMenuItemVisibility();
+		document.body.classList.add("logged-in");
+	}
+}
+
+function toggleMenuItemVisibility() {
+	let menuItems = document.querySelectorAll(".menu__link");
+	menuItems.forEach(function(menuItem) {
+		toggle(menuItem);
+	});
+}
+
+// Show an element
+function show(elem) {
+	elem.style.display = 'block';
+};
+
+// Hide an element
+function hide(elem) {
+	elem.style.display = 'none';
+};
+
+// Toggle element visibility
+function toggle(elem) {
+
+	// If the element is visible, hide it
+	if (window.getComputedStyle(elem).display === 'block') {
+		hide(elem);
+		return;
+	}
+
+	// Otherwise, show it
+	show(elem);
+};
+
+function initSessionStorage() {
+	if (sessionStorage.getItem("isLoggedIn") == null) {
+		sessionStorage.setItem("isLoggedIn", "false");
+	}
 }
 
 function openLoginWindow() {
@@ -61,7 +102,7 @@ async function APIcheckLoginStatus() {
 		} else {
 			console.log("Login in progress");
 		}
-	} catch(error) {
+	} catch (error) {
 		window.clearInterval(interval);
 		console.error(error);
 	}
@@ -69,7 +110,7 @@ async function APIcheckLoginStatus() {
 
 function redirectAfterLogin() {
 	console.log("Redirecting...");
-	setTimeout(function() {
+	setTimeout(function () {
 		window.location.pathname = dashboardLocationPath;
 	}, 1000);
 }

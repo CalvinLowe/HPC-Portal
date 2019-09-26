@@ -1,6 +1,4 @@
-console.log("Logout.js loaded");
 let logoutButton = document.getElementById('logout');
-console.log(logoutButton);
 
 if (logoutButton != null) {
 	attach(logoutButton, 'click', handleLogoutButtonClick);
