@@ -38,43 +38,11 @@ function loginUI() {
 				window.location.pathname = homePageLocationPath;
 			}, 100);
 		}
-		toggleMenuItemVisibility();
 	} else if (sessionStorage.getItem("isLoggedIn") == "true") {
 		document.body.classList.remove("logged-out");
-		toggleMenuItemVisibility();
 		document.body.classList.add("logged-in");
 	}
 }
-
-function toggleMenuItemVisibility() {
-	let menuItems = document.querySelectorAll(".menu__link");
-	menuItems.forEach(function(menuItem) {
-		toggle(menuItem);
-	});
-}
-
-// Show an element
-function show(elem) {
-	elem.style.display = 'block';
-};
-
-// Hide an element
-function hide(elem) {
-	elem.style.display = 'none';
-};
-
-// Toggle element visibility
-function toggle(elem) {
-
-	// If the element is visible, hide it
-	if (window.getComputedStyle(elem).display === 'block') {
-		hide(elem);
-		return;
-	}
-
-	// Otherwise, show it
-	show(elem);
-};
 
 function initSessionStorage() {
 	if (sessionStorage.getItem("isLoggedIn") == null) {
@@ -113,8 +81,4 @@ function redirectAfterLogin() {
 	setTimeout(function () {
 		window.location.pathname = dashboardLocationPath;
 	}, 1000);
-}
-
-function toggleLoginShow() {
-	loginButton.classList.toggle("login--hidden");
 }
