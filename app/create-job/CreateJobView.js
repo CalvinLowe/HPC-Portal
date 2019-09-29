@@ -83,9 +83,29 @@ class CreateJobView {
 		target.addEventListener(type, handler);
 	}
 
-
 	setupForm() {
 		 this.jobSubmissionFieldsetList[0].classList.add("job-submission-form__fieldset--active");
 		 this.jobSubmissionFieldsetList[1].classList.add("job-submission-form__fieldset--hidden");
 	}
+
+	async displayGroups() {
+		console.log("Display groups called!");
+		let accountGroupsContainer = document.getElementById("accountGroups");
+		const groups = await User.requestUserGroups()
+			.catch(error => {
+				console.log(error);
+			});
+		groups.forEach(function(item, index, array) {
+			let groupElement = document.createElement("option");
+			groupElement.textContent = item.group;
+			groupElement.id = item.group;
+			groupElement.value = item.group;
+			accountGroupsContainer.appendChild(groupElement);
+		});
+	}
+
+	// displayGroups()
+	// .catch(error => {
+	// 	console.log(error);
+	// })
 }

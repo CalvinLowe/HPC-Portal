@@ -1,4 +1,5 @@
 let logoutButton = document.getElementById('logout');
+
 if (logoutButton != null) {
 	attach(logoutButton, 'click', handleLogoutButtonClick);
 }

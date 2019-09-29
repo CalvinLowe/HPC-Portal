@@ -4,21 +4,42 @@ let interval;
 let homePageLocationPath = "/";
 let dashboardLocationPath = "/dashboard";
 
-
 // #IF DEVELOPMENT //
-document.onload = sessionStorage.setItem("isLoggedIn", "true");
+//window.onload = sessionStorage.setItem("isLoggedIn", "true");
 // #ENDIF DEVELOPMENT //
 
-document.onload = loginUI();
+window.onload = initialiseLogin();
+
+function initialiseLogin() {
+	initialiseLoginButton();
+	loginUI();
+}
+
+function initialiseLoginButton() {
+	let loginButton = document.getElementById('login');
+	if (loginButton != null) {
+		attach(loginButton, 'click', handleLoginButtonClick);
+	}
+}
+
+function handleLoginButtonClick() {
+	openLoginWindow();
+	APIcheckLoginStatus();
+	interval = window.setInterval(APIcheckLoginStatus, 1000);
+}
 
 function loginUI() {
 	initSessionStorage();
-	if (sessionStorage.getItem("isLoggedIn") == "false" && window.location.pathname != homePageLocationPath) {
-		console.log("Redirecting...");
-		setTimeout(function() {
-			window.location.pathname = homePageLocationPath;
-		}, 1000);
-	} else if(sessionStorage.getItem("isLoggedIn") == "true") {
+	if (sessionStorage.getItem("isLoggedIn") == "false") {
+		document.body.classList.add("logged-out");
+		if (window.location.pathname != homePageLocationPath) {
+			console.log("Redirecting...");
+			setTimeout(function () {
+				window.location.pathname = homePageLocationPath;
+			}, 100);
+		}
+	} else if (sessionStorage.getItem("isLoggedIn") == "true") {
+		document.body.classList.remove("logged-out");
 		document.body.classList.add("logged-in");
 	}
 }
@@ -27,18 +48,6 @@ function initSessionStorage() {
 	if (sessionStorage.getItem("isLoggedIn") == null) {
 		sessionStorage.setItem("isLoggedIn", "false");
 	}
-}
-
-let loginButton = document.getElementById('login');
-
-if (loginButton != null) {
-	attach(loginButton, 'click', handleLoginButtonClick);
-}
-
-function handleLoginButtonClick() {
-	openLoginWindow();
-	APIcheckLoginStatus();
-	interval = window.setInterval(APIcheckLoginStatus, 1000);
 }
 
 function openLoginWindow() {
@@ -61,7 +70,7 @@ async function APIcheckLoginStatus() {
 		} else {
 			console.log("Login in progress");
 		}
-	} catch(error) {
+	} catch (error) {
 		window.clearInterval(interval);
 		console.error(error);
 	}
@@ -69,11 +78,7 @@ async function APIcheckLoginStatus() {
 
 function redirectAfterLogin() {
 	console.log("Redirecting...");
-	setTimeout(function() {
+	setTimeout(function () {
 		window.location.pathname = dashboardLocationPath;
 	}, 1000);
-}
-
-function toggleLoginShow() {
-	loginButton.classList.toggle("login--hidden");
 }
