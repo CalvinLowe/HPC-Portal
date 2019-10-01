@@ -18,7 +18,7 @@ function handleFolderPathClick() {
 		displayFileList(event.target.dataset.directoryPath);
 	}
 }
-
+// /home/s4178182 - use absolute file paths
 async function displayFileList(folderName) {
 	let nextPath;
 	let currentPath = getCurrentPath();
