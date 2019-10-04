@@ -54,10 +54,29 @@
 						<p class="job-submission-form__description">Enter your job details</p>
 						<fieldset class="job-submission-form__fieldset" id="jobSubmissionPage1">
 							<label class="job-submission-form__label" for="jobName">Job name (required):</label>
-							<input class="job-submission-form__input" id="jobName" name="jobName" type="text" value="" required>
+							<input
+								class="job-submission-form__input"
+								id="jobName"
+								name="jobName"
+								type="text"
+								value="" 
+								v-model="form.jobName"
+								required>
+
 							<label class="job-submission-form__label" for="accountGroups" >Account group (required):</label>
-							<select class="job-submission-form__input" id="accountGroups" name="accountGroup" multiple required >
-								<option selected="selected" value="Select a group">Select a group</option>
+							<select
+								class="job-submission-form__input"
+								id="accountGroups"
+								name="accountGroup"
+								v-model="form.accountGroups"
+								required >
+								<!-- <option value="Select a group">Select a group</option> -->
+								<option 
+									v-for="accountGroup in form.accountGroups"
+									:value="accountGroup"
+									:key="accountGroup">
+									{{accountGroup}}
+								</option>
 							</select>
 					
 							<label class="job-submission-form__label" for="walltime">Walltime (hours) (required):</label>
@@ -105,13 +124,10 @@
 <!-- production version, optimized for size and speed -->
 <script src="../vue.js"></script>
 <script type="module" src="../ViewModels/BaseViewModel.js"></script>
+<script type="module" src="../ViewModels/CreateJobViewModel.js"></script>
 <!-- End VUE -->
 
-<script src="../utility/helper.js"></script>
 <script src="../login/login.js"></script>
 <script src="../logout/logout.js"></script>
-<script src="./CreateJobView.js"></script>
-<script src="./CreateJobController.js"></script>
-<script src="./CreateJobModel.js"></script>
 </body>
 </html>
