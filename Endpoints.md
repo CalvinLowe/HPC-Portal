@@ -19,7 +19,7 @@ GET | List directories | ```/hpcbackend/api/execute/listfolderbase64``` | ```?fo
 GET | List running jobs | ```/hpcbackend/api/execute/listall``` | ```?access_token=TOKEN``` | https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/listall?access_token=TOKEN
 GET | List accessible locations | ```/hpcbackend/api/execute/accessiblelocations``` | ```?access_token=TOKEN``` | https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/accessiblelocations?access_token=TOKEN
 GET | List groups | ```/hpcbackend/api/execute/getprojects``` | ```?access_token=TOKEN``` | https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/getprojects?access_token=TOKEN
-GET | Submit jobs (?unconfirmed) | ```/hpcbackend/api/execute/submitjob``` | ```?workdir=WORKDIRECTORY&b64pbs=PBSSCRIPTCONTENTS&jobName=JOBNAME&?access_token=TOKEN``` | https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/submitjob?access_token=__token__
+GET | Submit jobs (?unconfirmed) | ```/hpcbackend/api/execute/submitjob``` | ```?jobName=JOBNAME&workdir=WORKDIRECTORY&b64pbs=PBSSCRIPTCONTENTS&access_token=TOKEN``` | https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/submitjob?jobName=JOBNAME&workdir=WORKDIRECTORY&b64pbs=PBSSCRIPTCONTENTS&access_token=TOKEN
 
 
 
