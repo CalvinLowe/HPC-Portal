@@ -53,6 +53,7 @@
 						<h3 class="job-submission-form__heading">Create new job</h3>
 						<p class="job-submission-form__description">Enter your job details</p>
 						<fieldset class="job-submission-form__fieldset" id="jobSubmissionPage1">
+
 							<label class="job-submission-form__label" for="jobName">Job name (required):</label>
 							<input
 								class="job-submission-form__input"
@@ -61,6 +62,16 @@
 								type="text"
 								value="" 
 								v-model="form.jobName"
+								required>
+							
+							<label class="job-submission-form__label" for="workDirectory">Work directory (required):</label>
+							<input
+								class="job-submission-form__input"
+								id="workDirectory"
+								name="workDirectory"
+								type="text"
+								value="/home/s4178182" 
+								v-model="form.workDirectory"
 								required>
 
 							<label class="job-submission-form__label" for="accountGroups" >Account group (required):</label>
@@ -77,32 +88,74 @@
 							</select>
 					
 							<label class="job-submission-form__label" for="walltime">Walltime (hours) (required):</label>
-							<input class="job-submission-form__input" id="walltime" name="walltime" type="number" value="1" min="1" required>
+							<input
+								class="job-submission-form__input"
+								id="walltime"
+								name="walltime"
+								type="number"
+								value="1"
+								min="1"
+								v-model="form.walltime"
+								required>
 					
 							<label class="job-submission-form__label" for="select">Select (required):</label>
-							<input class="job-submission-form__input" id="select" name="select" type="number" value="1" required>
+							<input 
+								class="job-submission-form__input"
+								id="select"
+								name="select"
+								type="number"
+								value="1"
+								v-model="form.select"
+								required>
 					
 							<label for="ncpus" class="job-submission-form__label">Number of CPUS (required):</label>
-							<input class="job-submission-form__input" id="ncpus" name="ncpus" type="number" value="1" min="1" max="24" required >
+							<input 
+								class="job-submission-form__input"
+								id="ncpus"
+								name="ncpus"
+								type="number"
+								value="1"
+								min="1"
+								max="24"
+								v-model="form.ncpus"
+								required >
 					
 							<label class="job-submission-form__label" for="memory">Memory (GB) (required): </label>
-							<input class="job-submission-form__input" id="memory" name="memory" type="number" value="1" min="1" required>
+							<input
+								class="job-submission-form__input"
+								id="memory"
+								name="memory"
+								type="number"
+								value="1"
+								min="1"
+								v-model="form.memory"
+								required>
 					
 							<label class="job-submission-form__label" for="payload">Payload (required): </label>
-							<textarea class="job-submission-form__input" id="payload" name="payload" cols="40" rows="10" placeholder="echo $HOSTNAME" required></textarea>
+							<textarea
+								class="job-submission-form__input"
+								id="payload"
+								name="payload"
+								cols="40"
+								rows="10"
+								placeholder="echo $HOSTNAME"
+								v-model="form.payload"
+								required></textarea>
 						</fieldset>
 
 						<fieldset class="#job-submission-form__fieldset" id="jobSubmissionPageReview">
 							<output>
-								<p class="code__line">#!/bin/bash</p>
-								<p class="code__line ">#</p>
-								<p class="code__line">#PBS -A {group}</p>
-								<p class="code__line">#</p>
-								<p class="code__line">#PBS -l select={select}:ncpus={ncpus}:mem={memory}</p>
-								<p class="code__line">#PBS -l walltime={walltime}</p>
-								<p class="code__line">#PBS -N {JobName}</p>
-								<p class="code__line">#</p>
-								<p class="code__line">{payload}</p>	
+								<h2>{{ form.jobName }}.pbs</h2>
+								<p>Work directory: {{ form.workDirectory }}</p>
+								<p>#!/bin/bash</p>
+								<p>#</p>
+								<p>#PBS -A {{ form.selectedAccountGroup }}</p>
+								<p>#</p>
+								<p>#PBS -l select={{ form.select }}:ncpus={{ form.ncpus }}:mem={{ form.memory }}</p>
+								<p>#PBS -l walltime={{ form.walltime }}</p>
+								<p>#PBS -N {{ form.jobName }}</p>
+								<p>#</p>
+								<p>{{ form.payload }}</p>	
 							</output>	
 						</fieldset>
 
