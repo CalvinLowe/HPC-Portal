@@ -3,6 +3,7 @@ let createJobVM = new Vue({
 	data: {
 		form: {
 			jobName: 'Default job name',
+			selectedAccountGroup: '',
 			accountGroups: ['UQ-RCC', 'qris-uq'],
 			walltime: 1,
 			select: 1,

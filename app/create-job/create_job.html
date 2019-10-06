@@ -67,14 +67,11 @@
 							<select
 								class="job-submission-form__input"
 								id="accountGroups"
-								name="accountGroup"
-								v-model="form.accountGroups"
-								required >
-								<!-- <option value="Select a group">Select a group</option> -->
-								<option 
-									v-for="accountGroup in form.accountGroups"
-									:value="accountGroup"
-									:key="accountGroup">
+								name="accountGroups"
+								v-model="form.selectedAccountGroup"
+								required>
+								<option value="" selected disabled>Select a group</option>
+								<option v-for="accountGroup in form.accountGroups" :value="accountGroup">
 									{{accountGroup}}
 								</option>
 							</select>
