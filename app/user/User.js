@@ -98,13 +98,30 @@ export default class User {
 	}
 
 	static async requestUserGroups() {
+		const accessToken = await User.getAccessToken()
+			.catch(error => {
+				console.log(error);
+			});
+		const url = `https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/getprojects?access_token=${accessToken}`;
+		const response = await fetch(url);
+		const data = await response.json();
+
+		let groups = []
+		data.commandResult.forEach(function(item, index, array) {
+			groups.push(item.group);
+		});
+
+		return groups;
+	}
+
+	static async requestJobSubmission(jobName, workDirectory, b64pbs) {
 		const accessToken = await getAccessToken()
 		.catch(error => {
 			console.log(error);
 		});
-		const url = `https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/getprojects?access_token=${accessToken}`;
+		const url = `https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/submitjob?jobName=${jobName}&workdir=${workDirectory}&b64pbs=${b64pbs}&access_token=${accessToken}`;
 		const response = await fetch(url);
-		const data = await response.json();
-		return data.commandResult;
+		//const data = await response.json();
+		//return data.commandResult;
 	}
 }
