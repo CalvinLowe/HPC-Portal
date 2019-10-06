@@ -30,7 +30,7 @@ export default class ListFileViewTable {
 						<td>${file.size}</td>
 						<td>${file.modifieidTimeOrYear}</td>
 						<td>
-							${file.IsDirectory() && file.HasChildren() ? `<a id="navigableDirectory" data-directory-path="${file.name}">` : ''}
+							${file.IsDirectory() && file.HasChildren() ? `<a id="navigableDirectory" data-directory-path="${file.path}">` : ''}
 							${file.name}
 							${file.IsDirectory() && file.HasChildren() ? `</a>` : ''}
 						</td>

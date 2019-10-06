@@ -2,7 +2,10 @@ import FileModel from './FileModel.js';
 import ListFileTableView from './ListFileTableView.js';
 import User from '../user/User.js';
 
-let fileNavigationStack = [];
+// let defaultFolderPath = `/home/${User.username}`;
+let defaultFolderPath = `/home/s4178182`;
+let fileNavigationStack = [defaultFolderPath];
+
 
 document.onload = displayFileList()
 	.catch(error => {
@@ -18,44 +21,33 @@ function handleFolderPathClick() {
 		displayFileList(event.target.dataset.directoryPath);
 	}
 }
-// /home/s4178182 - use absolute file paths
-async function displayFileList(folderName) {
-	let nextPath;
-	let currentPath = getCurrentPath();
 
-	if (currentPath) {
-		nextPath = currentPath + "/" + folderName;
-	} else {
-		nextPath = folderName;
-	}
+async function displayFileList(folderPath = defaultFolderPath) {
 
-	const filesJSON = await User.requestFiles(nextPath)
+	const filesJSON = await User.requestFiles(folderPath)
 	.catch(error => {
 		console.log(error);
 	});
 	
 	if (filesJSON) {
-		if(!nextPath) {
-			nextPath = "";
-		}
-	 	fileNavigationStack.push(nextPath);
+	 	fileNavigationStack.push(folderPath);
 	} 
 
 	let fileList = [];
 	
 	filesJSON.forEach(function(item, index, array) {
-		let file = new FileModel(item.owner, item.modd, item.size, item.modh, item.name, item.permission, item.links, item.group, nextPath);
+		let file = new FileModel(item.owner, item.modd, item.size, item.modh, item.name, item.permission, item.links, item.group, folderPath);
 		fileList.push(file);
 	});
 		
 	let listFilesContainer = document.getElementById("listFilesContainer");
-	let fileView = new ListFileTableView(fileList, currentPath);
+	let fileView = new ListFileTableView(fileList, folderPath);
 	listFilesContainer.innerHTML = fileView.getFileListView();
 	listFilesContainer.addEventListener('click', handleFolderPathClick, true);
-	//let backButton = document.getElementById("backButton");
-	//backButton.addEventListener('click', back, true);
 }
 
+//backButton.addEventListener('click', back, true);
+//let backButton = document.getElementById("backButton");
 // function back() {
 // 	console.log("back clicked");
 // 	let navigateBack = fileNavigationStack.pop();
