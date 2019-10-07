@@ -7,18 +7,18 @@ let headerVM = new Vue({
 		'uq-global-menu': UQGlobalMenu,
 		'hpc-header': HPCHeaderComponent
 	}
-})
+});
 
 let navigationVM = new Vue({
 	el: '.navigation',
 	components: {
 		'hpc-navigation': HPCNavigationComponent
 	}
-})
+});
 
 let footerVM = new Vue({
 	el: '.site-footer',
 	components: {
 		'hpc-footer': HPCFooterComponent
 	} 
-})
+});

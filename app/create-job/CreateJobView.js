@@ -1,5 +1,3 @@
-//import {select, attach} from '../../Utility/helper.js';
-
 /**
  * A view for the HPC Portal job submission form.
  * @author: Calvin Lowe <calvin.lowe@uqconnect.edu.au>
@@ -18,30 +16,6 @@ class CreateJobView {
 		this._jobSubmissionFieldsetList = document.getElementsByClassName('job-submission-form__fieldset');
 		this._formIndex = 0;
 		this.setupForm();
-	}
-
-	get jobSubmissionForm() {
-		return this._jobSubmissionForm;
-	}
-	
-	get prevSectionJobForm() {
-		return this._prevSectionJobForm;
-	}
-
-	get nextSectionJobForm() {
-		return this._nextSectionJobForm;
-	}
-
-	get jobSubmissionFieldsetList() {
-		return this._jobSubmissionFieldsetList;
-	}
-
-	get formIndex() {
-		return this._formIndex;
-	}
-
-	set formIndex(index) {
-		this._formIndex = index;
 	}
 
 	/**
@@ -103,9 +77,4 @@ class CreateJobView {
 			accountGroupsContainer.appendChild(groupElement);
 		});
 	}
-
-	// displayGroups()
-	// .catch(error => {
-	// 	console.log(error);
-	// })
 }

@@ -53,6 +53,18 @@
 	                    "^(?P<jobid>(?P<jobidNumber>[0-9]+).*);(?P<username>.*);(?P<queue>.*);(?P<jobname>.*);(?P<state>.*);(?P<elapTime>.*)$"
 	                ],
 	                "requireMatch": true
+				},
+				"submitJob":{
+	                "async": false,
+					"cmd": "mkdir -p {workdir} && cd {workdir} && echo {b64pbs} | base64 -d > {jobName}.pbs && qsub {jobName}.pbs",
+	                "failFatal": true,
+	                "formatFatal": false,
+	                "host": "login",
+	                "loop": false,
+	                "regex": [
+	                    null
+	                ],
+	                "requireMatch": false
 	            }
             }
         }

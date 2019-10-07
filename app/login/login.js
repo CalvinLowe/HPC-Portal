@@ -4,13 +4,17 @@ let interval;
 let homePageLocationPath = "/";
 let dashboardLocationPath = "/dashboard";
 
-// #IF DEVELOPMENT //
-//window.onload = sessionStorage.setItem("isLoggedIn", "true");
-// #ENDIF DEVELOPMENT //
+function isDevelopmentEnvironment() {
+	if (window.location.hostname === "hpcportal.local") {
+		window.onload = sessionStorage.setItem("isLoggedIn", "true");
+	}
+}
+
 
 window.onload = initialiseLogin();
 
 function initialiseLogin() {
+	isDevelopmentEnvironment();
 	initialiseLoginButton();
 	loginUI();
 }
