@@ -28,43 +28,41 @@
 		<uq-global-menu></uq-global-menu>
 		<hpc-header></hpc-header>
 	</header>
-
+	
 	<nav class="navigation">
 		<hpc-navigation></hpc-navigation>
 	</nav>
-
+	
 	<main class="page create__new__job__page">
 		<div class="page__content">
-			<!-- application add here START -->
-			<div class="hero-banner--dark-tint light-palette hero-banner hero-banner--background-image" style="background-image:url('images/bg3.jpg')">
-				<div class="hero-banner__container">
-				  <div class="hero-banner__content">
-					<h1 class="hero-banner__title">Create new job</h1>
-				  </div>
-				</div>
-			</div> 
 			<div class="section__container form__container">
 				<form 
-					class="job-submission-form"
-					id="jobSubmissionForm"
-					name="jobSubmissionForm"
-					v-on:submit.prevent="onSubmit">
-						<h3 class="job-submission-form__heading">Create new job</h3>
-						<p class="job-submission-form__description">Enter your job details</p>
-						<fieldset class="job-submission-form__fieldset" id="jobSubmissionPage1">
-
-							<label class="job-submission-form__label" for="jobName">Job name (required):</label>
-							<input
-								class="job-submission-form__input"
-								id="jobName"
-								name="jobName"
-								type="text"
-								value="" 
-								v-model="form.jobName"
-								required>
-							
-							<label class="job-submission-form__label" for="workDirectory">Work directory (required):</label>
-							<input
+				class="job-submission-form"
+				id="jobSubmissionForm"
+				name="jobSubmissionForm"
+				v-on:submit.prevent="onSubmit">
+				<header class="job-submission-form__header">
+					<h1 class="job-submission-form__heading">Create and submit a new HPC job</h1>
+					<p class="job-submission-form__description">Enter your job details to create your pbs script and then hit submit!</p>
+				</header>
+				
+					<fieldset class="job-submission-form__fieldset">
+						<legend class="job-submission-form__fieldset__legend">Data mangament</legend class="job-submission-form__fieldset__legend">
+						
+						<label class="job-submission-form__label" for="jobName">Job name:</label>
+						<input
+							class="job-submission-form__input"
+							id="jobName"
+							name="jobName"
+							type="text"
+							value=""
+							minlength="1"
+							maxlength="15"
+							v-model="form.jobName"
+							required>
+						
+						<label class="job-submission-form__label" for="workDirectory">Work directory:</label>
+						<input
 								class="job-submission-form__input"
 								id="workDirectory"
 								name="workDirectory"
@@ -73,7 +71,7 @@
 								v-model="form.workDirectory"
 								required>
 
-							<label class="job-submission-form__label" for="accountGroups" >Account group (required):</label>
+							<label class="job-submission-form__label" for="accountGroups" >Account group:</label>
 							<select
 								class="job-submission-form__input"
 								id="accountGroups"
@@ -85,8 +83,11 @@
 									{{accountGroup}}
 								</option>
 							</select>
+						</fieldset>
 					
-							<label class="job-submission-form__label" for="walltime">Walltime (hours) (required):</label>
+						<fieldset class="job-submission-form__fieldset">
+							<legend class="job-submission-form__fieldset__legend">Job details</legend class="job-submission-form__fieldset__legend">
+							<label class="job-submission-form__label" for="walltime">Walltime:</label>
 							<input
 								class="job-submission-form__input"
 								id="walltime"
@@ -94,10 +95,11 @@
 								type="number"
 								value="1"
 								min="1"
+								max=""
 								v-model="form.walltime"
 								required>
 					
-							<label class="job-submission-form__label" for="select">Select (required):</label>
+							<label class="job-submission-form__label" for="select">Select:</label>
 							<input 
 								class="job-submission-form__input"
 								id="select"
@@ -107,7 +109,7 @@
 								v-model="form.select"
 								required>
 					
-							<label for="ncpus" class="job-submission-form__label">Number of CPUS (required):</label>
+							<label for="ncpus" class="job-submission-form__label">Number of CPUs:</label>
 							<input 
 								class="job-submission-form__input"
 								id="ncpus"
@@ -119,7 +121,7 @@
 								v-model="form.ncpus"
 								required >
 					
-							<label class="job-submission-form__label" for="memory">Memory (GB) (required): </label>
+							<label class="job-submission-form__label" for="memory">Memory: </label>
 							<input
 								class="job-submission-form__input"
 								id="memory"
@@ -127,10 +129,14 @@
 								type="number"
 								value="1"
 								min="1"
+								max="504"
 								v-model="form.memory"
 								required>
+						</fieldset>
 					
-							<label class="job-submission-form__label" for="payload">Payload (required): </label>
+						<fieldset class="job-submission-form__fieldset">
+							<legend class="job-submission-form__fieldset__legend">Job payload</legend class="job-submission-form__fieldset__legend">
+							<label class="job-submission-form__label" for="payload">Payload: </label>
 							<textarea
 								class="job-submission-form__input"
 								id="payload"
@@ -142,7 +148,8 @@
 								required></textarea>
 						</fieldset>
 
-						<fieldset class="#job-submission-form__fieldset" id="jobSubmissionPageReview">
+						<fieldset class="job-submission-form__fieldset">
+							<legend class="job-submission-form__fieldset__legend">.pbs script</legend class="job-submission-form__fieldset__legend">
 							<output>
 								<h2>{{ form.jobName }}.pbs</h2>
 								<p>Work directory: {{ form.workDirectory }}</p>
@@ -157,10 +164,9 @@
 								<p>{{ form.payload }}</p>	
 							</output>	
 						</fieldset>
-
-						<button class="job-submission-form__button button--secondary" id="prevSectionJobForm" type="submit">Previous</button>
-						<button class="job-submission-form__button button--secondary" id="nextSectionJobForm" type="submit">Next</button>
-						<button class="job-submission-form__button" id="submitJobForm" type="submit">Submit job</button>
+						<footer class="job-submission-form__footer">
+							<button class="job-submission-form__button" id="submitJobForm" type="submit">Submit job</button>
+						</footer>
 				</form>
 			</div>
 		</div>

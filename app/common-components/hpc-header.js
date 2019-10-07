@@ -58,7 +58,6 @@ export let HPCNavigationComponent = {
 	<div id="block-system-main-menu" class="block block-system block-menu main-menu">
 		<ul class="menu" id="main-menu">
 			<navigation-item location="/" title="Home" id="home" class="first">Home</navigation-item>
-			<navigation-item location="/dashboard" title="Dashboard" v-if="isLoggedIn">Dashboard</navigation-item>
 			<navigation-item location="/create-job" title="Create new job" v-if="isLoggedIn">Create new job</navigation-item>
 			<navigation-item location="/list-jobs" title="List active jobs" v-if="isLoggedIn">List active jobs</navigation-item>
 			<navigation-item location="/list-files" title="List files" v-if="isLoggedIn">List files</navigation-item>
