@@ -2,7 +2,7 @@ let isLoggedIn;
 let interval;
 
 let homePageLocationPath = "/";
-let dashboardLocationPath = "/dashboard";
+let redirectLocationPath = "/create-job";
 
 function isDevelopmentEnvironment() {
 	if (window.location.hostname === "hpcportal.local") {
@@ -83,6 +83,6 @@ async function APIcheckLoginStatus() {
 function redirectAfterLogin() {
 	console.log("Redirecting...");
 	setTimeout(function () {
-		window.location.pathname = dashboardLocationPath;
+		window.location.pathname = redirectLocationPath;
 	}, 1000);
 }
