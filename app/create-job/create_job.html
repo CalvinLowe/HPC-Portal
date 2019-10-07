@@ -48,8 +48,7 @@
 					class="job-submission-form"
 					id="jobSubmissionForm"
 					name="jobSubmissionForm"
-					enctype="multipart/form-data"
-					method="POST">
+					v-on:submit.prevent="onSubmit">
 						<h3 class="job-submission-form__heading">Create new job</h3>
 						<p class="job-submission-form__description">Enter your job details</p>
 						<fieldset class="job-submission-form__fieldset" id="jobSubmissionPage1">
@@ -151,7 +150,7 @@
 								<p>#</p>
 								<p>#PBS -A {{ form.selectedAccountGroup }}</p>
 								<p>#</p>
-								<p>#PBS -l select={{ form.select }}:ncpus={{ form.ncpus }}:mem={{ form.memory }}</p>
+								<p>#PBS -l select={{ form.select }}:ncpus={{ form.ncpus }}:mem={{ form.memory }}G</p>
 								<p>#PBS -l walltime={{ form.walltime }}</p>
 								<p>#PBS -N {{ form.jobName }}</p>
 								<p>#</p>

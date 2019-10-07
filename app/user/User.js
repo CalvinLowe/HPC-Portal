@@ -114,14 +114,17 @@ export default class User {
 		return groups;
 	}
 
-	static async requestJobSubmission(jobName, workDirectory, b64pbs) {
-		const accessToken = await getAccessToken()
-		.catch(error => {
-			console.log(error);
-		});
+	static async requestJobSubmission(jobName, workDirectory, pbsScript) {
+		const accessToken = await User.getAccessToken()
+			.catch(error => {
+				console.log(error);
+			});
+
+		let b64pbs = window.btoa(pbsScript);
+
 		const url = `https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/submitjob?jobName=${jobName}&workdir=${workDirectory}&b64pbs=${b64pbs}&access_token=${accessToken}`;
+		
 		const response = await fetch(url);
-		//const data = await response.json();
-		//return data.commandResult;
 	}
+
 }
