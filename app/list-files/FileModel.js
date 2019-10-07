@@ -46,6 +46,14 @@ export default class FileModel {
 		return this.type == "directory";
 	}
 
+	IsFile() {
+		return this.type == "file";
+	}
+
+	IsSymlink() {
+		return this.type == "symlink";
+	}
+
 	HasChildren() {
 		return this.links > 1;
 	}
