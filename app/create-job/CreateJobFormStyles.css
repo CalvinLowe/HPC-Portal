@@ -1,32 +1,63 @@
-.create__new__job__page {
-	background-color: lightgrey;/*#2b2b2b;*/ /*TODO: Find a better place for this colour */ 
+ .create__new__job__page {
+	background-color: #dfdfdf;
 }
-
-.form__container {
-	background-color: white;
-	padding: 2rem 2rem 0 2rem;
-	box-shadow: 2px 4px rgba(0,0,0,0.18)
-}
-
 .job-submission-form {
+	background-color: hsl(0, 0%, 97%);
+	border-top: 6px solid #51247a;
+	margin: 2rem auto;
+	box-shadow: 0 4px 6px hsla(0, 0%, 0%, 0.2);
+	max-width: 50rem;
 	display: grid;
-	grid-template-columns: 25% 25% 50%;
 	grid-column-gap: 1rem;
 }
 
+.job-submission-form__header {
+	background-color: white;
+	padding: 2rem;
+	margin-bottom: 2.5rem;
+	grid-column: 1 / 4;
+	max-width: 50rem;
+}
+
+.job-submission-form__footer {
+	background-color: white;
+	padding: 2rem 2rem 0 2rem;
+	grid-column: 1 / 4;
+	max-width: 50rem;
+	text-align: right;
+}
+
 .job-submission-form__fieldset {
-	grid-column: 1 / 3;
-
+	background-color: hsl(0, 0%, 99%);
+	margin: 0 2rem 2.5rem 2rem;
+	grid-column: 1 / 4;
 	display: grid;
-	grid-template-columns: 25% 25% 50%;
+	grid-template-columns: 25% 25% 25% 25%;
+	box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
+	border-top-style: solid;
+	max-width: 50rem;
 }
 
-.job-submission-form__fieldset--active {
-	border-color: lightsalmon;
+.job-submission-form__fieldset__legend {
+	padding: 0.5rem;
+	background-color: black;
+	color: white;
 }
 
-.job-submission-form__fieldset--hidden {
-	display: none;
+.job-submission-form__fieldset:nth-of-type(1) {
+	border-top: 6px solid #db2b39;
+}
+
+.job-submission-form__fieldset:nth-of-type(2) {
+	border-top: 6px solid #f3a712;
+}
+
+.job-submission-form__fieldset:nth-of-type(3) {
+	border-top: 6px solid #c200fb;
+}
+
+.job-submission-form__fieldset:nth-of-type(4) {
+	border-top: 6px solid #ec0868;
 }
 
 .job-submission-form__heading,
@@ -37,14 +68,6 @@
 	grid-column: 1 / 4 ;
 }
 
-#prevSectionJobForm {
-	grid-column: 1 / 2;
-}
-
-#nextSectionJobForm {
-	grid-column: 2 / 3;
-}
-
-#submitJobForm {
-	grid-column: 1 / 3;
+textarea.job-submission-form__input {
+	resize:vertical;
 }
