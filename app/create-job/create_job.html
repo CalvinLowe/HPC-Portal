@@ -46,7 +46,7 @@
 					<p class="job-submission-form__description">Enter your job details to create your pbs script and then hit submit!</p>
 				</header>
 				
-					<fieldset class="job-submission-form__fieldset">
+					<fieldset class="job-submission-form__fieldset" id="jobDataManagement">
 						<legend class="job-submission-form__fieldset__legend">Data management</legend class="job-submission-form__fieldset__legend">
 						
 						<label class="job-submission-form__label" for="jobName">Job name:</label>
@@ -85,7 +85,7 @@
 						</select>
 					</fieldset>
 					
-					<fieldset class="job-submission-form__fieldset">
+					<fieldset class="job-submission-form__fieldset" id="jobDetails">
 						<legend class="job-submission-form__fieldset__legend">Job details</legend class="job-submission-form__fieldset__legend">
 
 						<label class="job-submission-form__label" for="HPCClusters">HPC Cluster:</label>
@@ -149,7 +149,7 @@
 							required>
 					</fieldset>
 					
-					<fieldset class="job-submission-form__fieldset">
+					<fieldset class="job-submission-form__fieldset" id="jobPayload">
 						<legend class="job-submission-form__fieldset__legend">Job payload</legend class="job-submission-form__fieldset__legend">
 						<label class="job-submission-form__label" for="payload">Payload: </label>
 						<textarea
@@ -163,7 +163,7 @@
 							required></textarea>
 					</fieldset>
 
-					<fieldset class="job-submission-form__fieldset">
+					<fieldset class="job-submission-form__fieldset" id="jobScript">
 						<legend class="job-submission-form__fieldset__legend">Job script</legend class="job-submission-form__fieldset__legend">
 						<output>
 							<h2>{{ form.jobName }}.pbs</h2>
