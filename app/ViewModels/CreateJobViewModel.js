@@ -22,7 +22,7 @@ let createJobVM = new Vue({
 		async onSubmit() {
 			let pbsScript = `#!/bin/bash
 #
-#PBS -A ${this.form.accountGroup}
+#PBS -A ${this.form.selectedAccountGroup}
 #
 #PBS -l select=${this.form.select}:ncpus=${this.form.ncpus}:mem=${this.form.memory}G
 #PBS -l walltime=${this.form.walltime}:00:00
@@ -31,8 +31,9 @@ let createJobVM = new Vue({
 ${this.form.payload}`
 
 			console.log("Submitting");
-			await User.requestJobSubmission(this.form.jobName, this.form.workDirectory, pbsScript);
+			console.log(pbsScript);
+			let machine = "@flashmgr2"; // TODO: Make this programmatic
+			await User.requestJobSubmission(this.form.jobName, this.form.workDirectory, pbsScript, machine);
 		}
 	}
 });
-
