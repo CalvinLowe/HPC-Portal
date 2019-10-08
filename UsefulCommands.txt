@@ -5,3 +5,5 @@
 
    ssh username@awoonga.rcc.uq.edu.au
    ssh username@flashlite.rcc.uq.edu.au
+
+   qsub -q @flashmgr2 testJob.pbs
