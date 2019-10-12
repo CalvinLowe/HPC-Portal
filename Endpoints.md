@@ -19,10 +19,17 @@ GET | List directories | ```/hpcbackend/api/execute/listfolderbase64``` | ```?fo
 GET | List running jobs | ```/hpcbackend/api/execute/listall``` | ```?access_token=TOKEN``` | https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/listall?access_token=TOKEN
 GET | List accessible locations | ```/hpcbackend/api/execute/accessiblelocations``` | ```?access_token=TOKEN``` | https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/accessiblelocations?access_token=TOKEN
 GET | List groups | ```/hpcbackend/api/execute/getprojects``` | ```?access_token=TOKEN``` | https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/getprojects?access_token=TOKEN
-GET | Submit jobs (?unconfirmed) | ```/hpcbackend/api/execute/submitjob``` | ```?jobName=JOBNAME&workdir=WORKDIRECTORY&b64pbs=PBSSCRIPTCONTENTS&access_token=TOKEN``` | https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/submitjob?jobName=JOBNAME&workdir=WORKDIRECTORY&b64pbs=PBSSCRIPTCONTENTS&access_token=TOKEN
+GET | Submit jobs | ```/hpcbackend/api/execute/submitjob``` | ```?jobName=JOBNAME&workdir=WORKDIRECTORY&pbs=PBSSCRIPTCONTENTS&machine=MACHINE&access_token=TOKEN``` | https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/submitjob?jobName=JOBNAME&workdir=WORKDIRECTORY&pbs=PBSSCRIPTCONTENTS&machine=MACHINE&access_token=TOKEN
 
 
 
+Submit job
+jobName
+workdir
+pbs
+machine
+access_token
+{machine: [@awonmgr2, @flashmgr2, @tinmgr2.ib0]}
 
 For each "execute" endpoint, the result will be a JSON similar to this
 

@@ -8,10 +8,12 @@ let createJobVM = new Vue({
 			workDirectory: '',
 			selectedAccountGroup: '',
 			accountGroups: '',
-			walltime: '',
-			select: '',
-			ncpus: '',
-			memory: '',
+			selectedHPCCluster: '',
+			HPCClusters: ['Awoonga', 'FlashLite', 'Tinaroo'],
+			select: 1,
+			ncpus: 1,
+			memory: 1,
+			walltime: 1,
 			payload: ''
 		},
 	},
@@ -22,7 +24,7 @@ let createJobVM = new Vue({
 		async onSubmit() {
 			let pbsScript = `#!/bin/bash
 #
-#PBS -A ${this.form.accountGroup}
+#PBS -A ${this.form.selectedAccountGroup}
 #
 #PBS -l select=${this.form.select}:ncpus=${this.form.ncpus}:mem=${this.form.memory}G
 #PBS -l walltime=${this.form.walltime}:00:00
@@ -31,8 +33,19 @@ let createJobVM = new Vue({
 ${this.form.payload}`
 
 			console.log("Submitting");
-			await User.requestJobSubmission(this.form.jobName, this.form.workDirectory, pbsScript);
+			console.log(pbsScript);
+
+			let machine;
+
+			if (this.form.selectedHPCCluster == "Awoonga") {
+				machine = "@awonmgr2";
+			} else if (this.form.selectedHPCCluster == "FlashLite") {
+				machine = "@flashmgr2";
+			} else if (this.form.selectedHPCCluster == "Tinaroo") {
+				machine = "@tinmgr2.ib0";
+			}
+
+			await User.requestJobSubmission(this.form.jobName, this.form.workDirectory, pbsScript, machine);
 		}
 	}
 });
-

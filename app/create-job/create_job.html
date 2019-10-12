@@ -46,8 +46,8 @@
 					<p class="job-submission-form__description">Enter your job details to create your pbs script and then hit submit!</p>
 				</header>
 				
-					<fieldset class="job-submission-form__fieldset">
-						<legend class="job-submission-form__fieldset__legend">Data mangament</legend class="job-submission-form__fieldset__legend">
+					<fieldset class="job-submission-form__fieldset" id="jobDataManagement">
+						<legend class="job-submission-form__fieldset__legend">Data management</legend class="job-submission-form__fieldset__legend">
 						
 						<label class="job-submission-form__label" for="jobName">Job name:</label>
 						<input
@@ -63,110 +63,126 @@
 						
 						<label class="job-submission-form__label" for="workDirectory">Work directory:</label>
 						<input
-								class="job-submission-form__input"
-								id="workDirectory"
-								name="workDirectory"
-								type="text"
-								value="/home/s4178182" 
-								v-model="form.workDirectory"
-								required>
+							class="job-submission-form__input"
+							id="workDirectory"
+							name="workDirectory"
+							type="text"
+							value="/home/s4178182" 
+							v-model="form.workDirectory"
+							required>
 
-							<label class="job-submission-form__label" for="accountGroups" >Account group:</label>
-							<select
-								class="job-submission-form__input"
-								id="accountGroups"
-								name="accountGroups"
-								v-model="form.selectedAccountGroup"
-								required>
-								<option value="" selected disabled>Select a group</option>
-								<option v-for="accountGroup in form.accountGroups" :value="accountGroup">
-									{{accountGroup}}
-								</option>
-							</select>
-						</fieldset>
+						<label class="job-submission-form__label" for="accountGroups" >Account group:</label>
+						<select
+							class="job-submission-form__input"
+							id="accountGroups"
+							name="accountGroups"
+							v-model="form.selectedAccountGroup"
+							required>
+							<option value="" selected disabled>Select a group</option>
+							<option v-for="accountGroup in form.accountGroups" :value="accountGroup">
+								{{accountGroup}}
+							</option>
+						</select>
+					</fieldset>
 					
-						<fieldset class="job-submission-form__fieldset">
-							<legend class="job-submission-form__fieldset__legend">Job details</legend class="job-submission-form__fieldset__legend">
-							<label class="job-submission-form__label" for="walltime">Walltime:</label>
-							<input
-								class="job-submission-form__input"
-								id="walltime"
-								name="walltime"
-								type="number"
-								value="1"
-								min="1"
-								max=""
-								v-model="form.walltime"
-								required>
-					
-							<label class="job-submission-form__label" for="select">Select:</label>
-							<input 
-								class="job-submission-form__input"
-								id="select"
-								name="select"
-								type="number"
-								value="1"
-								v-model="form.select"
-								required>
-					
-							<label for="ncpus" class="job-submission-form__label">Number of CPUs:</label>
-							<input 
-								class="job-submission-form__input"
-								id="ncpus"
-								name="ncpus"
-								type="number"
-								value="1"
-								min="1"
-								max="24"
-								v-model="form.ncpus"
-								required >
-					
-							<label class="job-submission-form__label" for="memory">Memory: </label>
-							<input
-								class="job-submission-form__input"
-								id="memory"
-								name="memory"
-								type="number"
-								value="1"
-								min="1"
-								max="504"
-								v-model="form.memory"
-								required>
-						</fieldset>
-					
-						<fieldset class="job-submission-form__fieldset">
-							<legend class="job-submission-form__fieldset__legend">Job payload</legend class="job-submission-form__fieldset__legend">
-							<label class="job-submission-form__label" for="payload">Payload: </label>
-							<textarea
-								class="job-submission-form__input"
-								id="payload"
-								name="payload"
-								cols="40"
-								rows="10"
-								placeholder="echo $HOSTNAME"
-								v-model="form.payload"
-								required></textarea>
-						</fieldset>
+					<fieldset class="job-submission-form__fieldset" id="jobDetails">
+						<legend class="job-submission-form__fieldset__legend">Job details</legend class="job-submission-form__fieldset__legend">
 
-						<fieldset class="job-submission-form__fieldset">
-							<legend class="job-submission-form__fieldset__legend">.pbs script</legend class="job-submission-form__fieldset__legend">
-							<output>
-								<h2>{{ form.jobName }}.pbs</h2>
-								<p>Work directory: {{ form.workDirectory }}</p>
-								<p>#!/bin/bash</p>
-								<p>#</p>
-								<p>#PBS -A {{ form.selectedAccountGroup }}</p>
-								<p>#</p>
-								<p>#PBS -l select={{ form.select }}:ncpus={{ form.ncpus }}:mem={{ form.memory }}G</p>
-								<p>#PBS -l walltime={{ form.walltime }}</p>
-								<p>#PBS -N {{ form.jobName }}</p>
-								<p>#</p>
-								<p>{{ form.payload }}</p>	
-							</output>	
-						</fieldset>
-						<footer class="job-submission-form__footer">
-							<button class="job-submission-form__button" id="submitJobForm" type="submit">Submit job</button>
-						</footer>
+						<label class="job-submission-form__label" for="HPCClusters">HPC Cluster:</label>
+						<select
+							class="job-submission-form__input"
+							id="HPCClusters"
+							name="HPCClusters"
+							v-model="form.selectedHPCCluster"
+							required>
+							<option value="" selected disabled>Select a HPC Cluster</option>
+							<option v-for="HPCCluster in form.HPCClusters" :value="HPCCluster">
+								{{ HPCCluster }}
+							</option>
+						</select>						
+				
+						<label class="job-submission-form__label" for="select">Select:</label>
+						<input 
+							class="job-submission-form__input"
+							id="select"
+							name="select"
+							type="number"
+							value="1"
+							v-model="form.select"
+							disabled
+							required>
+				
+						<label for="ncpus" class="job-submission-form__label">Number of CPUs:</label>
+						<input 
+							class="job-submission-form__input"
+							id="ncpus"
+							name="ncpus"
+							type="number"
+							value="1"
+							min="1"
+							max="24"
+							v-model="form.ncpus"
+							required >
+				
+						<label class="job-submission-form__label" for="memory">Memory: </label>
+						<input
+							class="job-submission-form__input"
+							id="memory"
+							name="memory"
+							type="number"
+							value="1"
+							min="1"
+							max="504"
+							v-model="form.memory"
+							required>
+
+						<label class="job-submission-form__label" for="walltime">Walltime:</label>
+						<input
+							class="job-submission-form__input"
+							id="walltime"
+							name="walltime"
+							type="number"
+							value="1"
+							min="1"
+							max=""
+							v-model="form.walltime"
+							required>
+					</fieldset>
+					
+					<fieldset class="job-submission-form__fieldset" id="jobPayload">
+						<legend class="job-submission-form__fieldset__legend">Job payload</legend class="job-submission-form__fieldset__legend">
+						<label class="job-submission-form__label" for="payload">Payload: </label>
+						<textarea
+							class="job-submission-form__input"
+							id="payload"
+							name="payload"
+							cols="40"
+							rows="10"
+							placeholder="echo $HOSTNAME"
+							v-model="form.payload"
+							required></textarea>
+					</fieldset>
+
+					<fieldset class="job-submission-form__fieldset" id="jobScript">
+						<legend class="job-submission-form__fieldset__legend">Job script</legend class="job-submission-form__fieldset__legend">
+						<output>
+							<h2>{{ form.jobName }}.pbs</h2>
+							<p>Work directory: {{ form.workDirectory }}</p>
+							<p>#!/bin/bash</p>
+							<p>#</p>
+							<p>#PBS -A {{ form.selectedAccountGroup }}</p>
+							<p>#</p>
+							<p>#PBS -l select={{ form.select }}:ncpus={{ form.ncpus }}:mem={{ form.memory }}G</p>
+							<p>#PBS -l walltime={{ form.walltime }}</p>
+							<p>#PBS -N {{ form.jobName }}</p>
+							<p>#</p>
+							<p>{{ form.payload }}</p>	
+						</output>	
+					</fieldset>
+
+					<footer class="job-submission-form__footer">
+						<button class="job-submission-form__button" id="submitJobForm" type="submit">Submit job</button>
+					</footer>
 				</form>
 			</div>
 		</div>
