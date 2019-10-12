@@ -18,7 +18,6 @@ async function displayJobList() {
 			
 		jobsJSON.forEach(function(item, index, array) {
 			let job = new JobModel(item.jobid, item.jobidNumber, item.reqtime, item.sessionid, item.reqmem, item.state, item.nds, item.elapTime, item.tsk, item.queue,  item.jobname,  item.username);
-			console.log(job);
 			jobsList.push(job);
 		});
 
