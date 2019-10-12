@@ -101,5 +101,5 @@ textarea.job-submission-form__input {
 
 /* Validation */
 .job-submission-form__input:valid {
-	background: url('../fontawesome/svgs/solid/check-circle.svg') no-repeat;
+	/* background: url('../fontawesome/svgs/solid/check-circle.svg') no-repeat; */
 }
