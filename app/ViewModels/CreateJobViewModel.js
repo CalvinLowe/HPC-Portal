@@ -34,7 +34,17 @@ ${this.form.payload}`
 
 			console.log("Submitting");
 			console.log(pbsScript);
-			let machine = "@flashmgr2"; // TODO: Make this programmatic
+
+			let machine;
+
+			if (this.form.selectedHPCCluster == "Awoonga") {
+				machine = "@awonmgr2";
+			} else if (this.form.selectedHPCCluster == "FlashLite") {
+				machine = "@flashmgr2";
+			} else if (this.form.selectedHPCCluster == "Tinaroo") {
+				machine = "@tinmgr2.ib0";
+			}
+
 			await User.requestJobSubmission(this.form.jobName, this.form.workDirectory, pbsScript, machine);
 		}
 	}
