@@ -98,3 +98,8 @@ textarea.job-submission-form__input {
 #jobSubmissionSuccess .fa-check-circle {
 	justify-self: center;
 }
+
+/* Validation */
+.job-submission-form__input:valid {
+	background: url('../fontawesome/svgs/solid/check-circle.svg') no-repeat;
+}

@@ -60,6 +60,8 @@
 							minlength="1"
 							maxlength="15"
 							v-model="form.jobName"
+							pattern="[\w]+"
+							title="Job name may only contain a-z, A-Z, 0-9, _."
 							required>
 						
 						<label class="job-submission-form__label" for="workDirectory">Work directory:</label>
@@ -70,6 +72,8 @@
 							type="text"
 							value="" 
 							v-model="form.workDirectory"
+							pattern="[\w/]+"
+							title="Work directory may only contain a-z, A-Z, 0-9, _, /"
 							required>
 
 						<label class="job-submission-form__label" for="accountGroups" >Account group:</label>
@@ -133,7 +137,7 @@
 							type="number"
 							value=""
 							min="1"
-							max="504"
+							max="500"
 							v-model="form.memory"
 							required>
 
@@ -145,7 +149,7 @@
 							type="number"
 							value=""
 							min="1"
-							max=""
+							max="336"
 							v-model="form.walltime"
 							required>
 					</fieldset>
@@ -182,10 +186,10 @@
 								<p>#PBS -A {{ form.selectedAccountGroup }}</p>
 								<p>#</p>
 								<p>#PBS -l select={{ form.select }}:ncpus={{ form.ncpus }}:mem={{ form.memory }}G</p>
-								<p>#PBS -l walltime={{ form.walltime }}</p>
+								<p>#PBS -l walltime={{ form.walltime }}:00:00</p>
 								<p>#PBS -N {{ form.jobName }}</p>
 								<p>#</p>
-								<p>{{ form.payload }}</p>	
+								<p>{{ form.payload }}</p>
 							</fieldset>
 							
 						</output>
