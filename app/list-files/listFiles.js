@@ -2,10 +2,9 @@ import FileModel from './FileModel.js';
 import ListFileTableView from './ListFileTableView.js';
 import User from '../user/User.js';
 
-// let defaultFolderPath = `/home/${User.username}`;
+// let defaultFolderPath = `/home/${User.username}`; TODO:
 let defaultFolderPath = `/home/s4178182`;
 let fileNavigationStack = [defaultFolderPath];
-
 
 document.onload = displayFileList()
 	.catch(error => {
@@ -45,13 +44,3 @@ async function displayFileList(folderPath = defaultFolderPath) {
 	listFilesContainer.innerHTML = fileView.getFileListView();
 	listFilesContainer.addEventListener('click', handleFolderPathClick, true);
 }
-
-//backButton.addEventListener('click', back, true);
-//let backButton = document.getElementById("backButton");
-// function back() {
-// 	console.log("back clicked");
-// 	let navigateBack = fileNavigationStack.pop();
-// 	console.log(navigateBack);
-// 	displayFileList(navigateBack);
-
-// }

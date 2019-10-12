@@ -36,7 +36,24 @@
 
 	<main class="page">
 		<div class="page__content"> 
-			<section id="listFilesContainer">
+			<section class="list-files__container" id="listFilesContainer">
+				<button id="backButton">Back</button>
+				<table>
+					<thead>
+						<tr>
+							<th id="currentDirectory" colspan="10"></th>
+						</tr>
+						<tr class="file-list__file-attributes">
+							<th>Name</th>
+							<th>Owner</th>
+							<th>Last Modified</th>
+							<th>File size</th>
+							<th>Permission</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
 			</section>
 		</div>
 	</main>
@@ -53,6 +70,6 @@
 <script src="../utility/helper.js"></script>
 <script src="../login/login.js"></script>
 <script src="../logout/logout.js"></script>
-<script type="module" src="listFiles.js"></script>
+<script type="module" src="listFiles.js"></script> -->
 </body>
 </html>
