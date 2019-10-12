@@ -1,5 +1,5 @@
 import FileModel from './FileModel.js';
-import ListFileTableView from './ListFileTableView.js';
+import ListFilesTableView from './ListFilesTableView.js';
 import User from '../user/User.js';
 
 // let defaultFolderPath = `/home/${User.username}`; TODO:
@@ -40,7 +40,7 @@ async function displayFileList(folderPath = defaultFolderPath) {
 	});
 		
 	let listFilesContainer = document.getElementById("listFilesContainer");
-	let fileView = new ListFileTableView(fileList, folderPath);
+	let fileView = new ListFilesTableView(fileList, folderPath);
 	listFilesContainer.innerHTML = fileView.getFileListView();
 	listFilesContainer.addEventListener('click', handleFolderPathClick, true);
 }
