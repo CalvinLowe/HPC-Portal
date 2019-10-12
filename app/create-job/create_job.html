@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" type="image/png" href="https://web-publishing.uq.edu.au/sites/all/themes/custom/uq_standard/favicon.ico">
 	<title>Create new job | High Performance Computing Portal, Research Computing Centre - The University of Queensland, Australia</title>
+
 	<link rel="stylesheet" href="https://static.uq.net.au/v1/fonts/Roboto/roboto.css" media="all" />
-	<link rel="stylesheet" href="styles.css" />
 	<link rel="stylesheet" href="CreateJobFormStyles.css" />
 	<style media="all">
 		@import url("https://web-publishing.uq.edu.au/sites/all/themes/custom/uq_standard/css/styles.css?olt1wp");
@@ -15,6 +15,7 @@
 		@import url("https://web-publishing.uq.edu.au/sites/all/themes/custom/uq_standard/css/print.css?olt1wp");
 	</style>
 
+	<script defer src="../fontawesome/js/all.js"></script>
 </head>
 <body class="page-create-job">
 
@@ -67,7 +68,7 @@
 							id="workDirectory"
 							name="workDirectory"
 							type="text"
-							value="/home/s4178182" 
+							value="" 
 							v-model="form.workDirectory"
 							required>
 
@@ -107,7 +108,7 @@
 							id="select"
 							name="select"
 							type="number"
-							value="1"
+							value=""
 							v-model="form.select"
 							disabled
 							required>
@@ -118,7 +119,7 @@
 							id="ncpus"
 							name="ncpus"
 							type="number"
-							value="1"
+							value=""
 							min="1"
 							max="24"
 							v-model="form.ncpus"
@@ -130,7 +131,7 @@
 							id="memory"
 							name="memory"
 							type="number"
-							value="1"
+							value=""
 							min="1"
 							max="504"
 							v-model="form.memory"
@@ -142,7 +143,7 @@
 							id="walltime"
 							name="walltime"
 							type="number"
-							value="1"
+							value=""
 							min="1"
 							max=""
 							v-model="form.walltime"
@@ -163,26 +164,41 @@
 							required></textarea>
 					</fieldset>
 
-					<fieldset class="job-submission-form__fieldset" id="jobScript">
-						<legend class="job-submission-form__fieldset__legend">Job script</legend class="job-submission-form__fieldset__legend">
+					<fieldset class="job-submission-form__fieldset" id="review">
+						<legend class="job-submission-form__fieldset__legend">Review</legend class="job-submission-form__fieldset__legend">
 						<output>
-							<h2>{{ form.jobName }}.pbs</h2>
-							<p>Work directory: {{ form.workDirectory }}</p>
-							<p>#!/bin/bash</p>
-							<p>#</p>
-							<p>#PBS -A {{ form.selectedAccountGroup }}</p>
-							<p>#</p>
-							<p>#PBS -l select={{ form.select }}:ncpus={{ form.ncpus }}:mem={{ form.memory }}G</p>
-							<p>#PBS -l walltime={{ form.walltime }}</p>
-							<p>#PBS -N {{ form.jobName }}</p>
-							<p>#</p>
-							<p>{{ form.payload }}</p>	
-						</output>	
+							<fieldset>
+								<legend>File name:</legend>
+								<h2 v-if="form.jobName">{{ form.jobName }}.pbs</h2>
+							</fieldset>
+							<fieldset>
+								<legend>Work directory:</legend>
+								<p>{{ form.workDirectory }}</p>
+							</fieldset>
+							<fieldset>
+								<legend>Job script:</legend>
+								<p>#!/bin/bash</p>
+								<p>#</p>
+								<p>#PBS -A {{ form.selectedAccountGroup }}</p>
+								<p>#</p>
+								<p>#PBS -l select={{ form.select }}:ncpus={{ form.ncpus }}:mem={{ form.memory }}G</p>
+								<p>#PBS -l walltime={{ form.walltime }}</p>
+								<p>#PBS -N {{ form.jobName }}</p>
+								<p>#</p>
+								<p>{{ form.payload }}</p>	
+							</fieldset>
+							
+						</output>
+						<button class="job-submission-form__button" id="submitJobForm" type="submit">Submit job</button>	
 					</fieldset>
 
-					<footer class="job-submission-form__footer">
-						<button class="job-submission-form__button" id="submitJobForm" type="submit">Submit job</button>
-					</footer>
+					<fieldset class="job-submission-form__fieldset job-submission-form__fieldset--success" id="jobSubmissionSuccess">
+						<legend class="job-submission-form__fieldset__legend">Job Submission Successful</legend class="job-submission-form__fieldset__legend">
+						<i class="fas fa-4x fa-check-circle"></i>
+						<p class="job-submission-form__success-message">Your job "Job Name" was submitted successfully. What would you like to do next?</p>
+						<button class="job-submission-form__button" id="viewActiveJobs">View active jobs</button>
+						<button class="job-submission-form__button" id="submitNew">Submit a new job</button>
+					</fieldset>
 				</form>
 			</div>
 		</div>
