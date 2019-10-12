@@ -97,6 +97,18 @@ export default class User {
 		return data.commandResult;
 	}
 
+	static async requestListActiveJobs() {
+		const accessToken = await User.getAccessToken()
+			.catch(error => {
+				console.log(error);
+			});
+
+		const url = `https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/listall?access_token=${accessToken}`;
+		const response = await fetch(url);
+		const data = await response.json();
+		return data.commandResult;
+	}
+
 	static async requestUserGroups() {
 		const accessToken = await User.getAccessToken()
 			.catch(error => {
@@ -132,5 +144,4 @@ export default class User {
 		
 		const response = await fetch(url);
 	}
-
 }

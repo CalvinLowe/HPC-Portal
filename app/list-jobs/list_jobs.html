@@ -34,7 +34,29 @@
 	</nav>
 
 	<main class="page">
-		<div class="page__content"> 
+		<div class="page__content">
+			<section class="list-jobs__container" id="listJobsContainer">
+					<table>
+						<thead>
+							<tr class="job-list__job-attributes">
+								<th>Job ID</th>
+								<th>Job ID Number</th>
+								<th>Requested Time</th>
+								<th>Session ID</th>
+								<th>Requested Memory</th>
+								<th>State</th>
+								<th>NDS</th>
+								<th>Elapsed Time</th>
+								<th>TSK</th>
+								<th>Queue</th>
+								<th>Job Name</th>
+								<th>Username</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</section>
 		</div>
 	</main>
 
@@ -50,5 +72,6 @@
 <script src="../utility/helper.js"></script>
 <script src="../login/login.js"></script>
 <script src="../logout/logout.js"></script>
+<script type="module" src="listJobs.js"></script>
 </body>
 </html>

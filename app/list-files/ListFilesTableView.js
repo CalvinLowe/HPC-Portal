@@ -1,4 +1,4 @@
-export default class ListFileViewTable {
+export default class ListFilesViewTable {
 	constructor(fileList, currentPath) {
 		this._fileListViewMarkup =
 		`<button id="backButton">Back</button>
