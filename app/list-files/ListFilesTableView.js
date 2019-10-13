@@ -1,10 +1,23 @@
 export default class ListFilesViewTable {
-	constructor(fileList, currentPath) {
+	constructor(fileList, currentPath, previousPath) {
 		this._fileListViewMarkup =
 		`<table class="list-files__table">
 			<thead>
 				<tr>
-					<th id="currentDirectory" colspan="10">${currentPath}</th>
+					<th id="currentDirectory" colspan="5">
+						Current directory: ${currentPath}
+					</th>
+				</tr>
+				<tr>
+					<!--<th colspan="5">
+						Return to previous directory: <a id="navigableDirectory" data-directory-path=${previousPath}>${previousPath}</a>
+					</th>-->
+				</tr>
+				
+				<tr>
+					<th colspan="5">
+						<a href="/create-job?workDirectory=${currentPath}">Submit job from current directory</a>
+					</th>
 				</tr>
 				<tr class="file-list__file-attributes">
 					<th>Name</th>

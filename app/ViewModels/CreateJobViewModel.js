@@ -23,6 +23,8 @@ let createJobVM = new Vue({
 	},
 	async created() {
 		this.form.accountGroups = await User.requestUserGroups();
+		let params = new URLSearchParams(document.location.search.substring(1));
+		this.form.workDirectory = params.get("workDirectory");
 	},
 	methods: {
 		async onSubmit() {

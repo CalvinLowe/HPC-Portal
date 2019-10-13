@@ -15,6 +15,14 @@ function getCurrentPath() {
 	return fileNavigationStack[fileNavigationStack.length - 1];
 }
 
+function getPreviousPath() {
+	if (fileNavigationStack.length > 1) {
+		return fileNavigationStack[fileNavigationStack.length - 2];
+	} else {
+		return defaultFolderPath;
+	}
+}
+
 function handleFolderPathClick() {
 	if(event.target && event.target.id == 'navigableDirectory') {
 		displayFileList(event.target.dataset.directoryPath);
@@ -40,7 +48,9 @@ async function displayFileList(folderPath = defaultFolderPath) {
 	});
 		
 	let listFilesContainer = document.getElementById("listFilesContainer");
-	let fileView = new ListFilesTableView(fileList, folderPath);
+	let previousPath = getPreviousPath();
+	console.log(previousPath);
+	let fileView = new ListFilesTableView(fileList, folderPath, previousPath);
 	listFilesContainer.innerHTML = fileView.getFileListView();
 	listFilesContainer.addEventListener('click', handleFolderPathClick, true);
 }
