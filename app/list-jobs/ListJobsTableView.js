@@ -14,6 +14,7 @@ export default class ListJobsViewTable {
 				</tr>
 			</thead>
 			<tbody>
+				${jobList.length == 0 ? `<tr><td colspan="7">There are no jobs currently running.</td></tr>`: ``}
 				${jobList.map(job => 
 					`<tr>
 						<td class="${job.state == "R" ? `job-running` : 'job-queued'}">${job.getState()}</td>
