@@ -28,4 +28,24 @@ export default class FileModel {
 	get jobName() { return this._jobName; }
 	get userName() { return this._userName; }
 	//#endregion
+
+	get HPCCluster() {
+		if (this._jobID.includes("awonmgr2")) {
+			return "Awoonga";
+		} else if (this._jobID.includes("tinmgr2.ib0")) {
+			return "Tinaroo";
+		} else if (this._jobID.includes("flashmgr2")) {
+			return "FlashLite";
+		}
+	}
+
+	getState() {
+		if (this.state == "R") {
+			return "Running";
+		} else if (this.state == "Q") {
+			return "Queued";
+		} else {
+			return "Unknown";
+		}
+	}
 }
