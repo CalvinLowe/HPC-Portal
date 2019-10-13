@@ -31,8 +31,8 @@ export default class ListFilesViewTable {
 				${fileList.map(file => 
 					`<tr>
 						<td>
-							${file.IsDirectory() ? `<i class="fas fa-folder"></i>` : ''}
-							${file.IsFile() ? `<i class="fas fa-file"></i>` : ''}
+							${file.IsDirectory() ? `<i class="far fa-folder"></i>` : ''}
+							${file.IsFile() ? `<i class="far fa-file"></i>` : ''}
 							${file.IsSymlink() ? `<i class="fas fa-link"></i>` : ''}
 							${file.IsDirectory() ? `<a id="navigableDirectory" data-directory-path="${file.path}">` : ''}
 							${file.name}
