@@ -53,6 +53,23 @@ export let HPCNavigationComponent = {
 			return sessionStorage.getItem("isLoggedIn") == "true";
 		}
 	},
+	methods: {
+		async logout() {
+			try {
+				let response = await fetch('https://hpcportal.rcc.uq.edu.au/client/api/end_session');
+				let data = await response.json();
+				if (data.message.includes("invalidated")) {
+					console.log("Logout successful");
+					sessionStorage.setItem("isLoggedIn", "false");
+					redirectAfterLogout();
+				} else {
+					console.log("Something went wrong...");
+				}
+			} catch(error) {
+				console.error(error);
+			}
+		}
+	},
 	template: `
 <div class="region region-navigation">
 	<div id="block-system-main-menu" class="block block-system block-menu main-menu">
@@ -61,7 +78,7 @@ export let HPCNavigationComponent = {
 			<navigation-item location="/create-job" title="Create new job" v-if="isLoggedIn">Create new job</navigation-item>
 			<navigation-item location="/list-jobs" title="List active jobs" v-if="isLoggedIn">List active jobs</navigation-item>
 			<navigation-item location="/list-files" title="List files" v-if="isLoggedIn">List files</navigation-item>
-			<navigation-item location="#" title="Log out" id="logout" class="last" v-if="isLoggedIn">Log out</navigation-item>
+			<navigation-item location="#" title="Log out" id="logout" class="last" v-if="isLoggedIn" @click.native="logout">Log out</navigation-item>
 			<navigation-item location="#" title="Log in" id="login" class="last" v-else>Log in</navigation-item>
 		</ul>
 	</div>

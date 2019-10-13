@@ -4,17 +4,9 @@ let interval;
 let homePageLocationPath = "/";
 let redirectLocationPath = "/create-job";
 
-function isDevelopmentEnvironment() {
-	if (window.location.hostname === "hpcportal.local") {
-		window.onload = sessionStorage.setItem("isLoggedIn", "true");
-	}
-}
-
-
 window.onload = initialiseLogin();
 
 function initialiseLogin() {
-	isDevelopmentEnvironment();
 	initialiseLoginButton();
 	loginUI();
 }
@@ -84,5 +76,16 @@ function redirectAfterLogin() {
 	console.log("Redirecting...");
 	setTimeout(function () {
 		window.location.pathname = redirectLocationPath;
+	}, 1000);
+}
+
+function redirectAfterLogout() {
+	console.log("Redirecting...");
+	setTimeout(function() {
+		if (window.location.pathname != homePageLocationPath) {
+			window.location.pathname = homePageLocationPath;
+		} else {
+			window.location.reload();
+		}
 	}, 1000);
 }
