@@ -15,9 +15,10 @@
 		@import url("https://web-publishing.uq.edu.au/sites/all/themes/custom/uq_standard/css/print.css?olt1wp");
 	</style>
 
+	<link rel="stylesheet" href="../style.css" media="all" />
 	<script defer src="../fontawesome/js/all.js"></script>
 </head>
-<body class="page-list-jobs">
+<body>
 
 	<nav class="skip-link">
 		<a href="#main-menu" class="element-invisible element-focusable">Skip to menu</a>
@@ -34,10 +35,10 @@
 		<hpc-navigation></hpc-navigation>
 	</nav>
 
-	<main class="page">
+	<main class="page page-list-jobs">
 		<div class="page__content">
 			<section class="list-jobs__container" id="listJobsContainer">
-					<table>
+					<table class="list-jobs__table">
 						<thead>
 							<tr class="job-list__job-attributes">
 								<th>Job ID</th>
@@ -46,9 +47,7 @@
 								<th>Session ID</th>
 								<th>Requested Memory</th>
 								<th>State</th>
-								<th>NDS</th>
 								<th>Elapsed Time</th>
-								<th>TSK</th>
 								<th>Queue</th>
 								<th>Job Name</th>
 								<th>Username</th>
@@ -56,8 +55,6 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><i class="fas fa-spinner fa-pulse"></i></td>
-								<td><i class="fas fa-spinner fa-pulse"></i></td>
 								<td><i class="fas fa-spinner fa-pulse"></i></td>
 								<td><i class="fas fa-spinner fa-pulse"></i></td>
 								<td><i class="fas fa-spinner fa-pulse"></i></td>

@@ -1,11 +1,7 @@
-.create__new__job__page {
-	background-color: #dfdfdf;
-}
-
 .job-submission-form {
 	background-color: hsl(0, 0%, 97%);
 	border-top: 6px solid #51247a;
-	margin: 2rem auto;
+	margin: auto;
 	box-shadow: 0 4px 6px hsla(0, 0%, 0%, 0.2);
 	max-width: 50rem;
 	padding-bottom: 2rem;

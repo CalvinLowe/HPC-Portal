@@ -15,9 +15,10 @@
 		@import url("https://web-publishing.uq.edu.au/sites/all/themes/custom/uq_standard/css/print.css?olt1wp");
 	</style>
 
+	<link rel="stylesheet" href="../style.css" media="all" />
 	<script defer src="../fontawesome/js/all.js"></script>
 </head>
-<body class="page-list-files">
+<body>
 
 	<nav class="skip-link">
 		<a href="#main-menu" class="element-invisible element-focusable">Skip to menu</a>
@@ -34,11 +35,10 @@
 		<hpc-navigation></hpc-navigation>
 	</nav>
 
-	<main class="page">
+	<main class="page page-list-files">
 		<div class="page__content"> 
 			<section class="list-files__container" id="listFilesContainer">
-				<button id="backButton">Back</button>
-				<table>
+				<table class="list-files__table">
 					<thead>
 						<tr>
 							<th id="currentDirectory" colspan="10"><i class="fas fa-spinner fa-pulse"></i></th>
