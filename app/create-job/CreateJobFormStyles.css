@@ -31,19 +31,19 @@
 	color: white;
 }
 
-.job-submission-form__fieldset:nth-of-type(1) {
+.job-submission-form__fieldset#jobDataManagement {
 	border-top: 6px solid #db2b39;
 }
 
-.job-submission-form__fieldset:nth-of-type(2) {
+.job-submission-form__fieldset#jobDetails {
 	border-top: 6px solid #f3a712;
 }
 
-.job-submission-form__fieldset:nth-of-type(3) {
+.job-submission-form__fieldset#jobPayload {
 	border-top: 6px solid #c200fb;
 }
 
-.job-submission-form__fieldset:nth-of-type(4) {
+.job-submission-form__fieldset#review {
 	border-top: 6px solid #ec0868;
 }
 
@@ -99,7 +99,27 @@ textarea.job-submission-form__input {
 	justify-self: center;
 }
 
+
+
 /* Validation */
-.job-submission-form__input:valid {
-	/* background: url('../fontawesome/svgs/solid/check-circle.svg') no-repeat; */
+.job-submission-form__input:focus:valid {
+	border-left: 3px solid #82c91e;
+}
+.job-submission-form__input:focus:required:invalid {
+	border-left: 3px solid #db2b39
+}
+
+/* Animation */
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.slide-fade-enter-active {
+	transition: all 1s ease 1s;
+}
+.slide-fade-leave-active {
+	transition: all 1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+	/* .slide-fade-leave-active below version 2.1.8 */ {
+	transform: translateX(50px);
+	opacity: 0;
 }

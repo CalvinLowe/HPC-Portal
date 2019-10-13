@@ -42,55 +42,59 @@
 				id="jobSubmissionForm"
 				name="jobSubmissionForm"
 				v-on:submit.prevent="onSubmit">
-				<header class="job-submission-form__header">
-					<h1 class="job-submission-form__heading">Create and submit a new HPC job</h1>
-					<p class="job-submission-form__description">Enter your job details to create your pbs script and then hit submit!</p>
-				</header>
-				
-					<fieldset class="job-submission-form__fieldset" id="jobDataManagement">
-						<legend class="job-submission-form__fieldset__legend">Data management</legend class="job-submission-form__fieldset__legend">
-						
-						<label class="job-submission-form__label" for="jobName">Job name:</label>
-						<input
-							class="job-submission-form__input"
-							id="jobName"
-							name="jobName"
-							type="text"
-							value=""
-							minlength="1"
-							maxlength="15"
-							v-model="form.jobName"
-							pattern="[\w]+"
-							title="Job name may only contain a-z, A-Z, 0-9, _."
-							required>
-						
-						<label class="job-submission-form__label" for="workDirectory">Work directory:</label>
-						<input
-							class="job-submission-form__input"
-							id="workDirectory"
-							name="workDirectory"
-							type="text"
-							value="" 
-							v-model="form.workDirectory"
-							pattern="[\w/]+"
-							title="Work directory may only contain a-z, A-Z, 0-9, _, /"
-							required>
 
-						<label class="job-submission-form__label" for="accountGroups" >Account group:</label>
-						<select
-							class="job-submission-form__input"
-							id="accountGroups"
-							name="accountGroups"
-							v-model="form.selectedAccountGroup"
-							required>
-							<option value="" selected disabled>Select a group</option>
-							<option v-for="accountGroup in form.accountGroups" :value="accountGroup">
-								{{accountGroup}}
-							</option>
-						</select>
-					</fieldset>
+					<header v-if="!submitted" class="job-submission-form__header">
+						<h1 class="job-submission-form__heading">Create and submit a new HPC job</h1>
+						<p class="job-submission-form__description">Enter your job details to create your pbs script and then hit submit!</p>
+					</header>
+				
+					<transition name="slide-fade"></transition>
+						<fieldset v-if="!submitted" class="job-submission-form__fieldset" id="jobDataManagement">
+							<legend class="job-submission-form__fieldset__legend">Data management</legend class="job-submission-form__fieldset__legend">
+							
+							<label class="job-submission-form__label" for="jobName">Job name:</label>
+							<input
+								class="job-submission-form__input"
+								id="jobName"
+								name="jobName"
+								type="text"
+								value=""
+								minlength="1"
+								maxlength="15"
+								v-model="form.jobName"
+								pattern="[\w]+"
+								title="Job name may only contain a-z, A-Z, 0-9, _."
+								required>
+							
+							<label class="job-submission-form__label" for="workDirectory">Work directory:</label>
+							<input
+								class="job-submission-form__input"
+								id="workDirectory"
+								name="workDirectory"
+								type="text"
+								value="" 
+								v-model="form.workDirectory"
+								pattern="[\w/]+"
+								title="Work directory may only contain a-z, A-Z, 0-9, _, /"
+								required>
+
+							<label class="job-submission-form__label" for="accountGroups" >Account group:</label>
+							<select
+								class="job-submission-form__input"
+								id="accountGroups"
+								name="accountGroups"
+								v-model="form.selectedAccountGroup"
+								required>
+								<option value="" selected disabled>Select a group</option>
+								<option v-for="accountGroup in form.accountGroups" :value="accountGroup">
+									{{accountGroup}}
+								</option>
+							</select>
+						</fieldset>
+					</transition>
 					
-					<fieldset class="job-submission-form__fieldset" id="jobDetails">
+					<transition name="slide-fade">
+						<fieldset v-if="!submitted" class="job-submission-form__fieldset" id="jobDetails">
 						<legend class="job-submission-form__fieldset__legend">Job details</legend class="job-submission-form__fieldset__legend">
 
 						<label class="job-submission-form__label" for="HPCClusters">HPC Cluster:</label>
@@ -152,57 +156,65 @@
 							max="336"
 							v-model="form.walltime"
 							required>
-					</fieldset>
+						</fieldset>
+					</transition>
 					
-					<fieldset class="job-submission-form__fieldset" id="jobPayload">
-						<legend class="job-submission-form__fieldset__legend">Job payload</legend class="job-submission-form__fieldset__legend">
-						<label class="job-submission-form__label" for="payload">Payload: </label>
-						<textarea
-							class="job-submission-form__input"
-							id="payload"
-							name="payload"
-							cols="40"
-							rows="10"
-							placeholder="echo $HOSTNAME"
-							v-model="form.payload"
-							required></textarea>
-					</fieldset>
+					<transition name="slide-fade">
+						<fieldset v-if="!submitted" class="job-submission-form__fieldset" id="jobPayload">
+							<legend class="job-submission-form__fieldset__legend">Job payload</legend class="job-submission-form__fieldset__legend">
+							<label class="job-submission-form__label" for="payload">Payload: </label>
+							<textarea
+								class="job-submission-form__input"
+								id="payload"
+								name="payload"
+								cols="40"
+								rows="10"
+								placeholder="echo $HOSTNAME"
+								v-model="form.payload"
+								required></textarea>
+						</fieldset>
+					</transition>
+					
+					<transition name="slide-fade">
+						<fieldset v-if="!submitted" class="job-submission-form__fieldset" id="review">
+							<legend class="job-submission-form__fieldset__legend">Review</legend class="job-submission-form__fieldset__legend">
+							<output>
+								<fieldset>
+									<legend>File name:</legend>
+									<h2 v-if="form.jobName">{{ form.jobName }}.pbs</h2>
+								</fieldset>
+								<fieldset>
+									<legend>Work directory:</legend>
+									<p>{{ form.workDirectory }}</p>
+								</fieldset>
+								<fieldset>
+									<legend>Job script:</legend>
+									<p>#!/bin/bash</p>
+									<p>#</p>
+									<p>#PBS -A {{ form.selectedAccountGroup }}</p>
+									<p>#</p>
+									<p>#PBS -l select={{ form.select }}:ncpus={{ form.ncpus }}:mem={{ form.memory }}G</p>
+									<p>#PBS -l walltime={{ form.walltime }}:00:00</p>
+									<p>#PBS -N {{ form.jobName }}</p>
+									<p>#</p>
+									<p>{{ form.payload }}</p>
+								</fieldset>
+								
+							</output>
+							<button class="job-submission-form__button" id="submitJobForm" type="submit"><span v-if="!submitting">Submit job</span><td><i v-if="submitting" class="fas fa-spinner fa-pulse"></i></td></button>	
+						</fieldset>
+					</transition>
 
-					<fieldset class="job-submission-form__fieldset" id="review">
-						<legend class="job-submission-form__fieldset__legend">Review</legend class="job-submission-form__fieldset__legend">
-						<output>
-							<fieldset>
-								<legend>File name:</legend>
-								<h2 v-if="form.jobName">{{ form.jobName }}.pbs</h2>
-							</fieldset>
-							<fieldset>
-								<legend>Work directory:</legend>
-								<p>{{ form.workDirectory }}</p>
-							</fieldset>
-							<fieldset>
-								<legend>Job script:</legend>
-								<p>#!/bin/bash</p>
-								<p>#</p>
-								<p>#PBS -A {{ form.selectedAccountGroup }}</p>
-								<p>#</p>
-								<p>#PBS -l select={{ form.select }}:ncpus={{ form.ncpus }}:mem={{ form.memory }}G</p>
-								<p>#PBS -l walltime={{ form.walltime }}:00:00</p>
-								<p>#PBS -N {{ form.jobName }}</p>
-								<p>#</p>
-								<p>{{ form.payload }}</p>
-							</fieldset>
-							
-						</output>
-						<button class="job-submission-form__button" id="submitJobForm" type="submit">Submit job</button>	
-					</fieldset>
+					<transition name="slide-fade">
+						<fieldset v-if="submitted" class="job-submission-form__fieldset job-submission-form__fieldset--success" id="jobSubmissionSuccess">
+							<legend class="job-submission-form__fieldset__legend">Job Submission Successful</legend class="job-submission-form__fieldset__legend">
+							<i class="fas fa-4x fa-check-circle"></i>
+							<p class="job-submission-form__success-message">Your job "Job Name" was submitted successfully. What would you like to do next?</p>
+							<button v-on:click="viewActiveJobs" class="job-submission-form__button" id="viewActiveJobs" type="button">View active jobs</button>
+							<button v-on:click="submitNewJob" class="job-submission-form__button" id="submitNew" type="button">Submit a new job</button>
+						</fieldset>
+					</transition>
 
-					<fieldset class="job-submission-form__fieldset job-submission-form__fieldset--success" id="jobSubmissionSuccess">
-						<legend class="job-submission-form__fieldset__legend">Job Submission Successful</legend class="job-submission-form__fieldset__legend">
-						<i class="fas fa-4x fa-check-circle"></i>
-						<p class="job-submission-form__success-message">Your job "Job Name" was submitted successfully. What would you like to do next?</p>
-						<button class="job-submission-form__button" id="viewActiveJobs">View active jobs</button>
-						<button class="job-submission-form__button" id="submitNew">Submit a new job</button>
-					</fieldset>
 				</form>
 			</div>
 		</div>
@@ -220,5 +232,6 @@
 
 <script src="../login/login.js"></script>
 <script src="../logout/logout.js"></script>
+<script src="createJob.js"></script>
 </body>
 </html>

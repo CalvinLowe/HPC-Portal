@@ -2,6 +2,10 @@ import User from '../user/User.js';
 
 let createJobVM = new Vue({
 	el: '.form__container',
+	props: {
+		submitting: false,
+		submitted: false,
+	},
 	data: {
 		form: {
 			jobName: '',
@@ -22,6 +26,7 @@ let createJobVM = new Vue({
 	},
 	methods: {
 		async onSubmit() {
+			this.submitting = true;
 			let pbsScript = `#!/bin/bash
 #
 #PBS -A ${this.form.selectedAccountGroup}
@@ -44,8 +49,16 @@ ${this.form.payload}`
 			} else if (this.form.selectedHPCCluster == "Tinaroo") {
 				machine = "@tinmgr2.ib0";
 			}
-
+			
 			await User.requestJobSubmission(this.form.jobName, this.form.workDirectory, pbsScript, machine);
+			this.submitted = true;
+			this.submitting = false;
+		},
+		viewActiveJobs: function() {
+			window.location.href = "/list-jobs";
+		},
+		submitNewJob: function() {
+			location.reload();
 		}
 	}
 });
