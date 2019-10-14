@@ -6,6 +6,6 @@ let listFilesBookmarksVM = new Vue({
 		bookmarks: ''
 	},
 	async created() {
-		this.bookmarks = await requestAccessToken.requestAccessibleLocation();
+		this.bookmarks = await requestAccessToken.requestAccessibleLocation().catch(error => {console.log(error);});
 	},
 });

@@ -22,7 +22,7 @@ let createJobVM = new Vue({
 		},
 	},
 	async created() {
-		this.form.accountGroups = await requestAccessToken.requestUserGroups();
+		this.form.accountGroups = await requestAccessToken.requestUserGroups().catch(error => {console.log(error);});
 		let params = new URLSearchParams(document.location.search.substring(1));
 		this.form.workDirectory = params.get("workDirectory");
 	},
@@ -38,9 +38,6 @@ let createJobVM = new Vue({
 #PBS -N ${this.form.jobName}
 #
 ${this.form.payload}`
-
-			console.log("Submitting");
-			console.log(pbsScript);
 
 			let machine;
 

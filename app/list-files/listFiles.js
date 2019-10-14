@@ -5,10 +5,7 @@ import requestAccessToken from '../RequestAPI/RequestAPI.js';
 let defaultFolderPath = `/home/s4178182`; //TODO:
 let fileNavigationStack = [defaultFolderPath];
 
-document.onload = displayFileList()
-	.catch(error => {
-		console.log(error);
-	});
+document.onload = displayFileList();
 
 function getCurrentPath() {
 	return fileNavigationStack[fileNavigationStack.length - 1];
@@ -29,10 +26,7 @@ function handleFolderPathClick() {
 }
 
 async function displayFileList(folderPath = defaultFolderPath) {
-	const filesJSON = await requestAccessToken.requestFiles(folderPath)
-		.catch(error => {
-			console.log(error);
-		});
+	const filesJSON = await requestAccessToken.requestFiles(folderPath).catch(error => {console.log(error);});
 	
 	if (filesJSON) {
 		 fileNavigationStack.push(folderPath);

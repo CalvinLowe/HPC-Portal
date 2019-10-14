@@ -2,16 +2,10 @@ import JobModel from './JobModel.js';
 import ListJobsTableView from './ListJobsTableView.js';
 import requestAccessToken from '../RequestAPI/RequestAPI.js';
 
-document.onload = displayJobList()
-	.catch(error => {
-		console.log(error);
-	});
+document.onload = displayJobList();
 
 async function displayJobList() {
-	const jobsJSON = await requestAccessToken.requestListActiveJobs()
-		.catch(error => {
-			console.log(error);
-		});
+	const jobsJSON = await requestAccessToken.requestListActiveJobs().catch(error => {console.log(error);});
 	
 	if (jobsJSON) {
 		let jobsList = [];
