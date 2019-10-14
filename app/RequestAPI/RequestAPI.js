@@ -63,4 +63,12 @@ export default class RequestAPI {
 		});
 		return boomarks;
 	}
+
+	static async requestUserInfo() {
+		const accessToken = await RequestAPI.requestAccessToken().catch(error => {console.log(error);});
+		const url = `https://hpcportal.rcc.uq.edu.au/hpcbackend/api/execute/user?access_token=${accessToken}`;
+		const response = await fetch(url);
+		const data = await response.json();
+		return data.commandResult;
+	}
 }
