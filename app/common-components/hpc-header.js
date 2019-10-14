@@ -1,6 +1,3 @@
-// import { redirectAfterLogout } from '../login/login.js';
-
-
 // Header
 export let UQGlobalMenu = {
 	template: `
@@ -64,7 +61,14 @@ export let HPCNavigationComponent = {
 				if (data.message.includes("invalidated")) {
 					console.log("Logout successful");
 					sessionStorage.setItem("isLoggedIn", "false");
-					// redirectAfterLogout(); TODO:
+					sessionStorage.setItem("username", '');
+					setTimeout(function() {
+						if (window.location.pathname != '/') {
+							window.location.pathname = '/';
+						} else {
+							window.location.reload();
+						}
+					}, 1000);
 				} else {
 					console.log("Something went wrong...");
 				}

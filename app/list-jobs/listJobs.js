@@ -1,11 +1,11 @@
 import JobModel from './JobModel.js';
 import ListJobsTableView from './ListJobsTableView.js';
-import requestAccessToken from '../RequestAPI/RequestAPI.js';
+import RequestAPI from '../RequestAPI/RequestAPI.js';
 
 document.onload = displayJobList();
 
 async function displayJobList() {
-	const jobsJSON = await requestAccessToken.requestListActiveJobs().catch(error => {console.log(error);});
+	const jobsJSON = await RequestAPI.requestListActiveJobs().catch(error => {console.log(error);});
 	
 	if (jobsJSON) {
 		let jobsList = [];

@@ -1,4 +1,4 @@
-import requestAccessToken from '../RequestAPI/RequestAPI.js';
+import RequestAPI from '../RequestAPI/RequestAPI.js';
 
 let createJobVM = new Vue({
 	el: '.form__container',
@@ -22,7 +22,7 @@ let createJobVM = new Vue({
 		},
 	},
 	async created() {
-		this.form.accountGroups = await requestAccessToken.requestUserGroups().catch(error => {console.log(error);});
+		this.form.accountGroups = await RequestAPI.requestUserGroups().catch(error => {console.log(error);});
 		let params = new URLSearchParams(document.location.search.substring(1));
 		this.form.workDirectory = params.get("workDirectory");
 	},
@@ -49,7 +49,7 @@ ${this.form.payload}`
 				machine = "@tinmgr2.ib0";
 			}
 			
-			await requestAccessToken.requestJobSubmission(this.form.jobName, this.form.workDirectory, pbsScript, machine);
+			await RequestAPI.requestJobSubmission(this.form.jobName, this.form.workDirectory, pbsScript, machine);
 			this.submitted = true;
 			this.submitting = false;
 		},

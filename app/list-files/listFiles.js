@@ -1,6 +1,6 @@
 import FileModel from './FileModel.js';
 import ListFilesTableView from './ListFilesTableView.js';
-import requestAccessToken from '../RequestAPI/RequestAPI.js';
+import RequestAPI from '../RequestAPI/RequestAPI.js';
 
 let defaultFolderPath = `/home/s4178182`; //TODO:
 let fileNavigationStack = [defaultFolderPath];
@@ -26,7 +26,7 @@ function handleFolderPathClick() {
 }
 
 async function displayFileList(folderPath = defaultFolderPath) {
-	const filesJSON = await requestAccessToken.requestFiles(folderPath).catch(error => {console.log(error);});
+	const filesJSON = await RequestAPI.requestFiles(folderPath).catch(error => {console.log(error);});
 	
 	if (filesJSON) {
 		 fileNavigationStack.push(folderPath);

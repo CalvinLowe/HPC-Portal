@@ -1,4 +1,4 @@
-// import requestAccessToken from '../RequestAPI/RequestAPI.js';
+import RequestAPI from '../RequestAPI/RequestAPI.js';
 
 let isLoggedIn;
 let interval;
@@ -65,9 +65,8 @@ async function requestLoginStatus() {
 			window.clearInterval(interval);
 			sessionStorage.setItem("isLoggedIn", "true");
 
-			// let userInfoResponse = await RequestAPI.requestUserInfo().catch(error => {console.log(error);});
-			// sessionStorage.setItem("user", userInfoResponse.userName)
-
+			let userInfoResponse = await RequestAPI.requestUserInfo().catch(error => {console.log(error);});
+			sessionStorage.setItem("username", userInfoResponse.username)
 			redirectAfterLogin();
 		} else {
 			console.log("Login in progress");
@@ -82,16 +81,5 @@ function redirectAfterLogin() {
 	console.log("Redirecting...");
 	setTimeout(function () {
 		window.location.pathname = redirectLocationPath;
-	}, 1000);
-}
-
-function redirectAfterLogout() {
-	console.log("Redirecting...");
-	setTimeout(function() {
-		if (window.location.pathname != homePageLocationPath) {
-			window.location.pathname = homePageLocationPath;
-		} else {
-			window.location.reload();
-		}
 	}, 1000);
 }
