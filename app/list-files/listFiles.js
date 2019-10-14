@@ -2,7 +2,7 @@ import FileModel from './FileModel.js';
 import ListFilesTableView from './ListFilesTableView.js';
 import RequestAPI from '../RequestAPI/RequestAPI.js';
 
-let defaultFolderPath = `/home/s4178182`; //TODO:
+let defaultFolderPath = `/home/${sessionStorage.getItem('username')}`;
 let fileNavigationStack = [defaultFolderPath];
 
 document.onload = displayFileList();

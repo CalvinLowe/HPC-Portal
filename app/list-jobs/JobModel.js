@@ -32,7 +32,7 @@ export default class FileModel {
 	get HPCCluster() {
 		if (this._jobID.includes("awonmgr2")) {
 			return "Awoonga";
-		} else if (this._jobID.includes("tinmgr2.ib0")) {
+		} else if (this._jobID.includes("tinmgr2")) {
 			return "Tinaroo";
 		} else if (this._jobID.includes("flashmgr2")) {
 			return "FlashLite";

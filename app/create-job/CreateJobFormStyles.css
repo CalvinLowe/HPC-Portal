@@ -27,6 +27,26 @@
 	color: white;
 }
 
+.job-submission-form__output {
+	font-family: monospace;
+
+}
+.job-submission-form__output::selection {
+	background: #9c27b0;
+}
+.job-submission-form__output fieldset {
+	color: #f5d67b;
+	background-color: #001628;
+}
+.job-submission-form__output legend {
+	background-color: black;
+	border-bottom: 6px solid  #9c27b0;
+}
+
+.job-submission-form__output__jobscript {
+	white-space: pre-line;
+}
+
 .job-submission-form__fieldset#jobDataManagement {
 	border-top: 6px solid #db2b39;
 }
@@ -94,7 +114,6 @@ textarea.job-submission-form__input {
 #jobSubmissionSuccess .fa-check-circle {
 	justify-self: center;
 }
-
 
 
 /* Validation */

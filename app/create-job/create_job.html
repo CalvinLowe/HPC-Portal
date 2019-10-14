@@ -170,7 +170,7 @@
 								name="payload"
 								cols="40"
 								rows="10"
-								placeholder="echo $HOSTNAME"
+								placeholder="e.g. sleep 30m"
 								v-model="form.payload"
 								required></textarea>
 						</fieldset>
@@ -179,28 +179,27 @@
 					<transition name="slide-fade">
 						<fieldset v-if="!submitted" class="job-submission-form__fieldset" id="review">
 							<legend class="job-submission-form__fieldset__legend">Review</legend class="job-submission-form__fieldset__legend">
-							<output>
-								<fieldset>
+							<output class="job-submission-form__output">
+								<fieldset class="job-submission-form__output__job-name">
 									<legend>File name:</legend>
-									<h2 v-if="form.jobName">{{ form.jobName }}.pbs</h2>
+									<p v-if="form.jobName">{{ form.jobName }}.pbs</p>
 								</fieldset>
-								<fieldset>
+								<fieldset class="job-submission-form__output__work-directory">
 									<legend>Work directory:</legend>
 									<p>{{ form.workDirectory }}</p>
 								</fieldset>
-								<fieldset>
+								<fieldset class="job-submission-form__output__jobscript">
 									<legend>Job script:</legend>
-									<p>#!/bin/bash</p>
-									<p>#</p>
-									<p>#PBS -A {{ form.selectedAccountGroup }}</p>
-									<p>#</p>
-									<p>#PBS -l select={{ form.select }}:ncpus={{ form.ncpus }}:mem={{ form.memory }}G</p>
-									<p>#PBS -l walltime={{ form.walltime }}:00:00</p>
-									<p>#PBS -N {{ form.jobName }}</p>
-									<p>#</p>
-									<p>{{ form.payload }}</p>
+									#!/bin/bash
+									#
+									#PBS -A {{ form.selectedAccountGroup }}
+									#
+									#PBS -l select={{ form.select }}:ncpus={{ form.ncpus }}:mem={{ form.memory }}G
+									#PBS -l walltime={{ form.walltime }}:00:00
+									#PBS -N {{ form.jobName }}
+									#
+									{{ form.payload }}
 								</fieldset>
-								
 							</output>
 							<button class="job-submission-form__button" id="submitJobForm" type="submit"><span v-if="!submitting">Submit job</span><td><i v-if="submitting" class="fas fa-spinner fa-pulse"></i></td></button>	
 						</fieldset>
