@@ -1,3 +1,5 @@
+// import requestAccessToken from '../RequestAPI/RequestAPI.js';
+
 let isLoggedIn;
 let interval;
 
@@ -20,8 +22,8 @@ function initialiseLoginButton() {
 
 function handleLoginButtonClick() {
 	openLoginWindow();
-	APIcheckLoginStatus();
-	interval = window.setInterval(APIcheckLoginStatus, 1000);
+	requestLoginStatus();
+	interval = window.setInterval(requestLoginStatus, 1000);
 }
 
 function loginUI() {
@@ -53,15 +55,19 @@ function openLoginWindow() {
 	}
 }
 
-async function APIcheckLoginStatus() {
+async function requestLoginStatus() {
 	try {
-		let response = await fetch('https://hpcportal.rcc.uq.edu.au/client/api/session_info');
+		let response = await fetch('https://hpcportal.rcc.uq.edu.au/client/api/session_info').catch(error => {console.log(error);});
 		let data = await response.json();
 		isLoggedIn = (data.has_oauth_access_token == "true");
 		if (isLoggedIn == true) {
 			console.log("Login successful");
 			window.clearInterval(interval);
 			sessionStorage.setItem("isLoggedIn", "true");
+
+			// let userInfoResponse = await RequestAPI.requestUserInfo().catch(error => {console.log(error);});
+			// sessionStorage.setItem("user", userInfoResponse.userName)
+
 			redirectAfterLogin();
 		} else {
 			console.log("Login in progress");

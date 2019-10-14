@@ -1,3 +1,6 @@
+// import { redirectAfterLogout } from '../login/login.js';
+
+
 // Header
 export let UQGlobalMenu = {
 	template: `
@@ -61,7 +64,7 @@ export let HPCNavigationComponent = {
 				if (data.message.includes("invalidated")) {
 					console.log("Logout successful");
 					sessionStorage.setItem("isLoggedIn", "false");
-					redirectAfterLogout();
+					// redirectAfterLogout(); TODO:
 				} else {
 					console.log("Something went wrong...");
 				}
