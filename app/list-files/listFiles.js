@@ -1,9 +1,8 @@
 import FileModel from './FileModel.js';
 import ListFilesTableView from './ListFilesTableView.js';
-import User from '../user/User.js';
+import requestAccessToken from '../RequestAPI/RequestAPI.js';
 
-// let defaultFolderPath = `/home/${User.username}`; TODO:
-let defaultFolderPath = `/home/s4178182`;
+let defaultFolderPath = `/home/s4178182`; //TODO:
 let fileNavigationStack = [defaultFolderPath];
 
 document.onload = displayFileList()
@@ -30,27 +29,27 @@ function handleFolderPathClick() {
 }
 
 async function displayFileList(folderPath = defaultFolderPath) {
-
-	const filesJSON = await User.requestFiles(folderPath)
-	.catch(error => {
-		console.log(error);
-	});
+	const filesJSON = await requestAccessToken.requestFiles(folderPath)
+		.catch(error => {
+			console.log(error);
+		});
 	
 	if (filesJSON) {
-	 	fileNavigationStack.push(folderPath);
-	} 
-
-	let fileList = [];
+		 fileNavigationStack.push(folderPath);
+		 let fileList = [];
 	
-	filesJSON.forEach(function(item, index, array) {
-		let file = new FileModel(item.owner, item.modd, item.size, item.modh, item.name, item.permission, item.links, item.group, folderPath);
-		fileList.push(file);
-	});
-		
-	let listFilesContainer = document.getElementById("listFilesContainer");
-	let previousPath = getPreviousPath();
-	console.log(previousPath);
-	let fileView = new ListFilesTableView(fileList, folderPath, previousPath);
-	listFilesContainer.innerHTML = fileView.getFileListView();
-	listFilesContainer.addEventListener('click', handleFolderPathClick, true);
+		 filesJSON.forEach(function(item, index, array) {
+			 let file = new FileModel(item.owner, item.modd, item.size, item.modh, item.name, item.permission, item.links, item.group, folderPath);
+			 fileList.push(file);
+		 });
+			 
+		 let listFilesContainer = document.getElementById("listFilesContainer");
+		 let previousPath = getPreviousPath();
+	 
+		 let fileView = new ListFilesTableView(fileList, folderPath, previousPath);
+		 listFilesContainer.innerHTML = fileView.getFileListView();
+
+		 let listFilesPage = document.querySelector('.page-list-files');
+		 listFilesPage.addEventListener('click', handleFolderPathClick, true);
+	} 
 }

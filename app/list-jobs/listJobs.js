@@ -1,6 +1,6 @@
 import JobModel from './JobModel.js';
 import ListJobsTableView from './ListJobsTableView.js';
-import User from '../user/User.js';
+import requestAccessToken from '../RequestAPI/RequestAPI.js';
 
 document.onload = displayJobList()
 	.catch(error => {
@@ -8,7 +8,7 @@ document.onload = displayJobList()
 	});
 
 async function displayJobList() {
-	const jobsJSON = await User.requestListActiveJobs()
+	const jobsJSON = await requestAccessToken.requestListActiveJobs()
 		.catch(error => {
 			console.log(error);
 		});

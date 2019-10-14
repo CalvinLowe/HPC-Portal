@@ -16,6 +16,7 @@
 	</style>
 
 	<link rel="stylesheet" href="../style.css" media="all" />
+	<link rel="stylesheet" href="listFilesStyles.css" media="all" />
 	<script defer src="../fontawesome/js/all.js"></script>
 </head>
 <body>
@@ -36,8 +37,22 @@
 	</nav>
 
 	<main class="page page-list-files">
-		<div class="page__content"> 
+		<div class="page__content">
+			<section class="bookmarks__container">
+				<nav>
+					<ul class="bookmarks__tabs">
+						<li class="bookmarks__tab" v-for="bookmark in bookmarks">
+							<a id="navigableDirectory" class="bookmarks__tab__link bookmarks__tab__name" :data-directory-path="bookmark" href="#">
+								{{ bookmark.split('/')[1] }}
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</section>
+
+			
 			<section class="list-files__container" id="listFilesContainer">
+				</nav>
 				<table class="list-files__table">
 					<thead>
 						<tr>
@@ -70,11 +85,12 @@
 <!-- production version, optimized for size and speed -->
 <script src="../vue.js"></script>
 <script type="module" src="../ViewModels/BaseViewModel.js"></script>
+<script type="module" src="../ViewModels/ListFilesViewModel.js"></script>
 <!-- End VUE -->
 
 <script src="../utility/helper.js"></script>
 <script src="../login/login.js"></script>
 <script src="../logout/logout.js"></script>
-<script type="module" src="listFiles.js"></script> -->
+<script type="module" src="listFiles.js"></script>
 </body>
 </html>

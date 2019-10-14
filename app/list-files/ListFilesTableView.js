@@ -4,6 +4,9 @@ export default class ListFilesViewTable {
 		`<table class="list-files__table">
 			<thead>
 				<tr>
+					<th class="list-files__table__heading list-files__table__heading--${currentPath.split('/')[1].toLowerCase()}" colspan="5">${currentPath.split('/')[1]}</th>
+				</tr>
+				<tr>
 					<th id="currentDirectory" colspan="5">
 						Current directory: ${currentPath}
 					</th>

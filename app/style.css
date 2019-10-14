@@ -5,7 +5,7 @@
 .page-list-jobs, .page-list-files, .page-create-job {
 	padding: 2rem;
 }
-.list-jobs__table, .list-files__table {
+.list-jobs__table {
 	background-color: hsl(0, 0%, 97%);
 	border-top: 6px solid #51247a;
 	margin: auto;
