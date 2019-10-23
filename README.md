@@ -5,18 +5,13 @@ https://hpcportal.rcc.uq.edu.au/
 ```
 HPC Portal
 └─ app
-  ├─ Model.js 
-  ├─ View.js
-  └─ Controller.js
-└─ spec
-```
-
-## Attribute Order
-```
-class
-id, name
-data-*, enctype
-src, for, type, href, value, method, required, multiple
-title, alt
-role, aria-*
+  ├─ common-components
+  ├─ create-job
+  ├─ images
+  ├─ list-files
+  ├─ list-jobs
+  ├─ RequestAPI
+  ├─ utility
+  └─ ViewModels
+└─ UQTheme
 ```
