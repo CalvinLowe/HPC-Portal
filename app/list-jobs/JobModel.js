@@ -1,4 +1,4 @@
-export default class FileModel {
+export default class JobModel {
 	constructor(jobID, jobIDNumber, requestedTime, sessionID, requestedMemory, state, nds, elapsedTime, tsk, queue,  jobName,  userName) {
 		this._jobID = jobID;
 		this._jobIDNumber = jobIDNumber;

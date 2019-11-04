@@ -1,4 +1,11 @@
 export default class ListFilesViewTable {
+	
+	/**
+	 * 
+	 * @param {Object[]} fileList - an array of Objects of type FileModel
+	 * @param {string} currentPath - the current path of the list files component
+	 * @param {string} previousPath - the previous path of the list files component
+	 */
 	constructor(fileList, currentPath, previousPath) {
 		this._fileListViewMarkup =
 		`<table class="list-files__table">
